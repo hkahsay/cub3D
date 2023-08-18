@@ -1,0 +1,13 @@
+
+NO ./textrues/north
+SO ./textrues/south
+WE ./textrues/west
+EA ./textrues/east
+S ./textrues/sprite
+
+F 220,100,0
+C 225,30,0
+
+00000000
+00000000
+00000000

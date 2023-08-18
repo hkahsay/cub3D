@@ -1,0 +1,31 @@
+void open_read_map(char *file, t_stack *stack)
+{
+    int fd;
+    char *new_map;
+    char *map;
+    char *temp;
+
+    map = NULL;
+    fd = open(file, O_RDONLY);
+    no_file(fd); // This is likely a function that handles errors if the file cannot be opened.
+
+    new_map = ft_strdup(""); // Allocate memory for a string to store the file contents, initialize with an empty string.
+
+    while (1)
+    {
+        map = get_next_line(fd); // Read a line from the file.
+        if (map == NULL)
+            break; // Exit the loop if no more lines can be read from the file.
+
+        temp = new_map;
+        new_map = ft_strjoin(temp, map); // Concatenate the new line to the existing file contents.
+        free(temp); // Free the memory used by the previous version of new_map.
+        free(map); // Free the memory used by the current line.
+    }
+
+    stack->map = ft_split(new_map, '\n'); // Split the concatenated file contents into an array using '\n' as the delimiter.
+    free(new_map); // Free the memory used by the concatenated file contents.
+    free(map); // This line is not needed here and can be removed.
+
+    close(fd); // Close the file.
+}
