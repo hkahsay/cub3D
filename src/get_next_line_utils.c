@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkahsay <hkahsay@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 13:01:07 by hkahsay           #+#    #+#             */
-/*   Updated: 2023/08/18 14:18:00 by hkahsay          ###   ########.fr       */
+/*   Updated: 2023/08/19 16:14:53 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../cub3d.h"
 
 void	ft_bzero(void *s, size_t n)
 {

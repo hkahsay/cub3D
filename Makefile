@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hkahsay <hkahsay@student.42.fr>            +#+  +:+       +#+         #
+#    By: mac <mac@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/15 20:19:13 by hkahsay           #+#    #+#              #
-#    Updated: 2023/08/18 17:14:18 by hkahsay          ###   ########.fr        #
+#    Updated: 2023/08/23 15:00:51 by mac              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,12 @@ RESET		= \033[0m
 NAME = cub3D
 SRCS = 	src/ray.c \
 		src/check_error.c \
+		src/util.c \
+		src/init_scene.c \
+		src/parse_scene.c \
+		src/parse_texture.c \
+		src/parseState.c \
+		src/parse_color.c \
 		main.c \
 		src/get_next_line.c \
 		src/get_next_line_utils.c \
@@ -33,7 +39,7 @@ RM				= rm -f
 LIBFT_DIR		= libft
 
 LIBFT			= /libft/libft.a
-CFLAGS 			= -g -Wall -Werror -Wextra
+CFLAGS 			= -g -Wall -Werror -Wextra -g #-fsanitize=address
 
 
 INCLUDE			= -L $(LIBFT_DIR) -lft
@@ -50,7 +56,7 @@ LMLX			= -L ${MLXPATH} -lmlx
 #Rules
 
 all: 	${NAME}
-	@echo "$(VIOLET)cub3d is ready to launch !$(ENDCOLOR)"
+	@echo "$(VIOLET)cub3d is ready to launch !$(RESET)"
 
 
 .c.o:
