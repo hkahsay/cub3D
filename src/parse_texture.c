@@ -115,6 +115,14 @@ char	*read_path(t_parserState *state)
 
 // }
 
+void get_texture(const char *str, t_texture *texture)
+{
+    if(!texture->path)
+        texture->path = ft_strdup(str);
+    else
+        texture->path = 0;
+
+}
 void read_texture(t_parserState* state) {
 
 	// state->curr_line = get_next_line(fd);
@@ -122,7 +130,7 @@ void read_texture(t_parserState* state) {
 
 	// (void)fd;
 	// get_nx_line(fd, state);
-    // while(!is_all_texture_path_read(state)) {
+    while(is_all_texture_path_read(state)) {
 		state->pos = 0;
         // next_line(state);
         printf("read_texture (current: line: %d, current pos: %zu)\n", state->line_number, state->pos);
@@ -170,9 +178,9 @@ void read_texture(t_parserState* state) {
                 exit(1);
             }
         } 
-        // else if(current_char(state) == '\n') {
-        //     continue;
-        // } 
+        else if(current_char(state) == '\n') {
+            continue;
+        } 
         else {
             printf("Error: unexpected character '%c'.\n", current_char(state));
             exit(1);
@@ -183,5 +191,5 @@ void read_texture(t_parserState* state) {
 
 	// 	state->curr_line = get_next_line(fd);
     //     // get_nx_line(fd, state);
-    // }
+    }
 }

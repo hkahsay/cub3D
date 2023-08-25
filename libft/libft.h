@@ -6,7 +6,7 @@
 /*   By: hkahsay <hkahsay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 15:07:51 by hkahsay           #+#    #+#             */
-/*   Updated: 2023/01/26 14:17:27 by hkahsay          ###   ########.fr       */
+/*   Updated: 2023/08/25 14:42:44 by hkahsay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int				ft_memcmp(const void *s1, const void *s2, size_t n);
 size_t			ft_strlen(const char *str);
 int				ft_isalpha(int c);
 int				ft_isdigit(int x);
+int				ft_isdijit_char(char *str);
 int				ft_isalnum(int c);
 unsigned int	ft_isascii(unsigned int c);
 int				ft_isprint(int c);

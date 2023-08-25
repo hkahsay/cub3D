@@ -25,7 +25,21 @@ void check_arg(int ac, char **av)
 	}
 }
 
+void	print_scene(t_sceneData *data)
+{
+	int i;
 
+
+	i = 0;
+	while (data->map[i])
+	{
+		
+		printf( "%s", data->map[i]);
+		printf("\n");
+		i++;
+	}
+	
+}
 int main(int argc, char **argv)
 {
 	t_parserState *state = NULL;
@@ -41,8 +55,11 @@ int main(int argc, char **argv)
 	state = init_parserState();
 	// printf("curline from main %s\n", data->state->curr_line);
 	printf("hello\n");
-	read_scene(argv[1], state);
-	// printf("hello cub3d\n");
+	read_scene(argv[1], data);
+	// print_scene(data);
+
+	// check_scene(data);
+	// printf("hello cub3d%s\n", );
 	// find_ray();
 }
 

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mac <mac@student.42.fr>                    +#+  +:+       +#+         #
+#    By: hkahsay <hkahsay@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/15 20:19:13 by hkahsay           #+#    #+#              #
-#    Updated: 2023/08/23 15:00:51 by mac              ###   ########.fr        #
+#    Updated: 2023/08/25 12:15:48 by hkahsay          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ RM				= rm -f
 LIBFT_DIR		= libft
 
 LIBFT			= /libft/libft.a
-CFLAGS 			= -g -Wall -Werror -Wextra -g #-fsanitize=address
+CFLAGS 			= -g -Wall -Werror -Wextra -g -fsanitize=address
 
 
 INCLUDE			= -L $(LIBFT_DIR) -lft

@@ -23,6 +23,27 @@
 # define KEY_D 2
 # define KEY_A 0
 
+// typedef struct
+// {
+//     const char *identifier;
+//     void (*parser)(const char *, void *);
+// } IdentifierParser;
+
+// void get_resolution(const char *str, t_sceneData *data);
+// void get_texture(const char *str, t_texture *texture);
+// void get_color(const char *str, t_color *color);
+
+// IdentifierParser parsers[] = {
+//     {"R", get_resolution},
+//     {"NO", get_texture},
+//     {"SO", get_texture},
+//     {"WE", get_texture},
+//     {"EA", get_texture},
+//     {"S", get_texture},
+//     {"F", get_color},
+//     {"C", get_color},
+// };
+
 //  Color Name
 
 #include <stdio.h>
@@ -69,7 +90,7 @@ typedef struct s_sceneData
 	t_map	S_pos;
 	t_map	E_pos;
 	t_map	W_pos;
-	char 	*map;
+	char 	**map;
 	size_t map_height;
     size_t map_width;
 } t_sceneData;
@@ -102,7 +123,7 @@ void	*ft_calloc(size_t elementCount, size_t elementSize);
 //---------cub3d--------------//
 void 	find_ray();
 // void	read_scene(char *file, t_parserState *state);
-void	read_scene(char *file, t_parserState *state);
+void	read_scene(char *file, t_sceneData *data);
 
 int 	open_file(char *file);
 void 	check_arg(int ac, char **av);
@@ -123,6 +144,8 @@ char			**ft_split2(char *str, char *charset);
 int is_space(char c);
 void    skip_spaces(t_parserState *state);
 void skip_newline(t_parserState *state); 
+int ft_strcmp(const char *s1, const char *s2);
+
 //----------parse----------//
 int		is_map(char *line);
 
@@ -131,6 +154,8 @@ void parse_texture(char *line, t_texture *texture);
 void parse_map(char *line, t_map *map);
 int parse_scene(char *line, t_parserState *data);
 void    is_scene_valid(char *curr_line, t_parserState *data);
+void	print_scene(t_sceneData *data);
+
 //----------parsestate----------//
 void	get_nx_line(int fd, t_parserState *state);
 char	current_char(t_parserState *state);

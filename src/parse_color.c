@@ -20,29 +20,25 @@ void check_comma(t_parserState *state)
 
 void	read_floor_ceiling(int fd, t_parserState *state)
 {
-     t_color *color; //= malloc(sizeof(t_color) + 1);
+    t_color *color; //= malloc(sizeof(t_color) + 1);
     (void)fd;
-    // get_nx_line(fd, state);
-	// state->curr_line = get_next_line(fd);
- 
-    state->line_number++;
-    // skip_newline(state->curr_line);
-	printf("state->line_number %d\n", state->line_number);
+    char **file;
+    int i;
+
+    i = 0;
+    while (file[i] && ft_isdigit(file[i]))
+        i++;
+    
 	// skip_spaces(state);
 	// while (is_color(state))
 	// {
         printf("1\n");
 		// skip_spaces(state);
-        // if (ft_strncmp((current_char(state)), "\n", 2 ) == 0) 
-        // {
-        //    printf("Error: expected newline after color components.\n");
-        // }
         
         printf("current_char(state): %c\n", current_char(state));
 		// if (current_char(state) == 'F' || current_char(state) == 'C') 
 		// {
 			skip_spaces(state);
-            printf("2\n");
 			++state->pos;
             if (current_char(state) == 'F')
                 color = &(state->data.floor_color);

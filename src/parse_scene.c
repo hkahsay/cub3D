@@ -14,76 +14,117 @@ int open_file(char *file)
 	return(fd);
 }
 
-
-
-
-void	read_scene(char *file, t_parserState *state)
+void	read_scene(char *file, t_sceneData *data)
 {
-	int fd;
+	int			fd;
+	char		**file_data;
 
-
+	file_data = NULL;
 	fd = open_file(file);
-    // get_nx_line(fd, state);
-
-    // printf("state->curr_line from readscene2 %s\n", state->curr_line);
-    // state->curr_line = get_next_line(fd);
-    while ((state->curr_line = get_next_line(fd)) != NULL)
-    {
-        
-        printf("state->curr_line from readscene1 %s\n", state->curr_line);
-        printf("state->line_number %d\n", state->line_number);
-        if (!is_all_texture_path_read(state))
+	while (file = get_next_line(fd))
+	{
+        if(is_map(file) != 0)
         {
-            read_texture(state);
-            ++state->line_number;
-
+            file_data = ft_split(file, "\n\t\v\f\r");
+            // get_file(file_data, data);
+            // read_texture(data->state);
+            free(file_data);
         }
-        else if(current_char(state) == 'F' || current_char(state) == 'C')
-        {
-            ++state->line_number;
-             printf("state->curr_line from readscene1 color %s\n", state->curr_line);
-            printf("state->line_number color%d\n", state->line_number);
-            read_floor_ceiling(fd, state);
+	
+	}
+	close (fd);
 
-        }
-        else
-        {
-            printf("%s%s%s\n", RED, "Invalid scene", RESET);
-            exit(1);
-        }
-            // return ;
-        printf("readscene state->curr_line: %s\n", state->curr_line);
-        // ++state->line_number;
-        // printf("read_scene fd, file: %d, %s\n", fd, file);
-    }
-    
-    // get_nx_line(fd, state);
-    // printf("readscene state->curr_line: %s\n", state->curr_line);
-
-	close(fd);
 }
 
-// 
-
-// int is_map(char *line) {
-//     int flg = 0;
-//     // printf("%s map line0:", line);
-//     while (*line) {
-//         if (*line != '0' && *line != '1' && *line != ' ' &&
-//             *line != 'N' && *line != 'S' && *line != 'E' && *line != 'W' &&
-//             !isspace((unsigned char)(*line))) {
-//             printf("%s map line1.0:", line);
-//             printf("%s%s%s\n", RED, "Invalid map", RESET);
-//             flg++;
-//             // return 0; // Return 0 to indicate an invalid map
-//             exit(1);
-//         }
-//         line++;
+// void get_data(char **strs, t_scene *scene) {
+//     if (strs[0] == NULL || strs[0][0] == '\0') {
+//         return;
 //     }
-//     // printf("flg: %d\n", flg);
-//     // printf("%s map line1:", line);
-//     return 1; // Return 1 to indicate a valid map
+
+//     for (size_t i = 0; i < sizeof(parsers) / sizeof(parsers[0]); i++) {
+//         if (!strcmp(strs[0], parsers[i].identifier)) {
+//             parsers[i].parser(strs[1], t_);
+//             return;
+//         }
+//     }
+
+//     printf("Error\nUnknown identifier: %s\n", strs[0]);
+//     exit(EXIT_SUCCESS);
 // }
+
+// void get_file(char **str, t_sceneData *data)
+// {
+//     size_t i;
+    
+//     i = 0;
+//     if (str[0] == NULL || str[0][0] == '\0')
+//         return ;
+//     while (i < sizeof(parsers) / sizeof(parsers[0]))
+//     {
+//         if(!ft_strcmp(str[0], parsers[i].identifier))
+//         {
+//             if (str[1] == NULL)
+//             {
+//                 printf("Error: Missing argument for %s\n", str[0]);
+//                 exit(EXIT_FAILURE);
+//             }
+//              if (!ft_strcmp(parsers[i].identifier, "NO") ||
+//                 !ft_strcmp(parsers[i].identifier, "SO") ||
+//                 !ft_strcmp(parsers[i].identifier, "WE") ||
+//                 !ft_strcmp(parsers[i].identifier, "EA")
+        
+//        )
+//         }
+
+//        i++;
+//     }
+//     printf("Error\nUnknown identifier: %s\n", str[0]);
+//     exit(EXIT_SUCCESS);
+
+// }
+
+// if (!ft_strcmp(str[0], parsers[i].identifier)) {
+//     if (str[1] == NULL) {
+//         printf("Error: Missing argument for %s\n", str[0]);
+//         exit(EXIT_FAILURE);
+//     }
+//     if (!strcmp(parsers[i].identifier, "NO") ||
+//         !strcmp(parsers[i].identifier, "SO") ||
+//         // ... check other identifiers that require a t_texture argument
+//        ) {
+//         parsers[i].parser(str[1], &data->texture_field);
+//     } else if (!strcmp(parsers[i].identifier, "F") ||
+//                !strcmp(parsers[i].identifier, "C")) {
+//         parsers[i].parser(str[1], &data->color_field);
+//     } else {
+//         // Handle other cases...
+//     }
+// }
+// 
+// line receive from file;
+// Check if the current character is not one of the valid characters
+// Return 0 to indicate an invalid map
+// Return flg = 1 to indicate a valid map at the end of the file with the help of flg
+int is_map(char *line) {
+
+    int flg = 0;
+    // printf("%s map line0:", line);
+    flg = 0;
+    while (*line) {
+        if (!ft_strchr("012NSEW \n\t\v\f\r", *line))
+        {
+            printf("%s map line1.0:", line);
+            printf("%s%s%s\n", RED, "Invalid map", RESET);
+            return 0; 
+        }
+        else if (*line == '1')
+            flg = 1;
+        line++;
+    }
+    // printf("flg: %d\n", flg);
+    // printf("%s map line1:", line);
+    return (flg); // Return 1 to indicate a valid map
+}
 
 
 void parse_color(char *line, t_color *color)
