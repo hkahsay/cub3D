@@ -20,17 +20,28 @@ void check_comma(t_parserState *state)
 
 void	read_floor_ceiling(int fd, t_parserState *state)
 {
-    t_color *color = malloc(sizeof(t_color) + 1);
-
+     t_color *color; //= malloc(sizeof(t_color) + 1);
+    (void)fd;
     // get_nx_line(fd, state);
-	state->curr_line = get_next_line(fd);
-	while (!is_color(state))
-	{
+	// state->curr_line = get_next_line(fd);
+ 
+    state->line_number++;
+    // skip_newline(state->curr_line);
+	printf("state->line_number %d\n", state->line_number);
+	// skip_spaces(state);
+	// while (is_color(state))
+	// {
         printf("1\n");
-		skip_spaces(state);
-		if (current_char(state) == 'F' || current_char(state) == 'C') 
-		{
-			// skip_spaces(state);
+		// skip_spaces(state);
+        // if (ft_strncmp((current_char(state)), "\n", 2 ) == 0) 
+        // {
+        //    printf("Error: expected newline after color components.\n");
+        // }
+        
+        printf("current_char(state): %c\n", current_char(state));
+		// if (current_char(state) == 'F' || current_char(state) == 'C') 
+		// {
+			skip_spaces(state);
             printf("2\n");
 			++state->pos;
             if (current_char(state) == 'F')
@@ -39,29 +50,35 @@ void	read_floor_ceiling(int fd, t_parserState *state)
                 color = &(state->data.ceiling_color);
 
             color->R = ft_atoi(read_path(state));
+            printf("color->R: %d\n", color->R);
             check_comma(state);
 			++state->pos;
             color->G = ft_atoi(read_path(state));
+            printf("color->G: %d\n", color->G);
+
             check_comma(state);
             ++state->pos;
             color->B = ft_atoi(read_path(state));
+            printf("color->B: %d\n", color->B);
+
             if (current_char(state) != '\n')
             {
                 printf("Error: expected newline after color components.\n");
                 exit(1);
             }
-		}
-		else if(current_char(state) == '\n')
-		{
-            continue;
-		}
-		else
-		{
-            printf("Error: unexpected character '%c'.\n", current_char(state));
-            exit(1);
-        }
-	    state->curr_line = get_next_line(fd);
+		// }
+		// else if(current_char(state) == '\n')
+		// {
+        //     continue;
+		// }
+		// else
+		// {
+        //     printf("Error: unexpected character '%c'.\n", current_char(state));
+        //     exit(1);
+        // }
+	    // state->curr_line = get_next_line(fd);
+        // get_nx_line(fd, state);
 		
-	}
+	// }
 	
 }

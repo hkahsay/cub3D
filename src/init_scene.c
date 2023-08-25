@@ -5,6 +5,7 @@ void    init_color(t_color *color)
     color->R = 0;
     color->G = 0;
     color->B = 0;
+    printf("color->R, %d color->G, %d color->B  %d", color->R, color->G, color->B);
 }
 
 void    init_textures(t_texture *texture)
@@ -28,8 +29,10 @@ t_parserState* init_parserState() {
     state->data.east_texture.path = NULL;
     state->data.north_texture.path = NULL;
     state->data.south_texture.path = NULL;
-    state->floor_color_set = 0;
-    state->ceiling_color_set = 0;
+    state->data.ceiling_color.colors = NULL;
+    state->data.floor_color.colors = NULL;
+    // state->floor_color_set = 0;
+    // state->ceiling_color_set = 0;
     state->line_number = 0;
     state->pos = 0;
     return state;

@@ -122,9 +122,10 @@ char	*ft_strncpy(char *dest, char *src, size_t n);
 char			**ft_split2(char *str, char *charset);
 int is_space(char c);
 void    skip_spaces(t_parserState *state);
-
+void skip_newline(t_parserState *state); 
 //----------parse----------//
 int		is_map(char *line);
+
 
 void parse_texture(char *line, t_texture *texture);
 void parse_map(char *line, t_map *map);
@@ -141,7 +142,7 @@ int is_all_texture_path_read(t_parserState	*state);
 void read_single_texture(t_parserState *state, t_texture *texture, char expectedChar);
 void handle_error_exit(t_parserState *state, char expected, char got);
 char	*read_path(t_parserState *state);
-void	read_texture(int fd, t_parserState *state);
+void	read_texture(t_parserState *state);
 
 //----------parseTexture----------//
 int	is_color(t_parserState *state);

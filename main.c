@@ -29,21 +29,21 @@ void check_arg(int ac, char **av)
 int main(int argc, char **argv)
 {
 	t_parserState *state = NULL;
-	// t_sceneData *data = NULL;
+	t_sceneData *data = NULL;
 
 	
-	// data = malloc(sizeof(t_sceneData) + 1);
+	data = malloc(sizeof(t_sceneData) + 1);
 
 	// if(!state)
 	// 	return(0);
 	check_arg(argc, argv);
-	// init_sceneData(data);
+	init_sceneData(data);
 	state = init_parserState();
 	// printf("curline from main %s\n", data->state->curr_line);
 	printf("hello\n");
 	read_scene(argv[1], state);
-	printf("hello cub3d\n");
-	find_ray();
+	// printf("hello cub3d\n");
+	// find_ray();
 }
 
 //note what to continue

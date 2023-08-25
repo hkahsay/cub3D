@@ -1,7 +1,7 @@
 NO ./textures/violet.xpm
 SO ./textures/gray_brick.xpm
 WE 		./textures/redbrown_brick.xpm
-EA ./   textures/blue_brick.xpm
+EA ./textures/blue_brick.xpm
 
 
 F     220,100,  0
