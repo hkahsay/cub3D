@@ -1,6 +1,6 @@
 NO ./textures/violet.xpm
 SO ./textures/gray_brick.xpm
-WE 		./textures/redbrown_brick.xpm
+	./textures/  redbrown_brick.xpm
 EA ./textures/blue_brick.xpm
 
 

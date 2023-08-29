@@ -5,7 +5,7 @@ void    init_color(t_color *color)
     color->R = 0;
     color->G = 0;
     color->B = 0;
-    printf("color->R, %d color->G, %d color->B  %d", color->R, color->G, color->B);
+    // printf("color->R, %d color->G, %d color->B  %d", color->R, color->G, color->B);
 }
 
 void    init_textures(t_texture *texture)
@@ -38,14 +38,18 @@ t_parserState* init_parserState() {
     return state;
 }
 
-void init_sceneData(t_sceneData *data)
+t_sceneData *init_sceneData(t_sceneData *data)
 {
 	// data = malloc(sizeof(t_sceneData) + 1);
+	data = malloc(sizeof(t_sceneData) + 1);
+    
+    data->mlx_ptr = NULL;
+    data->win_mlx = NULL;
     data->img_ptr = NULL;
-    data->map = NULL;
+    data->scene = NULL;
     data->map_height = 0;
     data->map_width = 0;
-    
+    data->elm = 0;
     init_textures(&(data->north_texture));
     init_textures(&(data->south_texture));
     init_textures(&(data->west_texture));
@@ -58,4 +62,5 @@ void init_sceneData(t_sceneData *data)
     init_map(&(data->S_pos));
     init_map(&(data->E_pos));
     init_map(&(data->W_pos));
+    return (data);
 }

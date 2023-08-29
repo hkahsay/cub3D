@@ -1,4 +1,5 @@
 #include "../cub3d.h"
+#include "../parser.h"
 int open_file(char *file)
 {
 	int	fd;

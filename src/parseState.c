@@ -7,21 +7,7 @@
 // 	c = state->curr_line[state->pos];
 // 	return (c);
 // }
-int		is_map(char *line)
-{
-	int	check;
 
-	check = 0;
-	while (*line)
-	{
-		if (!ft_strchr("01NSEW \n\t\v\f\r", *line))
-			return (0);
-		else if (*line == '1')
-			check = 1;
-		line++;
-	}
-	return (check);
-}
 char current_char(t_parserState *state)
 {
     char c;
@@ -50,16 +36,16 @@ void	next_char(t_parserState	*state)
 
 
 
-void	get_nx_line(int fd, t_parserState *state)
-{
+// void	get_nx_line(int fd, t_parserState *state)
+// {
 	
-	state->curr_line = get_next_line(fd);
-	if (state->curr_line == NULL) {
-        printf("Error: Failed to read the next line.\n");
-        exit(1); // Or handle the error in a way appropriate for your program
-    }
-	state->pos = 0;
-	++state->line_number;
-	printf("from get_nx_line state_curr:%s\n", state->curr_line);
+// 	state->curr_line = get_next_line(fd);
+// 	if (state->curr_line == NULL) {
+//         printf("Error: Failed to read the next line.\n");
+//         exit(1); // Or handle the error in a way appropriate for your program
+//     }
+// 	state->pos = 0;
+// 	++state->line_number;
+// 	printf("from get_nx_line state_curr:%s\n", state->curr_line);
 
-}
+// }

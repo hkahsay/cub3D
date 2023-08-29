@@ -1,4 +1,5 @@
 #include "../cub3d.h"
+// #include "../parser.h"
 
 int is_all_texture_path_read(t_parserState	*state)
 {
@@ -113,83 +114,99 @@ char	*read_path(t_parserState *state)
 // 	}
 // 	printf("read_texture pos: %d\n", state->pos);
 
+// // }
+
+// void parse_texture(const char *str, t_sceneData *sceneData)
+// {
+//     // t_texture *texture = (t_texture*)data;
+
+//     if(!sceneData->texture_field->path)
+//         sceneData->texture_field->path = ft_strdup_const(str);
+//     else
+//         sceneData->texture_field->path = 0;
+
 // }
 
-void get_texture(const char *str, t_texture *texture)
-{
-    if(!texture->path)
-        texture->path = ft_strdup(str);
-    else
-        texture->path = 0;
+// void parse_resolution(const char *str, t_sceneData *data)
+// {
+//     (void)data;
+//     printf("parse_resolution: %s\n", str);
+// }
 
-}
-void read_texture(t_parserState* state) {
+// void parse_color(const char *str, t_sceneData *data)
+// {
+//     (void)data;
 
-	// state->curr_line = get_next_line(fd);
-    // state->line_number++;
+//     printf("parse_color: %s\n", str);
+// }
 
-	// (void)fd;
-	// get_nx_line(fd, state);
-    while(is_all_texture_path_read(state)) {
-		state->pos = 0;
-        // next_line(state);
-        printf("read_texture (current: line: %d, current pos: %zu)\n", state->line_number, state->pos);
-        skip_spaces(state);
-        if(current_char(state) == 'N') {
-            next_char(state);
-            if(current_char(state) == 'O') {
-                next_char(state);
-                state->data.north_texture.path = read_path(state);
-				printf("Path: %s\n", state->data.north_texture.path);
-            } else {
-                printf("Error: expected character 'O' but got '%c'.\n", current_char(state));
-                exit(1);
-            }
-        } else if(current_char(state) == 'S') {
-            next_char(state);
-            if(current_char(state) == 'O') {
-                next_char(state);
-                state->data.south_texture.path = read_path(state);
-				printf("Path: %s\n", state->data.south_texture.path);
+// void read_texture(t_parserState* state) {
 
-            } else {
-                printf("Error: expected character 'O' but got '%c'.\n", current_char(state));
-                exit(1);
-            }
-        } else if(current_char(state) == 'W') {
-            next_char(state);
-            if(current_char(state) == 'E') {
-                next_char(state);
-                state->data.west_texture.path = read_path(state);
-				printf("Path: %s\n", state->data.west_texture.path);
+// 	// state->curr_line = get_next_line(fd);
+//     // state->line_number++;
 
-            } else {
-                printf("Error: expected character 'E' but got '%c'.\n", current_char(state));
-                exit(1);
-            }
-        } else if(current_char(state) == 'E') {
-            next_char(state);
-            if(current_char(state) == 'A') {
-                next_char(state);
-                state->data.east_texture.path = read_path(state);
-				printf("Path: %s\n", state->data.east_texture.path);
-            } else {
-                printf("Error: expected character 'A' but got '%c'.\n", current_char(state));
-                exit(1);
-            }
-        } 
-        else if(current_char(state) == '\n') {
-            continue;
-        } 
-        else {
-            printf("Error: unexpected character '%c'.\n", current_char(state));
-            exit(1);
-        }
-		++state->line_number;
-		printf(" from texture state->line_number %d\n", state->line_number);
-		printf(" from texture state->curr_line %s %d\n", state->curr_line, state->line_number);
+// 	// (void)fd;
+// 	// get_nx_line(fd, state);
+//     while(is_all_texture_path_read(state)) {
+// 		state->pos = 0;
+//         // next_line(state);
+//         printf("read_texture (current: line: %d, current pos: %zu)\n", state->line_number, state->pos);
+//         skip_spaces(state);
+//         if(current_char(state) == 'N') {
+//             next_char(state);
+//             if(current_char(state) == 'O') {
+//                 next_char(state);
+//                 state->data.north_texture.path = read_path(state);
+// 				printf("Path: %s\n", state->data.north_texture.path);
+//             } else {
+//                 printf("Error: expected character 'O' but got '%c'.\n", current_char(state));
+//                 exit(1);
+//             }
+//         } else if(current_char(state) == 'S') {
+//             next_char(state);
+//             if(current_char(state) == 'O') {
+//                 next_char(state);
+//                 state->data.south_texture.path = read_path(state);
+// 				printf("Path: %s\n", state->data.south_texture.path);
 
-	// 	state->curr_line = get_next_line(fd);
-    //     // get_nx_line(fd, state);
-    }
-}
+//             } else {
+//                 printf("Error: expected character 'O' but got '%c'.\n", current_char(state));
+//                 exit(1);
+//             }
+//         } else if(current_char(state) == 'W') {
+//             next_char(state);
+//             if(current_char(state) == 'E') {
+//                 next_char(state);
+//                 state->data.west_texture.path = read_path(state);
+// 				printf("Path: %s\n", state->data.west_texture.path);
+
+//             } else {
+//                 printf("Error: expected character 'E' but got '%c'.\n", current_char(state));
+//                 exit(1);
+//             }
+//         } else if(current_char(state) == 'E') {
+//             next_char(state);
+//             if(current_char(state) == 'A') {
+//                 next_char(state);
+//                 state->data.east_texture.path = read_path(state);
+// 				printf("Path: %s\n", state->data.east_texture.path);
+//             } else {
+//                 printf("Error: expected character 'A' but got '%c'.\n", current_char(state));
+//                 exit(1);
+//             }
+//         } 
+//         else if(current_char(state) == '\n') {
+//             continue;
+//         } 
+//         else {
+//             printf("Error: unexpected character '%c'.\n", current_char(state));
+//             exit(1);
+//         }
+// 		++state->line_number;
+// 		printf(" from texture state->line_number %d\n", state->line_number);
+// 		printf(" from texture state->curr_line %s %d\n", state->curr_line, state->line_number);
+
+// 	// 	state->curr_line = get_next_line(fd);
+//     //     // get_nx_line(fd, state);
+//     }
+// }

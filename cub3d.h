@@ -23,26 +23,7 @@
 # define KEY_D 2
 # define KEY_A 0
 
-// typedef struct
-// {
-//     const char *identifier;
-//     void (*parser)(const char *, void *);
-// } IdentifierParser;
 
-// void get_resolution(const char *str, t_sceneData *data);
-// void get_texture(const char *str, t_texture *texture);
-// void get_color(const char *str, t_color *color);
-
-// IdentifierParser parsers[] = {
-//     {"R", get_resolution},
-//     {"NO", get_texture},
-//     {"SO", get_texture},
-//     {"WE", get_texture},
-//     {"EA", get_texture},
-//     {"S", get_texture},
-//     {"F", get_color},
-//     {"C", get_color},
-// };
 
 //  Color Name
 
@@ -59,7 +40,7 @@ typedef struct s_color
 	int R;
 	int	G;
 	int	B;
-	char *colors;
+	char **colors;
 } 	t_color;
 
 typedef struct map
@@ -83,17 +64,27 @@ typedef struct s_sceneData
 	t_texture	south_texture;
 	t_texture	west_texture;
 	t_texture	east_texture;
+	t_texture	*texture_field;
 	struct s_parserState	*state;
 	t_color	floor_color;
 	t_color	ceiling_color;
+	t_color	*color_field;
+    int    elm;
 	t_map	N_pos;
 	t_map	S_pos;
 	t_map	E_pos;
 	t_map	W_pos;
-	char 	**map;
+	char 	**scene;
 	size_t map_height;
     size_t map_width;
 } t_sceneData;
+
+
+typedef struct	s_resolution
+{
+	long long	width;
+	long long	height;
+}				t_resolution;
 
 typedef struct s_parserState
 {
@@ -106,6 +97,29 @@ typedef struct s_parserState
     char *curr_line; // maybe use char* and remove [2048] instead
     t_sceneData data;
 } t_parserState;
+
+
+// void parse_resolution(const char *str, t_sceneData *data);
+// void parse_texture(const char *str, t_sceneData *data);
+// void parse_color(const char *str, t_sceneData *data);
+
+// typedef struct
+// {
+//     const char *identifier;
+//     void (*parser)(const char *, t_sceneData *); // This is correct for second argument type
+// } IdentifierParser;
+
+
+// IdentifierParser parsers[] = {
+//     {"R", parse_resolution},
+//     {"NO", parse_texture},
+//     {"SO", parse_texture},
+//     {"WE", parse_texture},
+//     {"EA", parse_texture},
+//     {"S", parse_texture},
+//     {"F", parse_color},
+//     {"C", parse_color},
+// };
 
 //get_next_line_functions
 char	*get_next_line(int fd);
@@ -124,12 +138,13 @@ void	*ft_calloc(size_t elementCount, size_t elementSize);
 void 	find_ray();
 // void	read_scene(char *file, t_parserState *state);
 void	read_scene(char *file, t_sceneData *data);
+int	ft_check_char(char *str, char c);
 
 int 	open_file(char *file);
 void 	check_arg(int ac, char **av);
 //-----------init-------------//
 
-void 	init_sceneData(t_sceneData *data);
+t_sceneData 	*init_sceneData(t_sceneData *data);
 t_parserState *init_parserState();
 void    init_map(t_map *grid);
 void    init_textures(t_texture *texture);
@@ -148,13 +163,16 @@ int ft_strcmp(const char *s1, const char *s2);
 
 //----------parse----------//
 int		is_map(char *line);
+void check_map_elm(t_sceneData *data);
 
 
-void parse_texture(char *line, t_texture *texture);
+// void parse_texture(char *line, t_texture *texture);
 void parse_map(char *line, t_map *map);
-int parse_scene(char *line, t_parserState *data);
+void    parse_scene(t_sceneData *data);
+// int parse_scene(char *line, t_parserState *data);
 void    is_scene_valid(char *curr_line, t_parserState *data);
 void	print_scene(t_sceneData *data);
+void	get_resolution(char **strs, t_resolution *res);
 
 //----------parsestate----------//
 void	get_nx_line(int fd, t_parserState *state);
@@ -168,10 +186,12 @@ void read_single_texture(t_parserState *state, t_texture *texture, char expected
 void handle_error_exit(t_parserState *state, char expected, char got);
 char	*read_path(t_parserState *state);
 void	read_texture(t_parserState *state);
+// void get_texture(const char *str, t_texture *texture);
 
 //----------parseTexture----------//
 int	is_color(t_parserState *state);
 void	read_floor_ceiling(int fd, t_parserState *state);
-
+void get_file(char *identifier, char *str, t_sceneData *data);//char **str, 
+void    check_map(t_sceneData  *data);
 
 #endif

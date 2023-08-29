@@ -1,6 +1,7 @@
 NO ./textures/cyan.xpm
 SO ./textures/orange.xpm
-EA ./textures/blue.xpm
+
+      EA ./textures/blue.xpm
 WE ./textures/red.xpm
 
 F 220,100,0

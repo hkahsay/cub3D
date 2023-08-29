@@ -1,5 +1,49 @@
 #include "../cub3d.h"
 
+
+int	ft_check_char(char *str, char c)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i])
+	{
+		if (str[i] == c)
+        {
+            printf("ft_check_char: %c\n", str[i]);
+			return (1);// Character found
+        }
+		i++;
+	}
+	return (0);// Character not found
+}
+
+int is_space(char c)
+{
+    if (c == 32 || (c >= 9 && c <= 13) || c == '\0')
+        return(1);
+    return(0);
+}
+
+void    skip_spaces(t_parserState *state)
+{
+    while (is_space(current_char(state)))
+        ++state->pos;
+}
+
+
+void skip_newline(t_parserState *state ) {
+    //  state->curr_line = ft_strchr(str, '\n');
+    while (ft_strcmp(state->curr_line, "\n") == 0)
+    {
+        state->pos++;
+        state->line_number++;
+    }
+    printf("state->curr_line %s\n", state->curr_line);
+}
+
 int ft_strcmp(const char *s1, const char *s2)
 {
 	int i = 0;
@@ -79,5 +123,6 @@ char			**ft_split2(char *str, char *charset)
 			j++;
 	}
 	strs[k] = 0;
+	// printf("ft_split strs[0]: %s\n", strs[0]);
 	return (strs);
 }
