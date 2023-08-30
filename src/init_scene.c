@@ -1,10 +1,13 @@
 #include "../cub3d.h"
 
-void    init_color(t_color *color)
+t_color    *init_color(t_color *color)
 {
-    color->R = 0;
-    color->G = 0;
-    color->B = 0;
+  color = malloc(sizeof(t_color) + 1);
+
+    color->R = -1;
+    color->G = -1;
+    color->B = -1;
+    return (color);
     // printf("color->R, %d color->G, %d color->B  %d", color->R, color->G, color->B);
 }
 
@@ -18,8 +21,8 @@ void    init_textures(t_texture *texture)
 void    init_map(t_map *grid)
 {
     grid->map = NULL;
-    grid->m_height = 0;
-    grid->m_width = 0;
+    grid->m_height = 1;
+    grid->m_width = 1;
     grid->pos = NULL;
 }
 
@@ -38,11 +41,8 @@ t_parserState* init_parserState() {
     return state;
 }
 
-t_sceneData *init_sceneData(t_sceneData *data)
+void    init_sceneData(t_sceneData *data)
 {
-	// data = malloc(sizeof(t_sceneData) + 1);
-	data = malloc(sizeof(t_sceneData) + 1);
-    
     data->mlx_ptr = NULL;
     data->win_mlx = NULL;
     data->img_ptr = NULL;
@@ -62,5 +62,5 @@ t_sceneData *init_sceneData(t_sceneData *data)
     init_map(&(data->S_pos));
     init_map(&(data->E_pos));
     init_map(&(data->W_pos));
-    return (data);
+    init_map(&(data->map_field));
 }

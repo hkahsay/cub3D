@@ -9,16 +9,23 @@ int	is_color(t_parserState *state)
     // return state->floor_color_set && state->ceiling_color_set;
 }
 
-void check_comma(t_parserState *state)
+void check_comma(char *str)
 {
-    if (current_char(state) != ',')
+    if (str[0] != ',')
     {
         printf("Error: expected comma after green component.\n");
         exit(1);
     }
 }
+// {
+//     if (data->state->curr_line[data->state->pos] != ',')
+//     {
+//         printf("Error: expected comma after green component.\n");
+//         exit(1);
+//     }
+// }
 
-// void	read_floor_ceiling(int fd, t_parserState *state)
+// void	parse_floor_ceiling(int fd, t_parserState *state)
 // {
 //     t_color *color; //= malloc(sizeof(t_color) + 1);
 //     (void)fd;
@@ -62,19 +69,19 @@ void check_comma(t_parserState *state)
 //                 printf("Error: expected newline after color components.\n");
 //                 exit(1);
 //             }
-// 		// }
-// 		// else if(current_char(state) == '\n')
-// 		// {
-//         //     continue;
-// 		// }
-// 		// else
-// 		// {
-//         //     printf("Error: unexpected character '%c'.\n", current_char(state));
-//         //     exit(1);
-//         // }
-// 	    // state->curr_line = get_next_line(fd);
-//         // get_nx_line(fd, state);
+		// }
+		// else if(current_char(state) == '\n')
+		// {
+        //     continue;
+		// }
+		// else
+		// {
+        //     printf("Error: unexpected character '%c'.\n", current_char(state));
+        //     exit(1);
+        // }
+	    // state->curr_line = get_next_line(fd);
+        // get_nx_line(fd, state);
 		
-// 	// }
+	// }
 	
 // }

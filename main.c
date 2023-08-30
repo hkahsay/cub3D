@@ -5,12 +5,22 @@ int main(int argc, char **argv)
 {
 	t_sceneData *data;
 	
-	data = NULL;
+	// data = NULL;
+	data = malloc(sizeof(t_sceneData));
+	if(!data)
+	{
+		printf("Error\nMalloc failed\n");
+		return (0);
+	}
 	check_arg(argc, argv);
-	data = init_sceneData(data);
+	printf("argv[1]: %s\n", argv[1]);
+	init_sceneData(data);
 	read_scene(argv[1], data);
 	// check_map_elm(data);
+	
 	check_map(data);
+	free(data);
+	return (0);
 }
 
 void check_arg(int ac, char **av)
@@ -57,7 +67,7 @@ void    read_scene(char *file, t_sceneData *data)
     char *current_line = NULL;
     char *temp_map = NULL;
 	int fd;
-
+	// data->scene = malloc(sizeof(char *) + 1);
 	current_line = NULL;
 	fd = open_file(file);
 	combined_map = ft_strdup(""); // Allocate memory for a string to store the file contents, initialize with an empty string.
@@ -76,6 +86,11 @@ data->scene = ft_split(combined_map, '\n');
 // check_map(data);
 free(combined_map);
 free(current_line);
+// if (close(fd) == -1)
+// {
+// 	printf("Error\nCould not close file %s.\n", file);
+// 	exit(1);
+// }
 close(fd);
 
 }

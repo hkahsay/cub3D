@@ -3,6 +3,15 @@
 
 #include <string.h>
 
+// IdentifierParser parsers[] = {
+//     {"NO", (void *)&parse_texture},
+//     {"SO", (void *)&parse_texture},
+//     {"WE", (void *)&parse_texture},
+//     {"EA", (void *)&parse_texture},
+//     {"F", (void *)&parse_color},
+//     {"C", (void *)&parse_color},
+
+// };
 void check_map_elm(t_sceneData *data)
 {
     int i;
@@ -71,7 +80,7 @@ int is_map(char *line)
                 // printf("%s%s%s\n", RED, "Invalid map", RESET);
                 return 0;
             }
-            printf("%s ismap:\n", line);
+            // printf("%s ismap:\n", line);
             return 1; // Valid map line
             // i++;
             line++;

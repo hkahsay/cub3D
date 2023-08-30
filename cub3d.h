@@ -43,11 +43,11 @@ typedef struct s_color
 	char **colors;
 } 	t_color;
 
-typedef struct map
+typedef struct s_map
 {
 	char **map;
 	int m_width;
-	int	m_height;
+	int m_height;
 	char	*pos;
 }	t_map;
 
@@ -74,17 +74,12 @@ typedef struct s_sceneData
 	t_map	S_pos;
 	t_map	E_pos;
 	t_map	W_pos;
+	t_map	map_field;
 	char 	**scene;
 	size_t map_height;
     size_t map_width;
 } t_sceneData;
 
-
-typedef struct	s_resolution
-{
-	long long	width;
-	long long	height;
-}				t_resolution;
 
 typedef struct s_parserState
 {
@@ -144,11 +139,12 @@ int 	open_file(char *file);
 void 	check_arg(int ac, char **av);
 //-----------init-------------//
 
-t_sceneData 	*init_sceneData(t_sceneData *data);
-t_parserState *init_parserState();
+void	init_sceneData(t_sceneData *data);
+// t_parserState *init_parserState();
 void    init_map(t_map *grid);
 void    init_textures(t_texture *texture);
-void    init_color(t_color *color);
+t_color    *init_color(t_color *color);
+
 
 //----------util--------------//
 
@@ -164,7 +160,9 @@ int ft_strcmp(const char *s1, const char *s2);
 //----------parse----------//
 int		is_map(char *line);
 void check_map_elm(t_sceneData *data);
-
+size_t  get_width(char **strlines);
+void    get_map(const char *line_map, t_map *map_data, t_sceneData *data);
+void check_comma(char *str);
 
 // void parse_texture(char *line, t_texture *texture);
 void parse_map(char *line, t_map *map);
@@ -172,7 +170,7 @@ void    parse_scene(t_sceneData *data);
 // int parse_scene(char *line, t_parserState *data);
 void    is_scene_valid(char *curr_line, t_parserState *data);
 void	print_scene(t_sceneData *data);
-void	get_resolution(char **strs, t_resolution *res);
+void color_ranges(int *r, int *g, int *b);
 
 //----------parsestate----------//
 void	get_nx_line(int fd, t_parserState *state);
