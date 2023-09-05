@@ -70,14 +70,8 @@ typedef struct s_sceneData
 	t_color	ceiling_color;
 	t_color	*color_field;
     int    elm;
-	t_map	N_pos;
-	t_map	S_pos;
-	t_map	E_pos;
-	t_map	W_pos;
-	t_map	map_field;
+	t_map	map_data;
 	char 	**scene;
-	size_t map_height;
-    size_t map_width;
 } t_sceneData;
 
 
@@ -130,8 +124,6 @@ void	*ft_calloc(size_t elementCount, size_t elementSize);
 
 
 //---------cub3d--------------//
-void 	find_ray();
-// void	read_scene(char *file, t_parserState *state);
 void	read_scene(char *file, t_sceneData *data);
 int	ft_check_char(char *str, char c);
 
@@ -140,56 +132,54 @@ void 	check_arg(int ac, char **av);
 //-----------init-------------//
 
 void	init_sceneData(t_sceneData *data);
-// t_parserState *init_parserState();
 void    init_map(t_map *grid);
 void    init_textures(t_texture *texture);
-t_color    *init_color(t_color *color);
+void  init_color(t_color *color);
 
+//------------------free------------------//
+
+void    free_strs_array(char **strs);
+//----------utils2------------//
+
+void    emprty_str(char *str);
+int 	ft_isdigit_strict(const char *str);
 
 //----------util--------------//
 
-// static int  find_length(char *str, char *charset);
 char	*ft_strncpy(char *dest, char *src, size_t n);
-// static void		import_str(char **dest, char *src, int start, int end);
-char			**ft_split2(char *str, char *charset);
-int is_space(char c);
+void	*ft_realloc(void *ptr, size_t orig_size, size_t new_size);
+char	**ft_split2(char *str, char *charset);
+int 	is_space(char c);
 void    skip_spaces(t_parserState *state);
-void skip_newline(t_parserState *state); 
-int ft_strcmp(const char *s1, const char *s2);
+void 	skip_newline(t_parserState *state); 
+int 	ft_strcmp(const char *s1, const char *s2);
+
+//----------print----------//
+void	print_scene(t_sceneData *data);
+void	print_map(t_map *map_data);
+
+//----------map----------//
+
+int		is_map(char *line);
+void    get_map(t_sceneData *data,int mapStartedIndex);
+// void    get_map(t_sceneData *data, t_map *map_data);
+size_t  get_width(char **strlines);
+char 	**cpy_map(char **scene, int *height);
+void 	extract_map_lines(t_sceneData *data);
+int		is_map_enclosed(char **map, int height, int width);
+
+void	valid_extension(char *tex_path);
 
 //----------parse----------//
-int		is_map(char *line);
-void check_map_elm(t_sceneData *data);
-size_t  get_width(char **strlines);
-void    get_map(const char *line_map, t_map *map_data, t_sceneData *data);
-void check_comma(char *str);
 
-// void parse_texture(char *line, t_texture *texture);
-void parse_map(char *line, t_map *map);
-void    parse_scene(t_sceneData *data);
-// int parse_scene(char *line, t_parserState *data);
-void    is_scene_valid(char *curr_line, t_parserState *data);
-void	print_scene(t_sceneData *data);
-void color_ranges(int *r, int *g, int *b);
+void 	check_map_elm(t_sceneData *data);
+void    get_scene(t_sceneData  *data);
+void 	parse_map(char *line, t_map *map);
+int 	color_ranges_valid(int *r, int *g, int *b);
+void 	get_file(char *identifier, char *str, t_sceneData *data);//char **str, 
+// int	is_color(t_parserState *state);
+void	check_scene(t_sceneData	*data);
 
-//----------parsestate----------//
-void	get_nx_line(int fd, t_parserState *state);
-char	current_char(t_parserState *state);
-void	next_char(t_parserState	*state);
-
-//----------parseTexture----------//
-
-int is_all_texture_path_read(t_parserState	*state);
-void read_single_texture(t_parserState *state, t_texture *texture, char expectedChar);
-void handle_error_exit(t_parserState *state, char expected, char got);
-char	*read_path(t_parserState *state);
-void	read_texture(t_parserState *state);
-// void get_texture(const char *str, t_texture *texture);
-
-//----------parseTexture----------//
-int	is_color(t_parserState *state);
-void	read_floor_ceiling(int fd, t_parserState *state);
-void get_file(char *identifier, char *str, t_sceneData *data);//char **str, 
-void    check_map(t_sceneData  *data);
+void	check_texture(t_sceneData *data);
 
 #endif

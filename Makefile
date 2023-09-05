@@ -6,7 +6,7 @@
 #    By: mac <mac@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/15 20:19:13 by hkahsay           #+#    #+#              #
-#    Updated: 2023/08/29 11:31:30 by mac              ###   ########.fr        #
+#    Updated: 2023/09/01 15:40:26 by mac              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRCS = 	main.c \
 		src/get_next_line_utils.c \
 		src/check_error.c \
 		src/util.c \
+		src/util2.c \
 		src/checkMap.c \
 		src/init_scene.c \
 		src/parse_scene.c \

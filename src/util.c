@@ -27,11 +27,11 @@ int is_space(char c)
     return(0);
 }
 
-void    skip_spaces(t_parserState *state)
-{
-    while (is_space(current_char(state)))
-        ++state->pos;
-}
+// void    skip_spaces(t_parserState *state)
+// {
+//     while (is_space(current_char(state)))
+//         ++state->pos;
+// }
 
 
 void skip_newline(t_parserState *state ) {
@@ -65,6 +65,30 @@ static int  find_length(char *str, char *charset)
 		if (!ft_strchr(charset, *str++))
 			count++;
 	return (count);
+}
+
+void	*ft_realloc(void *ptr, size_t orig_size, size_t new_size)
+{
+	void	*new_ptr;
+
+	new_ptr = 0;
+	if (new_size == 0)
+		free(ptr);
+	else if (!ptr)
+	{
+		if (!(new_ptr = malloc(new_size)))
+			return (0);
+	}
+	else if (new_size <= orig_size)
+		return (ptr);
+	else if (ptr && new_size > orig_size)
+	{
+		if (!(new_ptr = malloc(new_size)))
+			return (0);
+		ft_memcpy(new_ptr, ptr, orig_size);
+		free(ptr);
+	}
+	return (new_ptr);
 }
 
 char	*ft_strncpy(char *dest, char *src, size_t n)

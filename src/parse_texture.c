@@ -39,28 +39,28 @@ int is_all_texture_path_read(t_parserState	*state)
 //     }
 // }
 
-char	*read_path(t_parserState *state)
-{
-	int	start_pos;
-	int	end_pos;
-	char	*res;
-	int	size;
-	skip_spaces(state);
+// char	*read_path(t_parserState *state)
+// {
+// 	int	start_pos;
+// 	int	end_pos;
+// 	char	*res;
+// 	int	size;
+// 	skip_spaces(state);
 
-	start_pos = state->pos;
-	while (!(is_space(current_char(state))) && current_char(state) != '\n')
-		++state->pos;
-	end_pos = state->pos;
-	size = end_pos - start_pos;
-	printf("size read path: %d\n", size);
-	printf("end pos read path: %d\n", end_pos);
-	printf("start read path: %d\n", start_pos);
+// 	start_pos = state->pos;
+// 	while (!(is_space(current_char(state))) && current_char(state) != '\n')
+// 		++state->pos;
+// 	end_pos = state->pos;
+// 	size = end_pos - start_pos;
+// 	printf("size read path: %d\n", size);
+// 	printf("end pos read path: %d\n", end_pos);
+// 	printf("start read path: %d\n", start_pos);
 
-	res = (char *)malloc(size + 1);
-	ft_bzero(res, size + 1);
-	ft_strncpy(res, state->curr_line + start_pos, size);
-	return (res);
-}
+// 	res = (char *)malloc(size + 1);
+// 	ft_bzero(res, size + 1);
+// 	ft_strncpy(res, state->curr_line + start_pos, size);
+// 	return (res);
+// }
 
 // void	read_texture(t_parserState *state)//int fd, 
 // {
