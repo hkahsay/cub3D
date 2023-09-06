@@ -141,8 +141,9 @@ void  init_color(t_color *color);
 void    free_strs_array(char **strs);
 //----------utils2------------//
 
-void    emprty_str(char *str);
+void    empty_color(char *str);
 int 	ft_isdigit_strict(const char *str);
+void miss_color_set(t_sceneData *data, const char *colorType);
 
 //----------util--------------//
 
@@ -162,13 +163,13 @@ void	print_map(t_map *map_data);
 
 int		is_map(char *line);
 void    get_map(t_sceneData *data,int mapStartedIndex);
-// void    get_map(t_sceneData *data, t_map *map_data);
 size_t  get_width(char **strlines);
-char 	**cpy_map(char **scene, int *height);
-void 	extract_map_lines(t_sceneData *data);
-int		is_map_enclosed(char **map, int height, int width);
+void free_map_data(t_map *map_data);
+void cpyMap(char *scene, t_sceneData *data);
+void    check_map(t_map *map_data);
+void    check_not_empty(char **map, int m_height, int row, int col);
+void    check_map_valid_characters(char **map);
 
-void	valid_extension(char *tex_path);
 
 //----------parse----------//
 
@@ -179,7 +180,9 @@ int 	color_ranges_valid(int *r, int *g, int *b);
 void 	get_file(char *identifier, char *str, t_sceneData *data);//char **str, 
 // int	is_color(t_parserState *state);
 void	check_scene(t_sceneData	*data);
+void	valid_extension(char *tex_path);
 
-void	check_texture(t_sceneData *data);
+void	check_texture(char *texture, char *tex_name);
+
 
 #endif

@@ -29,11 +29,12 @@ int ft_isdigit_strict(const char *str)
     
 }
 
-void    emprty_str(char *str)
+void    empty_color(char *str)
 {
+    printf("empty_color: %s\n", str);
    if(!str)
     {
-        printf("Error: color is not set.\n\n");
-        exit(1);
+        printf(RED"Error: color is not set.\n"RESET);
+        exit(EXIT_FAILURE);
     }
 }

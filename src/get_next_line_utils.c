@@ -6,7 +6,7 @@
 /*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 13:01:07 by hkahsay           #+#    #+#             */
-/*   Updated: 2023/08/28 15:03:51 by mac              ###   ########.fr       */
+/*   Updated: 2023/09/05 18:56:46 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,17 @@ char	*ft_strchr(const char *str, int c)
 	return (0);
 }
 
-size_t	ft_strlen(const char *s)
-{
-	int	i;
 
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
+// size_t	ft_strlen(const char *s)
+// {
+// 	size_t	i;
+
+// 	i = 0;
+// 	printf("s: %s\n", s);
+// 	while (s[i] != '\0')
+// 		i++;
+// 	return (i);
+// }
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {

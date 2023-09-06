@@ -6,7 +6,7 @@
 #    By: mac <mac@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/15 20:19:13 by hkahsay           #+#    #+#              #
-#    Updated: 2023/09/01 15:40:26 by mac              ###   ########.fr        #
+#    Updated: 2023/09/05 20:42:32 by mac              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,8 @@ SRCS = 	main.c \
 		src/parse_texture.c \
 		src/parseState.c \
 		src/parse_color.c \
+		src/parse_color_tex.c \
+		
 
 OBJS			= ${SRCS:.c=.o}	
 

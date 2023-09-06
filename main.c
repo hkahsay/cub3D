@@ -17,11 +17,14 @@ int main(int argc, char **argv)
 	check_arg(argc, argv);
 	printf("argv[1]: %s\n", argv[1]);
 	init_sceneData(data);
+	printf("argv[1] from main %s\n", argv[1]);
 	read_scene(argv[1], data);
-	// check_map_elm(data);
-	check_scene(data);
+	// printf("data from main %s\n", data->scene[0]);
+
+	// check_scene(data);
 	
 	// get_scene(data);
+	free_map_data(&(data->map_data));
 	free(data);
 	return (0);
 }
@@ -33,6 +36,9 @@ void check_arg(int ac, char **av)
 	// 	printf("Usage: ./cub3d <map>");
 	// 	exit(1);
 	// }
+
+	//!ft_strchr(av[1], '.' ) if dot is not found
+	//ft_strncmp((ft_strrchr(av[1], '.')), ".cub", 5 if the last 4 characters are not .cub
 	if (ac < 2)
 	{
 		printf("%s\n", VIOLET"You dont have enough arguments\n");
@@ -74,6 +80,8 @@ void    read_scene(char *file, t_sceneData *data)
 	current_line = NULL;
 	fd = open_file(file);
 	combined_map = ft_strdup(""); // Allocate memory for a string to store the file contents, initialize with an empty string.
+	if(!combined_map)
+		return;
 	while (1)
 	{
 		current_line = get_next_line(fd);
@@ -94,18 +102,23 @@ if (close(fd) == -1)
 	exit(1);
 }
 get_scene(data);
+check_scene(data);
+// miss_color_set(data, "floor");
+// miss_color_set(data, "ceiling");
 // check_scene(data);
 }
 
 void	check_scene(t_sceneData	*data)
 {
-	// (void)data;
-	printf("data->texture_field->pathhh%s\n",data->texture_field->path);
-	valid_extension(data->texture_field->path);
-	printf("data->north_texture %s\n",data->north_texture.path);
-	check_texture(data);
+	check_texture(data->north_texture.path, "north");
+	check_texture(data->south_texture.path, "south");
+	check_texture(data->west_texture.path, "west");
+	check_texture(data->east_texture.path, "east");
 	// printf("path\n");
 	// check_color(data);
+	// miss_color_set(data, "floor");
+	// miss_color_set(data, "ceiling");
+	check_map(&data->map_data);
 }
 void	valid_extension(char *tex_path)
 {
@@ -123,29 +136,27 @@ void	valid_extension(char *tex_path)
 	// return (1);
 }
 
-void	check_texture(t_sceneData *data)
+void	check_texture(char *texture, char *tex_name)
 {
-	// if(data->)north texture
-	if (data->north_texture.path == NULL)
+	int fd;
+	// printf("texture: %s\n", texture);
+	if (texture == NULL)
 	{
-		printf("%s\n", RED"Error\nNo north texture");
-		exit(1);
+		printf( RED"Error\n%s texture path is empty\n"RESET, tex_name);
+		exit(EXIT_FAILURE);
 	}
-	if (data->south_texture.path == NULL)
+	
+	if ((fd = open(texture, O_RDONLY)) == -1)
 	{
-		printf("%s\n", RED"Error\nNo south texture");
-		exit(1);
+		printf(RED"Error\ncan not open %s: %s\n"RESET, tex_name, texture);
+		exit(EXIT_FAILURE);
 	}
-	if (data->west_texture.path == NULL)
+	if (close(fd) == -1)
 	{
-		printf("%s\n", RED"Error\nNo west texture");
-		exit(1);
+		printf(RED"Error\n%s Could not close texture file\n"RESET, texture);
+		exit(EXIT_FAILURE);
 	}
-	if (data->east_texture.path == NULL)
-	{
-		printf("%s\n", RED"Error\nNo east texture");
-		exit(1);
-	}
+
 }
 // int main(int argc, char **argv)
 // {

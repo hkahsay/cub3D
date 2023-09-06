@@ -2,7 +2,9 @@
 
 void    init_color(t_color *color)
 {
-  color = malloc(sizeof(t_color) + 1);
+//   color = malloc(sizeof(t_color) + 1);
+  if(!color)
+    return;
 
     color->R = -1;
     color->G = -1;
