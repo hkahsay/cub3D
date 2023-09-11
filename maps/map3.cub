@@ -1,7 +1,7 @@
 NO ./textures/cyan.jpg
 SO ./textures/orange.jpg
-WE ./textures/red.jpg
-EA ./textures/blue.jg
+WE ./textures/red.jg
+EA ./textures/blue.jpg
 
 F 23,54,4
 C 34,23,1

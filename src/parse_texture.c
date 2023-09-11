@@ -1,24 +1,15 @@
 #include "../cub3d.h"
 // #include "../parser.h"
 
-// static int		check_extension(char *file, char *extension)
-// {
-// 	int	len_file;
-// 	int	len_ext;
-
-// 	len_file = ft_strlen(file);
-// 	len_ext = ft_strlen(extension);
-// 	if (len_file <= len_ext)
-// 		return (0);
-// 	else if (!ft_strncmp(&file[len_file - len_ext], extension, len_ext + 1))
-// 		return (1);
-// 	else
-// 		return (0);
-// }
-
 void	check_texture(char *texture, char *tex_name)
 {
 	int fd;
+
+	if(valid_extension(texture) == 0)
+	{
+		printf(RED"Error\nFile %s: %s doesn't have correct extension\n"RESET, tex_name, texture);
+		exit(EXIT_FAILURE);
+	}
 	if (texture == NULL)
 	{
 		printf( RED"Error\n%s texture path is empty\n"RESET, tex_name);
@@ -29,11 +20,7 @@ void	check_texture(char *texture, char *tex_name)
 		printf(RED"Error\ncan not open %s: %s\n"RESET, tex_name, texture);
 		exit(EXIT_FAILURE);
 	}
-	if(valid_extension(texture) == 0)
-	{
-		printf(RED"Error\nFile doesn't have xpm extension\n"RESET);
-		exit(EXIT_FAILURE);
-	}
+
 	if (close(fd) == -1)
 	{
 		printf(RED"Error\n%s Could not close texture file\n"RESET, texture);
@@ -44,14 +31,14 @@ void	check_texture(char *texture, char *tex_name)
 int	valid_extension(char *tex_path)
 {
 	int len;
-
 	
 	len = ft_strlen(tex_path);
-	printf("tex_path: %s\n", tex_path);
-	if (tex_path[len - 1] != 'j' || tex_path[len - 2] != 'p' || tex_path[len - 3] != 'x' || tex_path[len - 4] != '.')
-	{
-		printf("tex_path: %s\n", tex_path);
+	if (len < 4)
 		return (0);
-	}
+	if (tex_path[len - 1] != 'g' && 
+		tex_path[len - 2] != 'p' && 
+		tex_path[len - 3] != 'j' && 
+		tex_path[len - 4] != '.')
+		return (0);
 	return (1);
 }
