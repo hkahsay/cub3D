@@ -6,7 +6,7 @@
 #    By: mac <mac@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/15 20:19:13 by hkahsay           #+#    #+#              #
-#    Updated: 2023/09/05 20:42:32 by mac              ###   ########.fr        #
+#    Updated: 2023/09/11 14:09:35 by mac              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,13 +22,17 @@ SRCS = 	main.c \
 		src/get_next_line.c \
 		src/get_next_line_utils.c \
 		src/check_error.c \
-		src/util.c \
+		src/util1.c \
+		src/util3.c \
 		src/util2.c \
+		src/util.c \
 		src/checkMap.c \
 		src/init_scene.c \
 		src/parse_scene.c \
+		src/print.c \
+		src/ft_free.c \
+		src/getMap.c \
 		src/parse_texture.c \
-		src/parseState.c \
 		src/parse_color.c \
 		src/parse_color_tex.c \
 		
@@ -42,7 +46,7 @@ RM				= rm -f
 LIBFT_DIR		= libft
 
 LIBFT			= /libft/libft.a
-CFLAGS 			= -g -Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS 			= -g -Wall -Werror -Wextra -g #-fsanitize=address
 
 
 INCLUDE			= -L $(LIBFT_DIR) -lft

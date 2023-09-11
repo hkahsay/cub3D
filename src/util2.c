@@ -1,18 +1,7 @@
 #include "../parser.h"
 #include "../cub3d.h"
 
-void    free_strs_array(char **strs)
-{
-    int i;
 
-    i = 0;
-    while (strs[i])
-    {
-        free(strs[i]);
-        i++;
-    }
-    free(strs);
-}
 
 int ft_isdigit_strict(const char *str)
 {
@@ -31,10 +20,15 @@ int ft_isdigit_strict(const char *str)
 
 void    empty_color(char *str)
 {
-    printf("empty_color: %s\n", str);
    if(!str)
     {
         printf(RED"Error: color is not set.\n"RESET);
         exit(EXIT_FAILURE);
     }
 }
+
+// static void    skip_spaces(char *str, int i)
+// {
+//     while (is_space(str[i]))
+//         ++i;
+// }

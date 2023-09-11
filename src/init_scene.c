@@ -27,20 +27,13 @@ void    init_map(t_map *grid)
     grid->pos = NULL;
 }
 
-t_parserState* init_parserState() {
-    t_parserState* state = (t_parserState*) malloc(sizeof(t_parserState));
-    state->data.west_texture.path = NULL;
-    state->data.east_texture.path = NULL;
-    state->data.north_texture.path = NULL;
-    state->data.south_texture.path = NULL;
-    state->data.ceiling_color.colors = NULL;
-    state->data.floor_color.colors = NULL;
-    // state->floor_color_set = 0;
-    // state->ceiling_color_set = 0;
-    state->line_number = 0;
-    state->pos = 0;
-    return state;
-}
+void initialize_variables(t_scene_params *params)
+{
+    params->i = 0;
+    params->mapStartedIndex = 0;
+    params->mapstarted = 0;
+    params->shouldIncrementHeight = 1;
+} 
 
 void    init_sceneData(t_sceneData *data)
 {
@@ -53,7 +46,6 @@ void    init_sceneData(t_sceneData *data)
     init_textures(&(data->south_texture));
     init_textures(&(data->west_texture));
     init_textures(&(data->east_texture));
-
     init_color(&(data->floor_color));
     init_color(&(data->ceiling_color));
     init_map(&(data->map_data));

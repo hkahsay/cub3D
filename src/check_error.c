@@ -1,11 +1,76 @@
 #include "../cub3d.h"
+void	check_scene(t_sceneData	*data)
+{
+    printf("check_texture(data->north_texture.path, north %s\n", data->north_texture.path);
+	check_texture(data->north_texture.path, "north");
+	check_texture(data->south_texture.path, "south");
+	check_texture(data->west_texture.path, "west");
+	check_texture(data->east_texture.path, "east");
+	check_color(&data->floor_color, "floor");
+	check_color(&data->ceiling_color, "ceiling");
+	check_map(&data->map_data);
+}
 
-// void    is_scene_valid(char *curr_line, t_parserState *data)
-// {
-//     if (parse_scene(curr_line, data) == 0)
-//     {
-//         perror("Invalid scene data encountered.\n");
-//         exit(1); // Exit the program if invalid scene data is encountered
-//     }
-//         // printf("currline%s", curr_line);
-// }
+// Function to check if a string contains only whitespace characters
+int is_empty_line(char *str)
+{
+    while (*str) {
+        if (!isspace(*str) ) {
+            // printf("no_empty_line strr: %s\n", str);
+            return 0; // Non-whitespace character found
+        }
+        str++;
+    }
+//    printf("is_empty_line strr: \n");
+    return 1; 
+}
+
+// Function to check if the map contains an empty line
+int has_empty_line(char **map, int height)
+{
+    int i;
+
+    i = 0;
+    while (i < height) 
+    {
+        printf("height: %d\n", height);
+        printf("has_empty_line: %d\n", i);
+            printf("has_empty_line map[i]: %s\n", map[i]);
+        if (is_empty_line(map[i]) != 0)
+        {
+            return (1); // Found an empty line
+        }
+        i++;
+    }
+    return (0); // No empty lines found
+}
+
+void    empty_line_error(t_sceneData *data)
+{
+    // Set the last element to NULL to terminate the map array
+    if (has_empty_line(data->map_data.map, data->map_data.m_height))
+    {
+        ft_error_msg(RED"Error: The map contains an empty line."RESET);
+        free_map_data(&data->map_data);
+    }
+}
+
+int ft_error_msg(char *msg)
+{
+    printf("%s\n", msg);
+    exit(EXIT_FAILURE);
+}
+
+int    check_wall(char *line)
+{
+    int i;
+
+    i = 0;
+    while (line[i])
+    {
+        if (line[i] != '1' && !is_space(line[i]))
+            return(1);
+        i++;
+    }
+    return(0);
+}

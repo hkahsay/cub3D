@@ -199,3 +199,54 @@ int		is_map_enclosed(char **map, int height, int width)
 //     extract_map_lines(data);
 
 // }
+
+void get_scene(t_sceneData *data)
+{
+    int i = 0;
+    int mapStartedIndex = 0;
+    int mapstarted = 0;
+    int shouldIncrementHeight = 1; // Flag to control height incrementing
+
+	check_map_elm(data);
+    while (data->scene[i] != NULL)
+    {
+        if (mapstarted == 0)
+        {
+            if (is_map(data->scene[i]) == 1)
+            {
+                mapStartedIndex = i;
+                mapstarted = 1;
+            }
+        
+        }
+        if (mapstarted == 1 && shouldIncrementHeight == 1)
+        {
+            data->map_data.m_height++;
+        }
+        else if (mapstarted == 1)
+        {
+            if (lineContainsNonWhitespace(data->scene[i]) == 0)
+            {
+                shouldIncrementHeight = 0;
+            }
+        }
+        else
+        {
+
+            if (data->scene[i][0] != '\0')
+            {
+                char *identifier = strtok(data->scene[i], " "); // Assuming identifiers are followed by a space
+                char *dataLine = strtok(NULL, ""); // Remaining part of the line
+              
+                
+                get_file(identifier, dataLine, data);
+                data->elm++;
+            }
+        }
+        i++; // Move to the next identifier/data pair
+    }
+  
+    get_map(data, mapStartedIndex);
+    
+    print_map(&data->map_data);
+}

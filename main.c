@@ -15,9 +15,7 @@ int main(int argc, char **argv)
 		return (0);
 	}
 	check_arg(argc, argv);
-	printf("argv[1]: %s\n", argv[1]);
 	init_sceneData(data);
-	printf("argv[1] from main %s\n", argv[1]);
 	read_scene(argv[1], data);
 	// printf("data from main %s\n", data->scene[0]);
 
@@ -108,56 +106,10 @@ check_scene(data);
 // check_scene(data);
 }
 
-void	check_scene(t_sceneData	*data)
-{
-	check_texture(data->north_texture.path, "north");
-	check_texture(data->south_texture.path, "south");
-	check_texture(data->west_texture.path, "west");
-	check_texture(data->east_texture.path, "east");
-	// printf("path\n");
-	// check_color(data);
-	// miss_color_set(data, "floor");
-	// miss_color_set(data, "ceiling");
-	check_map(&data->map_data);
-}
-void	valid_extension(char *tex_path)
-{
-	int len;
 
-	
-	len = ft_strlen(tex_path);
-	printf("tex_path: %s\n", tex_path);
-	if (tex_path[len - 1] != 'm' || tex_path[len - 2] != 'p' || tex_path[len - 3] != 'x' || tex_path[len - 4] != '.')
-	{
-		printf ("%c\n", tex_path[len - 1]);
-		printf("%s\n", RED"Error\nInvalid texture extension"RESET);
-		exit(1);
-	}
-	// return (1);
-}
 
-void	check_texture(char *texture, char *tex_name)
-{
-	int fd;
-	// printf("texture: %s\n", texture);
-	if (texture == NULL)
-	{
-		printf( RED"Error\n%s texture path is empty\n"RESET, tex_name);
-		exit(EXIT_FAILURE);
-	}
-	
-	if ((fd = open(texture, O_RDONLY)) == -1)
-	{
-		printf(RED"Error\ncan not open %s: %s\n"RESET, tex_name, texture);
-		exit(EXIT_FAILURE);
-	}
-	if (close(fd) == -1)
-	{
-		printf(RED"Error\n%s Could not close texture file\n"RESET, texture);
-		exit(EXIT_FAILURE);
-	}
 
-}
+
 // int main(int argc, char **argv)
 // {
 //     t_sceneData *data;
@@ -184,22 +136,7 @@ void	check_texture(char *texture, char *tex_name)
 // }
 
 
-void	print_scene(t_sceneData *data)
-{
-	int i;
 
-
-	i = 0;
-	while (data->scene[i])
-	{
-		
-		printf( "print_scene: %s", data->scene[i]);
-		printf("\n");
-		i++;
-	}
-	printf("print_scene: %s\n", data->scene[i]);
-	
-}
 
 // void    get_map(const char *line_map, t_map *map_data, t_sceneData *data)
 // {

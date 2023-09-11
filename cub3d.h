@@ -4,6 +4,10 @@
 # include "libft/libft.h"
 #include <fcntl.h>
 #include <ctype.h>
+#include <stddef.h>
+#include <stdlib.h>
+// #include "parser.h"
+
 
 
 # define BUFFER_SIZE 	42
@@ -51,6 +55,13 @@ typedef struct s_map
 	char	*pos;
 }	t_map;
 
+typedef struct s_scene_params
+{
+	int i;
+    int mapStartedIndex;
+    int mapstarted;
+    int shouldIncrementHeight;
+}t_scene_params;
 
 
 typedef struct s_sceneData
@@ -135,6 +146,7 @@ void	init_sceneData(t_sceneData *data);
 void    init_map(t_map *grid);
 void    init_textures(t_texture *texture);
 void  init_color(t_color *color);
+void initialize_variables(t_scene_params *params);
 
 //------------------free------------------//
 
@@ -151,25 +163,36 @@ char	*ft_strncpy(char *dest, char *src, size_t n);
 void	*ft_realloc(void *ptr, size_t orig_size, size_t new_size);
 char	**ft_split2(char *str, char *charset);
 int 	is_space(char c);
-void    skip_spaces(t_parserState *state);
 void 	skip_newline(t_parserState *state); 
 int 	ft_strcmp(const char *s1, const char *s2);
+// char *ft_strtok(const char *str, const char *delimiters);
+char *ft_strtok(const char *str);
+char *my_strtok(char *srcString, char *delim);
+
 
 //----------print----------//
 void	print_scene(t_sceneData *data);
 void	print_map(t_map *map_data);
 
+//----------error----------//
+int ft_error_msg(char *msg);
+void    empty_line_error(t_sceneData *data);
+
 //----------map----------//
 
 int		is_map(char *line);
 void    get_map(t_sceneData *data,int mapStartedIndex);
-size_t  get_width(char **strlines);
-void free_map_data(t_map *map_data);
-void cpyMap(char *scene, t_sceneData *data);
+size_t  get_width(char **maplines);
+void 	free_map_data(t_map *map_data);
 void    check_map(t_map *map_data);
-void    check_not_empty(char **map, int m_height, int row, int col);
+void    ccheck_map_validty(char **map, int m_height, int row, int col);
 void    check_map_valid_characters(char **map);
+int 	is_surrounded(char **map);
+int    check_wall(char *line);
+int is_empty_line(char *str);
+int has_empty_line(char **map, int height);
 
+int check_row(char *row);
 
 //----------parse----------//
 
@@ -180,7 +203,9 @@ int 	color_ranges_valid(int *r, int *g, int *b);
 void 	get_file(char *identifier, char *str, t_sceneData *data);//char **str, 
 // int	is_color(t_parserState *state);
 void	check_scene(t_sceneData	*data);
-void	valid_extension(char *tex_path);
+int		valid_extension(char *tex_path);
+void	check_color(t_color *color, char *color_name);
+
 
 void	check_texture(char *texture, char *tex_name);
 
