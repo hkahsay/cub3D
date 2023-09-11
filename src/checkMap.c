@@ -86,6 +86,8 @@ void    check_map_valid_characters(char **map)
         ft_error_msg(RED"Invalid map: There should be exactly one starting point (NSWE)."RESET);
 }
 
+
+
 void    check_map(t_map *map_data)
 {
     int i;
