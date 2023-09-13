@@ -6,7 +6,7 @@
 #    By: mac <mac@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/15 20:19:13 by hkahsay           #+#    #+#              #
-#    Updated: 2023/09/11 14:09:35 by mac              ###   ########.fr        #
+#    Updated: 2023/09/13 16:54:11 by mac              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS = 	main.c \
 		src/util3.c \
 		src/util2.c \
 		src/util.c \
+		src/render.c \
 		src/checkMap.c \
 		src/init_scene.c \
 		src/parse_scene.c \

@@ -6,8 +6,9 @@
 #include <ctype.h>
 #include <stddef.h>
 #include <stdlib.h>
+#include "./mlx/mlx.h"
 // #include "parser.h"
-
+// # include "./mlx/mlx.h"
 
 
 # define BUFFER_SIZE 	42
@@ -142,7 +143,10 @@ size_t	ft_strlen(const char *s);
 char	*ft_strchr(const char *str, int c);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t elementCount, size_t elementSize);
+void    check_reso(t_resolution *reso);
 
+//-------rendering------------//
+void    rendering(t_sceneData *data);
 
 //---------cub3d--------------//
 void	read_scene(char *file, t_sceneData *data);
@@ -179,7 +183,7 @@ int 	ft_strcmp(const char *s1, const char *s2);
 char *ft_strtok(const char *str);
 char *my_strtok(char *srcString, char *delim);
 
-
+void empty_reso(char *str);
 //----------print----------//
 void	print_scene(t_sceneData *data);
 void	print_map(t_map *map_data);

@@ -27,6 +27,12 @@ void    init_map(t_map *grid)
     grid->pos = NULL;
 }
 
+void init_resolution(t_resolution *resolution)
+{
+    resolution->width = 0;
+    resolution->height = 0;
+}
+
 void initialize_variables(t_scene_params *params)
 {
     params->i = 0;
@@ -42,6 +48,7 @@ void    init_sceneData(t_sceneData *data)
     data->img_ptr = NULL;
     data->scene = NULL;
     data->elm = 0;
+    init_resolution(&(data->resolution));
     init_textures(&(data->north_texture));
     init_textures(&(data->south_texture));
     init_textures(&(data->west_texture));

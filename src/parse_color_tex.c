@@ -6,6 +6,7 @@
     // {"S", parse_resolution},
     // {"R", parse_resolution},
 IdentifierParser parsers[] = {
+    {"R", (void *)parse_resolution},
     {"NO", (void *)&parse_texture},
     {"SO", (void *)&parse_texture},
     {"WE", (void *)&parse_texture},
@@ -21,7 +22,9 @@ static void check_identifiers(char *identifier, char *str, t_sceneData *data, in
 {
     if (!ft_strcmp(identifier, parsers[i].identifier))
         {
-            if(!ft_strcmp(parsers[i].identifier, "NO") )
+             if(!ft_strcmp(parsers[i].identifier, "R") )
+                parse_resolution(str, &data->resolution);
+            else if(!ft_strcmp(parsers[i].identifier, "NO") )
                 parse_texture(str, &data->north_texture);
             else if(!ft_strcmp(parsers[i].identifier, "SO"))
                 parse_texture(str, &data->south_texture);
@@ -54,7 +57,38 @@ void get_file(char *identifier, char *str, t_sceneData *data)
     }
 }
 
-
+void    check_reso(t_resolution *reso)
+{
+    if (reso->width <= 0 || reso->height <= 0)
+    {
+        printf(RED"Error\n"RESET);
+        ft_error_msg(RED"Resolution is not set."RESET);
+    }
+    else if (reso->width > MAX_RES_WIDTH || reso->height > MAX_RES_HEIGHT)
+    {
+        printf("Error\n");
+        ft_error_msg(RED"Resolution is too high.\n"RESET);
+    }
+    else
+        printf(GREEN"Resolution is set.\n"RESET);
+}
+void    parse_resolution(const char *str, t_resolution *reso)
+{
+    char **strs_split;
+    strs_split = ft_split(str, ' ');
+    empty_reso(strs_split[0]);
+    empty_reso(strs_split[1]);
+    if (!ft_isdigit_strict(strs_split[0]) || !ft_isdigit_strict(strs_split[1]))
+    {
+        printf("Error\n");
+        printf(RED"Invalid resolution format.\n"RESET);
+        exit(EXIT_FAILURE);
+    }
+    reso->height = ft_atoi(strs_split[0]);
+    reso->width = ft_atoi(strs_split[1]);
+    printf("parse_resolution width: %d\n", reso->width);
+    printf("parse_resolution height: %d\n", reso->height);
+}
 
 void parse_texture(const char *str, t_texture *texture)
 {
@@ -97,6 +131,8 @@ static void    color_split(char **strs_split, t_color *color)
         exit(EXIT_FAILURE);
     }
 }
+
+
 
 void parse_color(const char *str, t_color *color)
 {

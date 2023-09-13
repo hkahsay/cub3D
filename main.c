@@ -17,6 +17,7 @@ int main(int argc, char **argv)
 	check_arg(argc, argv);
 	init_sceneData(data);
 	read_scene(argv[1], data);
+	rendering(data);
 	// printf("data from main %s\n", data->scene[0]);
 
 	// check_scene(data);

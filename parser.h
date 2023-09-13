@@ -4,7 +4,7 @@
 #include "cub3d.h"
 // Define the parsers array here
 
-
+void parse_resolution(const char *str, t_resolution *resolution);
 void parse_texture(const char *str, t_texture *texture);
 void parse_color(const char *str, t_color *color);
 typedef struct

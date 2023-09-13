@@ -79,7 +79,6 @@ void    check_map_valid_characters(char **map)
         j = -1;
         while (map[i][++j])
         {
-            printf("from start pos map[i][j]: %c\n", map[i][j]);
             if (!ft_strchr("01NSEW ", map[i][j]))
                 ft_error_msg(RED"Invalid map: Invalid character found in the map."RESET);
             // printf("start_postionnn: %d\n", start_postion);

@@ -22,8 +22,15 @@ void    empty_color(char *str)
 {
    if(!str)
     {
-        printf(RED"Error\n color is not set.\n"RESET);
-        exit(EXIT_FAILURE);
+        ft_error_msg(RED"Error\n color is not set."RESET);
+    }
+}
+
+void empty_reso(char *str)
+{
+    if(!str)
+    {
+        ft_error_msg(RED"Error\n resolution is not set."RESET);
     }
 }
 

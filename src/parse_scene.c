@@ -23,10 +23,10 @@ int lineContainsNonWhitespace(const char *line)
     while(line[k] != '\0')
     {
         if (!is_space((unsigned char)line[k]))
-            return 1; // Found a non-whitespace character
+            return (1); // Found a non-whitespace character
         k++;
     }
-    return 0; // whitespace characters found
+    return (0); // whitespace characters found
 }
 
 
@@ -49,23 +49,32 @@ static void process_non_map_line(t_sceneData *data, int i)
 
 static void    process_map_line(t_sceneData *data, t_scene_params *params)
 {
-    if (params->mapstarted == 1 && params->shouldIncrementHeight == 1 )
+    if (params->mapstarted == 1)//&& params->shouldIncrementHeight == 1
     {
-        data->map_data.m_height++;
-        printf("process map data->map_data.m_height: %d\n", data->map_data.m_height);
-        printf("pparams->shouldIncrementHeight: %d\n", params->shouldIncrementHeight);
-
-
-    }
-    else if (params->mapstarted == 1)
-    {
-        if (lineContainsNonWhitespace(data->scene[params->i]) == 0)
+        if (lineContainsNonWhitespace(data->scene[params->i]) == 1)
         {
-            params->shouldIncrementHeight = 0;
-            printf("params->shouldIncrementHeight: %d\n", params->shouldIncrementHeight);
+            data->map_data.m_height++;
+            // printf("process map data->map_data.m_height: %d\n", data->map_data.m_height);
+            // printf("pparams->shouldIncrementHeight: %d\n", params->shouldIncrementHeight);
+
         }
-     
+        else
+        {
+            ft_error_msg(RED"Error: The map contains an empty line."RESET);
+            free_map_data(&data->map_data);
+        }
+
+
     }
+    // else if (params->mapstarted == 1)
+    // {
+    //     if (lineContainsNonWhitespace(data->scene[params->i]) == 0)
+    //     {
+    //         params->shouldIncrementHeight = 0;
+    //         printf("params->shouldIncrementHeight: %d\n", params->shouldIncrementHeight);
+    //     }
+     
+    // }
     else
     {
         process_non_map_line(data, params->i);
