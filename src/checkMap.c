@@ -41,6 +41,7 @@ void check_map_elm(t_sceneData *data)
     }
     if (!found)
     {
+        printf("Error\n");
         printf("%s%s%s\n", RED, "Map should be the last element", RESET);
         exit(EXIT_FAILURE);
     }
@@ -52,12 +53,14 @@ void    check_map_validty(char **map, int m_height, int row, int col)
    
     if (row < 0 || row >= m_height || col < 0 || col >= (int)ft_strlen(map[row]))
     {
+        printf("Error\n");
         printf(RED"Invalid map: (%d, %d) is outside of the map or map is not surrounded by 1.\n"RESET, row, col);
         exit(EXIT_FAILURE);
     }
     if (map[row][col] == ' ')
     {
         // map[row][col] = '1';
+        printf("Error\n");
         printf(RED"Invalid map: (%d, %d) is an empty space.\n"RESET, row, col);
         exit(EXIT_FAILURE);
     }
@@ -76,14 +79,22 @@ void    check_map_valid_characters(char **map)
         j = -1;
         while (map[i][++j])
         {
+            printf("from start pos map[i][j]: %c\n", map[i][j]);
             if (!ft_strchr("01NSEW ", map[i][j]))
                 ft_error_msg(RED"Invalid map: Invalid character found in the map."RESET);
+            // printf("start_postionnn: %d\n", start_postion);
             if(ft_strchr("NSEW", map[i][j]))
+            {
                 start_postion++;
+            }
         }
     }
     if(start_postion != 1)
+    {
+        printf("Error\n");
+        // printf("start_postion: %d\n", start_postion);
         ft_error_msg(RED"Invalid map: There should be exactly one starting point (NSWE)."RESET);
+    }
 }
 
 

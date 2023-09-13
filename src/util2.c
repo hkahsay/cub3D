@@ -22,7 +22,7 @@ void    empty_color(char *str)
 {
    if(!str)
     {
-        printf(RED"Error: color is not set.\n"RESET);
+        printf(RED"Error\n color is not set.\n"RESET);
         exit(EXIT_FAILURE);
     }
 }

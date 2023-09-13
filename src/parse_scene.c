@@ -15,19 +15,19 @@
 //     return 1; 
 // }
 
-// int lineContainsNonWhitespace(const char *line)
-// {
-//     int k;
+int lineContainsNonWhitespace(const char *line)
+{
+    int k;
 
-//     k = 0;
-//     while(line[k] != '\0')
-//     {
-//         if (!is_space((unsigned char)line[k]))
-//             return 1; // Found a non-whitespace character
-//         k++;
-//     }
-//     return 0; // whitespace characters found
-// }
+    k = 0;
+    while(line[k] != '\0')
+    {
+        if (!is_space((unsigned char)line[k]))
+            return 1; // Found a non-whitespace character
+        k++;
+    }
+    return 0; // whitespace characters found
+}
 
 
 static void process_non_map_line(t_sceneData *data, int i)
@@ -59,7 +59,7 @@ static void    process_map_line(t_sceneData *data, t_scene_params *params)
     }
     else if (params->mapstarted == 1)
     {
-        if (is_empty_line(data->scene[params->i]) == 1)
+        if (lineContainsNonWhitespace(data->scene[params->i]) == 0)
         {
             params->shouldIncrementHeight = 0;
             printf("params->shouldIncrementHeight: %d\n", params->shouldIncrementHeight);

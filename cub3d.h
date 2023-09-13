@@ -27,6 +27,9 @@
 # define KEY_D 2
 # define KEY_A 0
 
+#  define MAX_RES_HEIGHT 1080
+#  define MAX_RES_WIDTH 1920
+
 
 
 //  Color Name
@@ -64,6 +67,12 @@ typedef struct s_scene_params
 }t_scene_params;
 
 
+typedef struct s_resolution
+{
+	int width;
+	int height;
+} t_resolution;
+
 typedef struct s_sceneData
 {
 	// void 	wall;
@@ -71,6 +80,7 @@ typedef struct s_sceneData
 	void		*img_ptr;
 	void		*mlx_ptr;
 	void 		*ptr;
+	t_resolution	resolution;
 	t_texture	north_texture;
 	t_texture	south_texture;
 	t_texture	west_texture;

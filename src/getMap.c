@@ -63,7 +63,7 @@ void get_map(t_sceneData *data, int mapStartedIndex)
         // printf("mapStartedIndex + i: %d\n", mapStartedIndex + i);
         i++;
     }
-    empty_line_error(data);
+    // empty_line_error(data);
     data->map_data.map[data->map_data.m_height] = NULL;
     check_map_valid_characters(data->map_data.map);
 }

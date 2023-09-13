@@ -3,6 +3,8 @@
 
 #include <string.h>
 
+    // {"S", parse_resolution},
+    // {"R", parse_resolution},
 IdentifierParser parsers[] = {
     {"NO", (void *)&parse_texture},
     {"SO", (void *)&parse_texture},
@@ -12,7 +14,9 @@ IdentifierParser parsers[] = {
     {"C", (void *)&parse_color},
 
 };
-
+ /*if(!ft_strcmp(parsers[i].identifier, "R") )
+                parse_resolution(str, &data->resolution);
+            else*/
 static void check_identifiers(char *identifier, char *str, t_sceneData *data, int i)
 {
     if (!ft_strcmp(identifier, parsers[i].identifier))
@@ -31,7 +35,8 @@ static void check_identifiers(char *identifier, char *str, t_sceneData *data, in
                 parse_color(str, &data->ceiling_color);
             else
             {
-                printf("Error: Unknown identifier: %s\n", identifier);
+                printf("Error\n");
+                printf("Unknown identifier: %s\n", identifier);
                 exit(EXIT_FAILURE);
             }
             return; // Exit after finding and calling the parser
@@ -55,7 +60,8 @@ void parse_texture(const char *str, t_texture *texture)
 {
     if (str == NULL)
     {
-        printf(RED"Error: Texture path is NULL.\n"RESET);
+        printf("Error\n");
+        printf(RED"Texture path is NULL.\n"RESET);
         exit(EXIT_FAILURE);
     }
     if(!texture->path)
@@ -63,7 +69,7 @@ void parse_texture(const char *str, t_texture *texture)
         texture->path = ft_strdup_const(str);
         if(!texture->path)
         {
-            printf("Error: Could not allocate memory for texture path.\n");
+            printf("Error\nCould not allocate memory for texture path.\n");
             exit(EXIT_FAILURE);
         }
         printf("parse_texture: %s\n", texture->path);
@@ -87,7 +93,7 @@ static void    color_split(char **strs_split, t_color *color)
     }
     else
     {
-        printf(RED"Error: Invalid color format.\n"RESET);
+        printf(RED"Error\n Invalid color format.\n"RESET);
         exit(EXIT_FAILURE);
     }
 }

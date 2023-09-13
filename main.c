@@ -29,27 +29,25 @@ int main(int argc, char **argv)
 
 void check_arg(int ac, char **av)
 {
-	// if (ac != 2)
-	// {
-	// 	printf("Usage: ./cub3d <map>");
-	// 	exit(1);
-	// }
-
+	
 	//!ft_strchr(av[1], '.' ) if dot is not found
 	//ft_strncmp((ft_strrchr(av[1], '.')), ".cub", 5 if the last 4 characters are not .cub
 	if (ac < 2)
 	{
+		printf("Error\n");
 		printf("%s\n", VIOLET"You dont have enough arguments\n");
 		exit(1);
 	}
 	if (!ft_strchr(av[1], '.'))
 	{
+		printf("Error\n");
 		printf("%s\n", RED"Invalid File");
 		exit(1);
 	}
 	
 	if (ft_strncmp((ft_strrchr(av[1], '.')), ".cub", 5))
 	{
+		printf("Error\n");
 		printf("%s\n", RED"invalid extension");
 		exit(1);
 	}
@@ -62,6 +60,7 @@ int open_file(char *file)
 
 	if(fd == -1)
 	{
+		printf("Error\n");
 		printf("%s\n", RED"No file to read"RESET);
 		exit(0);
 	}
