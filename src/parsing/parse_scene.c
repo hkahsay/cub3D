@@ -1,5 +1,5 @@
-#include "../cub3d.h"
-#include "../parser.h"
+#include "../../cub3d.h"
+#include "../../parser.h"
 #include <string.h>
 
 // int is_empty_line(char *str)
@@ -20,6 +20,7 @@ int lineContainsNonWhitespace(const char *line)
     int k;
 
     k = 0;
+    printf("(%s) => %d\n", line, line[k]);
     while(line[k] != '\0')
     {
         if (!is_space((unsigned char)line[k]))

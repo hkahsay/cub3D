@@ -6,7 +6,7 @@
 #    By: mac <mac@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/15 20:19:13 by hkahsay           #+#    #+#              #
-#    Updated: 2023/09/13 16:54:11 by mac              ###   ########.fr        #
+#    Updated: 2023/09/16 15:48:16 by mac              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,23 +19,31 @@ RESET		= \033[0m
 
 NAME = cub3D
 SRCS = 	main.c \
-		src/get_next_line.c \
-		src/get_next_line_utils.c \
-		src/check_error.c \
-		src/util1.c \
-		src/util3.c \
-		src/util2.c \
-		src/util.c \
-		src/render.c \
-		src/checkMap.c \
-		src/init_scene.c \
-		src/parse_scene.c \
-		src/print.c \
-		src/ft_free.c \
-		src/getMap.c \
-		src/parse_texture.c \
-		src/parse_color.c \
-		src/parse_color_tex.c \
+		src/parsing/get_next_line.c \
+		src/parsing/get_next_line_utils.c \
+		src/parsing/check_error.c \
+		src/parsing/util1.c \
+		src/parsing/util3.c \
+		src/parsing/util2.c \
+		src/parsing/util.c \
+		src/parsing/checkMap.c \
+		src/parsing/init_scene.c \
+		src/parsing/parse_scene.c \
+		src/parsing/print.c \
+		src/parsing/ft_free.c \
+		src/parsing/getMap.c \
+		src/parsing/parse_texture.c \
+		src/parsing/parse_color.c \
+		src/parsing/parse_color_tex.c \
+		src/rendering/render.c \
+		src/rendering/get_texture_pixel.c \
+		src/rendering/hook.c \
+		src/rendering/get_player.c \
+		src/rendering/render_util.c \
+		
+
+		
+
 		
 
 OBJS			= ${SRCS:.c=.o}	
@@ -47,7 +55,7 @@ RM				= rm -f
 LIBFT_DIR		= libft
 
 LIBFT			= /libft/libft.a
-CFLAGS 			= -g -Wall -Werror -Wextra -g #-fsanitize=address
+CFLAGS 			= -g -Wall -Werror -Wextra #-fsanitize=address
 
 
 INCLUDE			= -L $(LIBFT_DIR) -lft

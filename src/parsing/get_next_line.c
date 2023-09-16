@@ -6,11 +6,11 @@
 /*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 11:33:30 by hkahsay           #+#    #+#             */
-/*   Updated: 2023/08/19 16:14:53 by mac              ###   ########.fr       */
+/*   Updated: 2023/09/14 10:53:14 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../../cub3d.h"
 
 char	*ft_join_free(char *buffer, char *buf)
 {

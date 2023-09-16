@@ -1,4 +1,4 @@
-#include "../cub3d.h"
+#include "../../cub3d.h"
 // #include "../parser.h"
 
 void	check_texture(char *texture, char *tex_name)
@@ -35,10 +35,13 @@ int	valid_extension(char *tex_path)
 	len = ft_strlen(tex_path);
 	if (len < 4)
 		return (0);
-	if (tex_path[len - 1] != 'g' && 
-		tex_path[len - 2] != 'p' && 
-		tex_path[len - 3] != 'j' && 
+	if (tex_path[len - 1] != 'm' || 
+		tex_path[len - 2] != 'p' || 
+		tex_path[len - 3] != 'x' || 
 		tex_path[len - 4] != '.')
-		return (0);
+		{
+			printf("Error\n%s doesn't have correct extension\n", tex_path);
+			return (0);
+		}
 	return (1);
 }

@@ -1,4 +1,4 @@
-#include "../cub3d.h"
+#include "../../cub3d.h"
 static int is_delimiter(const char *str, const char *delimiters) {
     while (*delimiters) {
         const char *s = str;
@@ -16,6 +16,22 @@ static int is_delimiter(const char *str, const char *delimiters) {
 }
 
 
+// Function to trim whitespace and newline characters from both ends of a string
+char *trim(char *str)
+{
+    while (isspace(*str)) {
+        str++;
+    }
+    
+    char *end = str + ft_strlen(str) - 1;
+    while (end > str && isspace(*end)) {
+        end--;
+    }
+    
+    *(end + 1) = '\0';
+    
+    return str;
+}
 
 static void skip_delimeters(const char **str, const char *delimiters) {
     // Skip leading delimiters

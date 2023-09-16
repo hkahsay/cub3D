@@ -1,4 +1,4 @@
-#include "../cub3d.h"
+#include "../../cub3d.h"
 // #include "../parser.h"
 
 #include <string.h>
@@ -42,7 +42,7 @@ void check_map_elm(t_sceneData *data)
     if (!found)
     {
         printf("Error\n");
-        printf("%s%s%s\n", RED, "Map should be the last element", RESET);
+        printf("%s%s%s\n", RED, "Map should be the last element or no wall", RESET);
         exit(EXIT_FAILURE);
     }
 }

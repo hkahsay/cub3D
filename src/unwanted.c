@@ -1,4 +1,63 @@
-// int cpyMap(char *scene, t_sceneData *data)
+// 
+
+typedef struct s_game
+{
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		stepX;
+	int		stepY;
+	int		hit;
+	int		side;
+	int		lineHeight;
+	int		drawStart;
+	int		drawEnd;
+	int		color;
+	int		texNum;
+	double	cameraX;
+	double	rayDirX;
+	double	rayDirY;
+	double	sideDistX;
+	double	sideDistY;
+	double	deltaDistX;
+	double	deltaDistY;
+	double	perpWallDist;
+	double	wallX;
+	double	step;
+	double	texPos;
+	double	*zBuffer;
+	t_player player;
+	t_texture *texture;
+} t_game;
+
+
+static void   draw_map(t_sceneData *data)
+{
+    int y = 0;
+    while (y < data->map_data.m_height)
+    {
+        int x = 0;
+        while (x < data->map_data.m_width)
+        {
+            if (data->map_data.map[y][x] == '1')
+            {
+                // my_mlx_pixel_put(data->img.img, x, y, 0x00FF0000);
+                mlx_pixel_put(data->mlx.mlx_ptr, data->mlx.win_mlx, x, y, 0x00FF0000);
+            }
+            else if (data->map_data.map[y][x] == '0')
+            {
+                // my_mlx_pixel_put(data->img.img, x, y, 0x00000000);
+                mlx_pixel_put(data->mlx.mlx_ptr, data->mlx.win_mlx, x, y, 0x0000FF00);
+            }
+            x++;
+        }
+        
+        y++;
+    }
+
+}
+//int cpyMap(char *scene, t_sceneData *data)
 // {
 //     static int i = 0;
 //     int j = 0;

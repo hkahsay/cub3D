@@ -1,4 +1,4 @@
-#include "../cub3d.h"
+#include "../../cub3d.h"
 void	check_scene(t_sceneData	*data)
 {
     // printf("check_texture(data->north_texture.path, north %s\n", data->north_texture.path);
@@ -60,6 +60,12 @@ void    empty_line_error(t_sceneData *data)
 int ft_error_msg(char *msg)
 {
     printf("%s\n", msg);
+    exit(EXIT_FAILURE);
+}
+
+int ft_error_msg2(char *msg, char *msg2)
+{
+    printf("%s%s\n", msg, msg2);
     exit(EXIT_FAILURE);
 }
 

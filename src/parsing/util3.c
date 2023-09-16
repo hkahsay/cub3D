@@ -1,4 +1,4 @@
-#include "../cub3d.h"
+#include "../../cub3d.h"
 
 
 static unsigned int is_delim(char c, char *delim)

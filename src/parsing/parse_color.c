@@ -1,4 +1,4 @@
-#include "../cub3d.h"
+#include "../../cub3d.h"
 
 int color_ranges_valid(int *r, int *g, int *b)
 {
@@ -20,5 +20,10 @@ void	check_color(t_color *color, char *color_name)
                     "outof range.\n"RESET, color_name);
         exit(EXIT_SUCCESS);
     }
-	// color->argb = create_argb(0, color->r, color->g, color->b);
+	color->rgb = create_rgb(color->R, color->G, color->B);
+}
+
+int	create_rgb(int r, int g, int b)
+{
+	return (r << 16 | g << 8 | b);
 }

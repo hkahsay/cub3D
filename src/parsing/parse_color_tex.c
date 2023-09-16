@@ -1,5 +1,5 @@
-#include "../cub3d.h"
-#include "../parser.h"
+#include "../../cub3d.h"
+#include "../../parser.h"
 
 #include <string.h>
 
@@ -72,23 +72,47 @@ void    check_reso(t_resolution *reso)
     else
         printf(GREEN"Resolution is set.\n"RESET);
 }
-void    parse_resolution(const char *str, t_resolution *reso)
-{
+
+void parse_resolution(const char *str, t_resolution *reso) {
     char **strs_split;
     strs_split = ft_split(str, ' ');
-    empty_reso(strs_split[0]);
-    empty_reso(strs_split[1]);
-    if (!ft_isdigit_strict(strs_split[0]) || !ft_isdigit_strict(strs_split[1]))
-    {
+
+    printf("Parsed parts: [%s], [%s]\n", strs_split[0], strs_split[1]);
+
+    if (!ft_isdigit_strict(strs_split[0]) || !ft_isdigit_strict(strs_split[1])) {
         printf("Error\n");
-        printf(RED"Invalid resolution format.\n"RESET);
+        printf(RED "Invalid resolution format.\n" RESET);
         exit(EXIT_FAILURE);
     }
-    reso->height = ft_atoi(strs_split[0]);
-    reso->width = ft_atoi(strs_split[1]);
-    printf("parse_resolution width: %d\n", reso->width);
-    printf("parse_resolution height: %d\n", reso->height);
+
+    reso->width = ft_atoi(strs_split[0]);
+    reso->height = ft_atoi(strs_split[1]);
+
+    printf("Parsed width: %d\n", reso->width);
+    printf("Parsed height: %d\n", reso->height);
 }
+
+// void    parse_resolution(const char *str, t_resolution *reso)
+// {
+//     char **strs_split;
+//     strs_split = ft_split(str, ' ');
+//     printf("parse_resolution: %s\n", strs_split[0]);
+//     printf("parse_resolution: %s\n", strs_split[1]);
+//     empty_reso(strs_split[0]);
+//     printf("parse_resolution: %s\n", strs_split[0]);
+//     empty_reso(strs_split[1]);
+//     printf("parse_resolution: %s\n", strs_split[1]);
+//     if (!ft_isdigit_strict(strs_split[0]) || !ft_isdigit_strict(strs_split[1]))
+//     {
+//         printf("Error\n");
+//         printf(RED"Invalid resolution format.\n"RESET);
+//         exit(EXIT_FAILURE);
+//     }
+//     reso->width = ft_atoi(strs_split[0]);
+//     reso->height = ft_atoi(strs_split[1]);
+//     printf("parse_resolution width: %d\n", reso->width);
+//     printf("parse_resolution height: %d\n", reso->height);
+// }
 
 void parse_texture(const char *str, t_texture *texture)
 {
@@ -101,6 +125,9 @@ void parse_texture(const char *str, t_texture *texture)
     if(!texture->path)
     {
         texture->path = ft_strdup_const(str);
+        texture->path = ft_strtrim(texture->path, " ");
+        texture->tex_height = 64;
+        texture->tex_width = 64;
         if(!texture->path)
         {
             printf("Error\nCould not allocate memory for texture path.\n");
