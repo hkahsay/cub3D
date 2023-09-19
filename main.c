@@ -18,12 +18,16 @@ int main(int argc, char **argv)
 	check_arg(argc, argv);
 	init_sceneData(game->data);
 	read_scene(argv[1], game->data);
+	printf("1\n");
 	get_scene(game->data);
-	check_scene(game->data);
+	printf("2\n");
 
-	rendering(game);
-	printf("game->data->resolution.width: %d\n", game->data->resolution.width);
-    printf("game->data->north_texture.path: %s\n", game->data->north_texture.path);
+	check_scene(game->data);
+	printf("3\n");
+	// init_graphics(game);
+	init_mlx_win(game);
+	// printf("game->data->resolution.width: %d\n", game->data->resolution.width);
+    // printf("game->data->north_texture.path: %s\n", game->data->north_texture.path);
 	// double posX = 22.0, posY = 11.5;  //x and y start position
   	// double dirX = -1.0, dirY = 0.0; //initial direction vector
 	// printf("data from main %s\n", data->scene[0]);

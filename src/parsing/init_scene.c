@@ -81,6 +81,7 @@ void    init_sceneData(t_sceneData *data)
     init_img(&(data->img));
     init_keys(&(data->keys));
     data->scene = NULL;
+    data->mini_map = 0;
     data->elm = 0;
     init_resolution(&(data->resolution));
     init_textures(&(data->north_texture));

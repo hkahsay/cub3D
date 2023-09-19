@@ -6,7 +6,7 @@
 #    By: mac <mac@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/15 20:19:13 by hkahsay           #+#    #+#              #
-#    Updated: 2023/09/16 15:48:16 by mac              ###   ########.fr        #
+#    Updated: 2023/09/19 09:14:15 by mac              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRCS = 	main.c \
 		src/rendering/render.c \
 		src/rendering/get_texture_pixel.c \
 		src/rendering/hook.c \
+		src/rendering/mini_map.c \
 		src/rendering/get_player.c \
 		src/rendering/render_util.c \
 		

@@ -57,6 +57,31 @@ static void   draw_map(t_sceneData *data)
     }
 
 }
+
+void init_graphics(t_game *game)
+{
+    t_img img;
+    game->player.posX = 100;
+    game->player.posY= 100;
+    game->mlx.mlx_ptr = mlx_init();
+    game->mlx.win_mlx = mlx_new_window(game->mlx.mlx_ptr, game->data->resolution.width, game->data->resolution.height, "cub3D");
+
+    // Initialize img.img and img.addr here
+    img.img = mlx_new_image(game->mlx.mlx_ptr, game->data->resolution.width, game->data->resolution.height);
+    img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+    // get_textures_img(game, &img);
+    get_player(game);
+    movment(game);
+    // my_mlx_pixel_put(&img, game->player.posX, game->player.posY, 0x00FF0000);
+    mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_mlx, img.img, 0, 0);
+    // mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_mlx, img.img, game->player.posX, game->player.posY);
+    // draw_player(game->mlx.mlx_ptr, game->mlx.win_mlx, game->player.posX, game->player.posY);
+    mlx_do_sync(game->mlx.mlx_ptr);
+    mlx_hook(game->mlx.win_mlx, KEY_EXIT, 0, exit_game, game);//key_press
+    mlx_hook(game->mlx.win_mlx, 2, 0, key_press, game);//key_press
+    mlx_loop(game->mlx.mlx_ptr);
+}
+
 //int cpyMap(char *scene, t_sceneData *data)
 // {
 //     static int i = 0;

@@ -7,6 +7,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 #include "./mlx/mlx.h"
+#include <math.h>
 // #include "parser.h"
 // # include "./mlx/mlx.h"
 
@@ -28,9 +29,12 @@
 # define KEY_S 1
 # define KEY_D 2
 # define KEY_A 0
+# define KEY_M 46
 
 #  define MAX_RES_WIDTH 1920
 #  define MAX_RES_HEIGHT 1080
+# define TILE_SIZE 64
+# define SCALE_MINI_MAP 8
 # define PI 3.14159265359  
 
 typedef struct	s_img {
@@ -40,6 +44,14 @@ typedef struct	s_img {
 	int		line_length;
 	int		endian;
 } t_img;
+
+
+typedef struct s_wall_coordinate
+{
+	int	x;
+	int	y;
+	int	z;
+}	t_wall_coordinate;
 
 typedef struct s_lineNode {
     char *line;
@@ -150,6 +162,7 @@ typedef struct s_sceneData
 	t_color	ceiling_color;
     int    elm;
 	t_map	map_data;
+	int	mini_map;
 	char 	**scene;
 	t_keys keys;
 	t_mlx mlx;
@@ -206,13 +219,21 @@ void	*ft_calloc(size_t elementCount, size_t elementSize);
 void    check_reso(t_resolution *reso);
 
 //-------rendering------------//
-void    rendering(t_game *game);
+int    init_graphics(t_game *game);
 int    key_release(int keycode, t_game *game);
 int key_press(int keycode, t_game *game);
 void init_mlx(t_mlx *mlx);
 double    starting_angle(char c);
 void	get_starting_position(t_player *player, char **grid);
 void	get_player(t_game *game);
+void draw_player(t_game *game);
+void movment(t_game *game);
+void init_mlx_win(t_game *game);
+void render_game(t_game *game);
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
+void	draw_wall(t_game *game, t_wall_coordinate wall_coord);
+void	render_wall2d(t_game *game);
+int	render_mini_map(t_game *game);
 
 //---------cub3d--------------//
 void	read_scene(char *file, t_sceneData *data);
