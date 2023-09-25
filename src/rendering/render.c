@@ -10,38 +10,77 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 
 
 
+// void    draw_rect(t_rect *rect, int *img, int img_width)
+// {
+//     int i;
+//     int j;
+//     int color;
 
-void movment(t_game *game)
+//     i = 0;
+//     j = 0;
+//     color = rect->border_color;
+//     while (i < rect->width)
+//     {
+//         while (j < rect->height)
+//         {
+//             if (i < rect->border_width || i > rect->width - rect->border_width
+//                 || j < rect->border_width || j > rect->height - rect->border_width)
+//                 img[(rect->y + j) * img_width + rect->x + i] = color;
+//             j++;
+//         }
+//         j = 0;
+//         i++;
+//     }
+// }
+void fill_rect_floor(t_game *game, t_rect rect)
 {
-    if (game->keys.w) {
-        // Move player forward
-        game->player.posX += cos(game->player.rotAngle) * game->player.moveSpeed;
-        game->player.posY += sin(game->player.rotAngle) * game->player.moveSpeed;
+    int x, y;
+    int color = rect.border_color;
+
+    for (x = rect.x; x < rect.x + rect.width; x++)
+    {
+        for (y = rect.y; y < rect.y + rect.height; y++)
+        {
+            my_mlx_pixel_put(&game->img, x, y, color);
+        }
     }
-    if (game->keys.s) {
-        // Move player backward
-        game->player.posX -= cos(game->player.rotAngle) * game->player.moveSpeed;
-        game->player.posY -= sin(game->player.rotAngle) * game->player.moveSpeed;
+}
+
+void fill_rect_ceiling(t_game *game, t_rect rect)
+{
+    int x, y;
+    int color = rect.border_color;
+
+    for (x = rect.x; x < rect.x + rect.width; x++)
+    {
+        for (y = rect.y; y < rect.y + rect.height; y++)
+        {
+            my_mlx_pixel_put(&game->img, x, y, color);
+        }
     }
-    if (game->keys.left) {
-        // Rotate player left
-        game->player.rotAngle -= game->player.rotSpeed;
-    }
-    if (game->keys.right) {
-        // Rotate player right
-        game->player.rotAngle += game->player.rotSpeed;
-    }
+}
+
+
+
+void generate_img(t_img *img, t_mlx *mlx, int width, int height)
+{
+    img->img = mlx_new_image(mlx->mlx_ptr, width, height);
+    img->width = width;
+    img->height = height;
+    img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, \
+    &img->line_length, &img->endian);
 }
 
 void render_game(t_game *game)
 {
-  
-    game->img.img = mlx_new_image(game->mlx.mlx_ptr, game->data->resolution.width, game->data->resolution.height);
-	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits_per_pixel, &game->img.line_length,
-								&game->img.endian);
-    get_textures_img(game, &game->img);
+    generate_img(&game->img, &game->mlx, MAX_WIDTH, MAX_HEIGHT);
+    init_rect_ceiling(&game->data->rect, game->data);
+    fill_rect_ceiling(game, game->data->rect);
+    // // load_textures_img(game, &game->img);
+    init_rect_floor(&game->data->rect, game->data);
+    fill_rect_floor(game, game->data->rect);
     mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_mlx, game->img.img, 0, 0);                            
-    mlx_destroy_image(game->mlx.mlx_ptr, game->img.img);
+    // mlx_destroy_image(game->mlx.mlx_ptr, game->img.img);
 }
 
 int	init_graphics(t_game *game)
@@ -53,6 +92,7 @@ int	init_graphics(t_game *game)
 	else
 	{
 		render_game(game);
+
 	}
 	return (1);
 }
@@ -60,14 +100,14 @@ int	init_graphics(t_game *game)
 void init_mlx_win(t_game *game)
 {
     game->mlx.mlx_ptr = mlx_init();
-    game->mlx.win_mlx = mlx_new_window(game->mlx.mlx_ptr, game->data->resolution.width, game->data->resolution.height, "cub3D");
+    game->mlx.win_mlx = mlx_new_window(game->mlx.mlx_ptr, MAX_WIDTH, MAX_HEIGHT, "cub3D");
     // mlx_hook(game->mlx.win_mlx, KEY_EXIT, 0, exit_game, game);//key_press
     // game->img.img = mlx_new_image(game->mlx.mlx_ptr, game->data->resolution.width, game->data->resolution.height);
 	// game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits_per_pixel, &game->img.line_length,
 	// 							&game->img.endian);
     // mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_mlx, game->img.img, 0, 0);                            
     mlx_hook(game->mlx.win_mlx, 2, 0, key_press, game);//key_press
-    // mlx_hook(game->mlx.win_mlx, 3, 0, key_release, game);//key_press
+    mlx_hook(game->mlx.win_mlx, 3, 0, key_release, game);//key_release
     mlx_loop_hook(game->mlx.mlx_ptr, init_graphics, game);
     mlx_loop(game->mlx.mlx_ptr);
 }
@@ -76,6 +116,7 @@ void init_mlx_win(t_game *game)
 int exit_game(t_game *game)
 {
     free_map_data(&game->data->map_data);
+    // destroy_textures(game->mlx.mlx_ptr, &game->img);
     free(game->data);
     free(game);
     exit(0);

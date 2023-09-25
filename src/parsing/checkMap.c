@@ -50,20 +50,20 @@ void check_map_elm(t_sceneData *data)
 
 void    check_map_validty(char **map, int m_height, int row, int col)
 {
-   
+        // texture->path = ft_strtrim(texture->path, " ");
     if (row < 0 || row >= m_height || col < 0 || col >= (int)ft_strlen(map[row]))
     {
         printf("Error\n");
         printf(RED"Invalid map: (%d, %d) is outside of the map or map is not surrounded by 1.\n"RESET, row, col);
         exit(EXIT_FAILURE);
     }
-    if (map[row][col] == ' ')
-    {
-        // map[row][col] = '1';
-        printf("Error\n");
-        printf(RED"Invalid map: (%d, %d) is an empty space.\n"RESET, row, col);
-        exit(EXIT_FAILURE);
-    }
+    // if (map[row][col] == ' ')
+    // {
+    //     map[row][col] = '1';
+    //     printf("Error\n");
+    //     printf(RED"Invalid map: (%d, %d) is an empty space.\n"RESET, row, col);
+    //     exit(EXIT_FAILURE);
+    // }
 }
 
 void    check_map_valid_characters(char **map)
@@ -111,6 +111,7 @@ void    check_map(t_map *map_data)
         {
             if (map_data->map[i][j] == '0' || ft_strchr("NSEW", map_data->map[i][j]))
             {
+                
                 check_map_validty(map_data->map, map_data->m_height, i, j - 1);
                 check_map_validty(map_data->map, map_data->m_height, i, j + 1);
                 check_map_validty(map_data->map, map_data->m_height, i - 1, j);

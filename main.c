@@ -24,8 +24,8 @@ int main(int argc, char **argv)
 
 	check_scene(game->data);
 	printf("3\n");
-	// init_graphics(game);
 	init_mlx_win(game);
+	init_graphics(game);
 	// printf("game->data->resolution.width: %d\n", game->data->resolution.width);
     // printf("game->data->north_texture.path: %s\n", game->data->north_texture.path);
 	// double posX = 22.0, posY = 11.5;  //x and y start position
@@ -33,6 +33,7 @@ int main(int argc, char **argv)
 	// printf("data from main %s\n", data->scene[0]);
 
 	// check_scene(data);
+    // destroy_textures(game->mlx.mlx_ptr, &game->img);
 	
 	// get_scene(data);
 	free_map_data(&(game->data->map_data));
@@ -49,7 +50,13 @@ void check_arg(int ac, char **av)
 	if (ac < 2)
 	{
 		printf("Error\n");
-		printf("%s\n", VIOLET"You dont have enough arguments\n");
+		printf("%s\n", VIOLET"Too few arguments\n");
+		exit(1);
+	}
+	if (ac > 2)
+	{
+		printf("Error\n");
+		printf("%s\n", VIOLET"Too many arguments\n");
 		exit(1);
 	}
 	if (!ft_strchr(av[1], '.'))
@@ -83,43 +90,43 @@ int open_file(char *file)
 
 
 
-// static t_lineNode *build_linked_list(int fd)
-// {
-//     t_lineNode *line_list = NULL;
-//     t_lineNode *last_node = NULL;
-//     char *current_line = NULL;
+t_lineNode *build_linked_list(int fd)
+{
+    t_lineNode *line_list = NULL;
+    t_lineNode *last_node = NULL;
+    char *current_line = NULL;
 
-//     while (1)
-// 	{
-//         current_line = get_next_line(fd);
-//         if (current_line == NULL)
-//             break; // Exit the loop if no more lines can be read from the file.
+    while (1)
+	{
+        current_line = get_next_line(fd);
+        if (current_line == NULL)
+            break; // Exit the loop if no more lines can be read from the file.
 
-//         // Create a new node in the linked list for the current line.
-//  		current_line = trim(current_line);
+        // Create a new node in the linked list for the current line.
+ 		current_line = trim(current_line);
 
-//         t_lineNode *new_node = malloc(sizeof(t_lineNode));
-//         if (!new_node) {
-//             // Handle memory allocation error here.
-//             free_line_list(line_list); // Free the previously allocated nodes.
-//             return (NULL);
-//         }
-//         new_node->line = current_line;
-//         new_node->next = NULL;
-//         // If it's the first node, set line_list to point to it.
-//         if (line_list == NULL)
-//             line_list = new_node;
-// 		else
-//             last_node->next = new_node;
-//         last_node = new_node; // Update the last_node pointer.
-//     }
-// 	// while (line_list != NULL)
-// 	// {
-// 	// 	printf("line_list->line %s\n", line_list->line);
-// 	// 	line_list = line_list->next;
-// 	// }
-//     return (line_list);
-// }
+        t_lineNode *new_node = malloc(sizeof(t_lineNode));
+        if (!new_node) {
+            // Handle memory allocation error here.
+            free_line_list(line_list); // Free the previously allocated nodes.
+            return (NULL);
+        }
+        new_node->line = current_line;
+        new_node->next = NULL;
+        // If it's the first node, set line_list to point to it.
+        if (line_list == NULL)
+            line_list = new_node;
+		else
+            last_node->next = new_node;
+        last_node = new_node; // Update the last_node pointer.
+    }
+	// while (line_list != NULL)
+	// {
+	// 	printf("line_list->line %s\n", line_list->line);
+	// 	line_list = line_list->next;
+	// }
+    return (line_list);
+}
 
 // static void initialize_data(t_sceneData *data, char **combined_map, char **current_line, t_lineNode **line_list) {
 //     *combined_map = NULL;
@@ -202,7 +209,9 @@ int close_file(int fd)
 		exit(1);
 	}
 	return (0);
+
 }
+
 char **convert_linked_list_to_array(t_lineNode *line_list)
 {
     int count = 0;
@@ -224,8 +233,10 @@ char **convert_linked_list_to_array(t_lineNode *line_list)
     // Copy lines from the linked list to the array.
     current = line_list;
     int i = 0;
+	// char *trimmed_line = ft_strtrim(current->line, " ");
     while (current != NULL) {
         array[i] = current->line;
+        // array[i] = trimmed_line;
         i++;
         current = current->next;
     }

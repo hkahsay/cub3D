@@ -1,5 +1,4 @@
 #include "../../cub3d.h"
-#include "../../parser.h"
 #include <string.h>
 
 

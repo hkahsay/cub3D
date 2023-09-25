@@ -2,11 +2,12 @@
 
 int	render_mini_map(t_game *game)
 {
-    game->img.img = mlx_new_image(game->mlx.mlx_ptr, game->data->resolution.width, game->data->resolution.height);
-    game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits_per_pixel, &game->img.line_length, &game->img.endian);
-    render_wall2d(game);
+	generate_img(&game->img, &game->mlx, MAX_WIDTH, MAX_HEIGHT);
+   render_2dMap_wall(game);
 	// movement(game);
-	draw_player(game);
+    // move_mini(game);
+	// draw_mini_player(game);
+    
 	// draw_arrow(game, game->scene->player.pos, game->scene->player.dir);
     mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_mlx, game->img.img, 0, 0);
     mlx_destroy_image(game->mlx.mlx_ptr, game->img.img);
@@ -31,7 +32,7 @@ void	draw_wall(t_game *game, t_wall_coordinate wall_coord)
 	}
 }
 
-void	render_wall2d(t_game *game)
+void	render_2dMap_wall(t_game *game)
 {
 	int		i;
 	int		j;

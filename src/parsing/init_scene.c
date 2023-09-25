@@ -28,6 +28,8 @@ void    init_img(t_img *img)
     img->bits_per_pixel = 0;
     img->line_length = 0;
     img->endian = 0;
+    img->width = 0;
+    img->height = 0;
 }
 void    init_textures(t_texture *texture)
 {
@@ -44,11 +46,6 @@ void    init_map(t_map *grid)
     grid->pos = NULL;
 }
 
-void init_resolution(t_resolution *resolution)
-{
-    resolution->width = 0;
-    resolution->height = 0;
-}
 
 void initialize_variables(t_scene_params *params)
 {
@@ -59,14 +56,9 @@ void initialize_variables(t_scene_params *params)
 } 
 void    init_player(t_player *player)
 {
-    player->posX = 0;
-    player->posY = 0;
-    player->dirX = 0;
-    player->dirY = 0;
-    player->planeX = 0;
-    player->planeY = 0;
     player->moveSpeed = 0;
     player->rotSpeed = 0;
+    player->rotAngle = 0;
 }
 
 void init_mlx(t_mlx *mlx)
@@ -83,7 +75,8 @@ void    init_sceneData(t_sceneData *data)
     data->scene = NULL;
     data->mini_map = 0;
     data->elm = 0;
-    init_resolution(&(data->resolution));
+    // init_rect_ceiling(&(data->rect), data);
+    // init_rect_floor(&(data->rect), data);
     init_textures(&(data->north_texture));
     init_textures(&(data->south_texture));
     init_textures(&(data->west_texture));

@@ -2,7 +2,7 @@
 void	check_scene(t_sceneData	*data)
 {
     // printf("check_texture(data->north_texture.path, north %s\n", data->north_texture.path);
-    check_reso(&data->resolution);
+    // check_reso(&data->resolution);
 	check_texture(data->north_texture.path, "north");
 	check_texture(data->south_texture.path, "south");
 	check_texture(data->west_texture.path, "west");

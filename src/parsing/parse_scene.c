@@ -59,11 +59,11 @@ static void    process_map_line(t_sceneData *data, t_scene_params *params)
             // printf("pparams->shouldIncrementHeight: %d\n", params->shouldIncrementHeight);
 
         }
-        else
-        {
-            ft_error_msg(RED"Error: The map contains an empty line."RESET);
-            free_map_data(&data->map_data);
-        }
+        // else
+        // {
+        //     ft_error_msg(RED"Error: The map contains an empty line."RESET);
+        //     free_map_data(&data->map_data);
+        // }
 
 
     }

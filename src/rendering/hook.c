@@ -43,8 +43,8 @@ int key_press(int keycode, t_game *game)
 
 void draw_player(t_game *game)
 {
-    int playerX = (int)game->player.posX;
-    int playerY = (int)game->player.posY;
+    int playerX = (int)game->player.pos.x;
+    int playerY = (int)game->player.pos.y;
     int pixelSize = 35; // Adjust the size as needed
 
     // Calculate the coordinates for the top-left and bottom-right corners of the square
@@ -62,13 +62,3 @@ void draw_player(t_game *game)
     }
 }
 
-int ft_esc(t_game *game)
-{
-    if (game->keys.esc == 1)
-    {
-        mlx_destroy_window(game->mlx.mlx_ptr, game->mlx.win_mlx);
-        destroy_textures(game->mlx.mlx_ptr, &game->img);
-        exit(0);
-    }
-    return (0);
-}
