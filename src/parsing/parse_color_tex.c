@@ -1,12 +1,7 @@
 #include "../../cub3d.h"
 #include "../../parser.h"
 
-#include <string.h>
-
-    // {"S", parse_resolution},
-    // {"R", parse_resolution},
 IdentifierParser parsers[] = {
-    // {"R", (void *)parse_resolution},
     {"NO", (void *)&parse_texture},
     {"SO", (void *)&parse_texture},
     {"WE", (void *)&parse_texture},
@@ -15,14 +10,10 @@ IdentifierParser parsers[] = {
     {"C", (void *)&parse_color},
 
 };
- /*if(!ft_strcmp(parsers[i].identifier, "R") )
-                parse_resolution(str, &data->resolution);
-            else*/
-        
-// if(!ft_strcmp(parsers[i].identifier, "R") )
-// parse_resolution(str, &data->resolution);
+
 static void check_identifiers(char *identifier, char *str, t_sceneData *data, int i)
 {
+    printf("check_identifiers(%s, '%s', _, %d)\n", identifier, str, i);
     if (!ft_strcmp(identifier, parsers[i].identifier))
         {
             if(!ft_strcmp(parsers[i].identifier, "NO") )
@@ -113,7 +104,10 @@ void parse_color(const char *str, t_color *color)
     init_color(color);
     empty_color((char*)str);
   
+    printf("parse_color: %s\n", str);
     strs_split = ft_split(str, ',');
+    printf("strs_split: %p\n", strs_split);
+    // printf("parse_color: %s\n", strs_split[0]);
     if (strs_split == NULL)
     {
         ft_error_msg("Error: could not split color components.");

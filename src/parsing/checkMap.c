@@ -1,7 +1,6 @@
 #include "../../cub3d.h"
 // #include "../parser.h"
 
-#include <string.h>
 
 int is_map(char *line)
 {
@@ -50,20 +49,13 @@ void check_map_elm(t_sceneData *data)
 
 void    check_map_validty(char **map, int m_height, int row, int col)
 {
-        // texture->path = ft_strtrim(texture->path, " ");
     if (row < 0 || row >= m_height || col < 0 || col >= (int)ft_strlen(map[row]))
     {
         printf("Error\n");
         printf(RED"Invalid map: (%d, %d) is outside of the map or map is not surrounded by 1.\n"RESET, row, col);
         exit(EXIT_FAILURE);
     }
-    // if (map[row][col] == ' ')
-    // {
-    //     map[row][col] = '1';
-    //     printf("Error\n");
-    //     printf(RED"Invalid map: (%d, %d) is an empty space.\n"RESET, row, col);
-    //     exit(EXIT_FAILURE);
-    // }
+
 }
 
 void    check_map_valid_characters(char **map)

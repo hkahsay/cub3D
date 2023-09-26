@@ -6,7 +6,7 @@
 #    By: mac <mac@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/15 20:19:13 by hkahsay           #+#    #+#              #
-#    Updated: 2023/09/19 09:14:15 by mac              ###   ########.fr        #
+#    Updated: 2023/09/26 11:58:03 by mac              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,6 @@ SRCS = 	main.c \
 		src/parsing/util1.c \
 		src/parsing/util3.c \
 		src/parsing/util2.c \
-		src/parsing/util.c \
 		src/parsing/checkMap.c \
 		src/parsing/init_scene.c \
 		src/parsing/parse_scene.c \

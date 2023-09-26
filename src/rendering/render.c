@@ -71,14 +71,29 @@ void generate_img(t_img *img, t_mlx *mlx, int width, int height)
     &img->line_length, &img->endian);
 }
 
+static void    draw_vertical_lines(t_game *game)
+{
+    int col;
+    (void)game;
+    col = 0;
+    while (col < MAX_WIDTH)
+    {
+        // draw_vertical_line(game, col);
+        // printf("draw vertical lines\n");
+        col++;
+    }
+    
+}
+// void    draw_vertical_line(t_game *game, int col)
+// {
+
+// }
+
 void render_game(t_game *game)
 {
     generate_img(&game->img, &game->mlx, MAX_WIDTH, MAX_HEIGHT);
-    init_rect_ceiling(&game->data->rect, game->data);
-    fill_rect_ceiling(game, game->data->rect);
-    // // load_textures_img(game, &game->img);
-    init_rect_floor(&game->data->rect, game->data);
-    fill_rect_floor(game, game->data->rect);
+    get_background(game);
+    draw_vertical_lines(game);
     mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_mlx, game->img.img, 0, 0);                            
     // mlx_destroy_image(game->mlx.mlx_ptr, game->img.img);
 }
@@ -96,21 +111,28 @@ int	init_graphics(t_game *game)
 	}
 	return (1);
 }
+void get_background(t_game *game)
+{
+    generate_img(&game->img, &game->mlx, MAX_WIDTH, MAX_HEIGHT);
+    init_rect_ceiling(&game->data->rect, game->data);
+    fill_rect_ceiling(game, game->data->rect);
+    init_rect_floor(&game->data->rect, game->data);
+    fill_rect_floor(game, game->data->rect);
+    mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_mlx, game->img.img, 0, 0);                            
+    // mlx_destroy_image(game->mlx.mlx_ptr, game->img.img);
+}
 // Updated rendering function
 void init_mlx_win(t_game *game)
 {
     game->mlx.mlx_ptr = mlx_init();
     game->mlx.win_mlx = mlx_new_window(game->mlx.mlx_ptr, MAX_WIDTH, MAX_HEIGHT, "cub3D");
-    // mlx_hook(game->mlx.win_mlx, KEY_EXIT, 0, exit_game, game);//key_press
-    // game->img.img = mlx_new_image(game->mlx.mlx_ptr, game->data->resolution.width, game->data->resolution.height);
-	// game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits_per_pixel, &game->img.line_length,
-	// 							&game->img.endian);
-    // mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_mlx, game->img.img, 0, 0);                            
+    
     mlx_hook(game->mlx.win_mlx, 2, 0, key_press, game);//key_press
     mlx_hook(game->mlx.win_mlx, 3, 0, key_release, game);//key_release
     mlx_loop_hook(game->mlx.mlx_ptr, init_graphics, game);
     mlx_loop(game->mlx.mlx_ptr);
 }
+
 
 
 int exit_game(t_game *game)

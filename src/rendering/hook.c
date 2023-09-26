@@ -31,7 +31,7 @@ int key_press(int keycode, t_game *game)
         game->keys.right = 1;
     else if (keycode == KEY_LEFT)
         game->keys.left = 1;
-    else if (keycode == KEY_M)
+    else if (keycode == KEY_H)
 		game->data->mini_map ^= 1;
     else if(keycode == KEY_ESC)
     {

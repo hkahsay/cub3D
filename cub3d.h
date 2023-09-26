@@ -3,6 +3,7 @@
 
 # include "libft/libft.h"
 #include <fcntl.h>
+#include <string.h>
 #include <ctype.h>
 #include <stddef.h>
 #include <stdlib.h>
@@ -30,6 +31,7 @@
 # define KEY_D 2
 # define KEY_A 0
 # define KEY_M 46
+# define KEY_H 4
 
 # define MAX_WIDTH 1024
 # define MAX_HEIGHT 512
@@ -279,9 +281,10 @@ int		render_mini_map(t_game *game);
 void	fill_rect_ceiling(t_game *game, t_rect rect);
 void	fill_rect_floor(t_game *game, t_rect rect);
 void	generate_img(t_img *img, t_mlx *mlx, int width, int height);
-
+void	get_background(t_game *game);
 void	load_texture_img(void *mlx, t_img *img, t_texture *texture);
 void    load_textures_img(t_game *game, t_img *img);
+void    hooks(t_game *game);
 // void load_textures_img(t_game *game);
 // void load_texture(t_game *game, char *file_path);
 

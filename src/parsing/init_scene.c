@@ -2,14 +2,9 @@
 
 void    init_color(t_color *color)
 {
-//   color = malloc(sizeof(t_color) + 1);
-  if(!color)
-    return;
-
     color->R = -1;
     color->G = -1;
     color->B = -1;
-    // printf("color->R, %d color->G, %d color->B  %d", color->R, color->G, color->B);
 }
 
 void init_keys(t_keys *keys)
@@ -75,8 +70,6 @@ void    init_sceneData(t_sceneData *data)
     data->scene = NULL;
     data->mini_map = 0;
     data->elm = 0;
-    // init_rect_ceiling(&(data->rect), data);
-    // init_rect_floor(&(data->rect), data);
     init_textures(&(data->north_texture));
     init_textures(&(data->south_texture));
     init_textures(&(data->west_texture));
