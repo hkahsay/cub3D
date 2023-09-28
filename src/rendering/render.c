@@ -1,4 +1,4 @@
-#include "../../cub3d.h"
+#include "../../includes/cub3d.h"
 
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
@@ -82,7 +82,7 @@ static void    draw_vertical_lines(t_game *game)
         // printf("draw vertical lines\n");
         col++;
     }
-    
+
 }
 // void    draw_vertical_line(t_game *game, int col)
 // {
@@ -94,7 +94,7 @@ void render_game(t_game *game)
     generate_img(&game->img, &game->mlx, MAX_WIDTH, MAX_HEIGHT);
     get_background(game);
     draw_vertical_lines(game);
-    mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_mlx, game->img.img, 0, 0);                            
+    mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_mlx, game->img.img, 0, 0);
     // mlx_destroy_image(game->mlx.mlx_ptr, game->img.img);
 }
 
@@ -118,7 +118,7 @@ void get_background(t_game *game)
     fill_rect_ceiling(game, game->data->rect);
     init_rect_floor(&game->data->rect, game->data);
     fill_rect_floor(game, game->data->rect);
-    mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_mlx, game->img.img, 0, 0);                            
+    mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_mlx, game->img.img, 0, 0);
     // mlx_destroy_image(game->mlx.mlx_ptr, game->img.img);
 }
 // Updated rendering function
@@ -126,7 +126,7 @@ void init_mlx_win(t_game *game)
 {
     game->mlx.mlx_ptr = mlx_init();
     game->mlx.win_mlx = mlx_new_window(game->mlx.mlx_ptr, MAX_WIDTH, MAX_HEIGHT, "cub3D");
-    
+
     mlx_hook(game->mlx.win_mlx, 2, 0, key_press, game);//key_press
     mlx_hook(game->mlx.win_mlx, 3, 0, key_release, game);//key_release
     mlx_loop_hook(game->mlx.mlx_ptr, init_graphics, game);

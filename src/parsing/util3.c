@@ -1,4 +1,4 @@
-#include "../../cub3d.h"
+#include "../../includes/cub3d.h"
 
 
 static unsigned int is_delim(char c, char *delim)
@@ -39,7 +39,7 @@ static void find_next_token(char *srcString, char *delim)
         if(*srcString == '\0')
         {
             // we've reached the end of the string
-            return; 
+            return;
         }
         break;
     }
