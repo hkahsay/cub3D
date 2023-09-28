@@ -35,7 +35,7 @@
 
 # define MAX_WIDTH 1024
 # define MAX_HEIGHT 512
-# define FOV 60
+# define FOV_ANGLE 60
 
 # define TILE_SIZE 64
 # define SCALE_MINI_MAP 8
@@ -61,10 +61,7 @@ typedef struct s_wall_coordinate
 	int	z;
 }	t_wall_coordinate;
 
-typedef struct s_lineNode {
-    char *line;
-    struct s_lineNode *next;
-} t_lineNode;
+
 
 //  Color Name
 
@@ -77,6 +74,8 @@ typedef struct s_texture
 	
 
 } t_texture;
+
+
 
 typedef struct s_color
 {
@@ -148,6 +147,7 @@ typedef struct s_rect
 	int height;
 	int border_color;
 	int border_width;
+	int fill_color;
 } t_rect;
 
 
@@ -168,7 +168,12 @@ typedef struct s_ray
 
 } t_ray;
 
-
+typedef struct s_cast_rays
+{
+	t_ray *rays;
+	double view_angle;
+	double dist_to_plane;
+}t_cast_rays;
 
 typedef struct s_mlx
 {
@@ -217,6 +222,8 @@ typedef struct s_game
 	t_player player;
 	t_img img;
 	t_ray ray;
+	t_rect rect;
+	t_cast_rays cast_rays;
 	int mapx;
 	int mapy;
 	int mapsize;
@@ -279,15 +286,26 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void	draw_wall(t_game *game, t_wall_coordinate wall_coord);
 void	render_2dMap_wall(t_game *game);
 int		render_mini_map(t_game *game);
-void	fill_rect_ceiling(t_game *game, t_rect rect);
-void	fill_rect_floor(t_game *game, t_rect rect);
+void	fill_rect(t_game *game, t_rect rect);
 void	generate_img(t_img *img, t_mlx *mlx, int width, int height);
 void	get_background(t_game *game);
 void	load_texture_img(void *mlx, t_img *img, t_texture *texture);
 void    load_textures_img(t_game *game, t_img *img);
 void	draw_2Dgrid(t_game *game);
-void put_player_pixel(t_game *game);
-void draw_player(t_game *game);
+void	put_player_pixel(t_game *game);
+void	draw_player(t_game *game);
+void	get_rays(t_game *game);
+void	ready_game(t_game *game);
+void	get_event(t_game *game);
+void	draw_ceiling(t_game *game, t_rect *rect);
+void	draw_floor(t_game *game, t_rect *rect);
+int		pixel_to_coord(float n);
+
+//--------movement render------//
+void	move_forward(t_game *game);
+void    move_backward(t_game *game);
+void 	move_left(t_game *game);
+void 	move_right(t_game *game);
 
 // void load_textures_img(t_game *game);
 // void load_texture(t_game *game, char *file_path);
@@ -295,7 +313,6 @@ void draw_player(t_game *game);
 //---------cub3d--------------//
 void	read_scene(char *file, t_sceneData *data);
 int		ft_check_char(char *str, char c);
-char	**convert_linked_list_to_array(t_lineNode *line_list);
 int 	open_file(char *file);
 void 	check_arg(int ac, char **av);
 //-----------init-------------//
@@ -305,8 +322,7 @@ void    init_map(t_map *grid);
 void    init_textures(t_texture *texture);
 void	init_color(t_color *color);
 void	initialize_variables(t_scene_params *params);
-void	init_rect_ceiling(t_rect *rect, t_sceneData *data);
-void	init_rect_floor(t_rect *rect, t_sceneData *data);
+
 
 //--------------exit----------------//
 int		exit_game(t_game *game);
@@ -315,7 +331,6 @@ int		ft_esc(t_game *game);
 void	destroy_textures(t_game *game);
 
 //------------------free------------------//
-void	free_line_list(t_lineNode *head);
 void	free_map_data(t_map *map_data);
 
 void    free_strs_array(char **strs);
