@@ -1,5 +1,5 @@
-#include "../../parser.h"
-#include "../../cub3d.h"
+#include "../../includes/parser.h"
+#include "../../includes/cub3d.h"
 
 
 
@@ -7,7 +7,7 @@ int ft_isdigit_strict(const char *str)
 {
     if (*str == '-' || *str == '+')
         str++;
-    
+
     while (*str)
     {
         if (!ft_isdigit(*str))
@@ -15,7 +15,7 @@ int ft_isdigit_strict(const char *str)
         str++;
     }
     return (1);
-    
+
 }
 
 void    empty_color(char *str)

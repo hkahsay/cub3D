@@ -1,4 +1,4 @@
-#include "../../cub3d.h"
+#include "../../includes/cub3d.h"
 void	check_scene(t_sceneData	*data)
 {
 	check_texture(data->north_texture.path, "north");

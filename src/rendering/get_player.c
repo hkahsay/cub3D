@@ -1,4 +1,4 @@
-#include "../../cub3d.h"
+#include "../../includes/cub3d.h"
 
 void put_player_pixel(t_game *game)
 {

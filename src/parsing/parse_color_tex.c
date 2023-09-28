@@ -1,5 +1,5 @@
-#include "../../cub3d.h"
-#include "../../parser.h"
+#include "../../includes/cub3d.h"
+#include "../../includes/parser.h"
 
 IdentifierParser parsers[] = {
     {"NO", (void *)&parse_texture},
@@ -44,7 +44,7 @@ void get_file(char *identifier, char *str, t_sceneData *data)
     while(++i < sizeof(parsers) / sizeof(parsers[0]))
     {
         check_identifiers(identifier, str, data, i);
-    
+
     }
 }
 
@@ -78,8 +78,8 @@ void parse_texture(const char *str, t_texture *texture)
 static void    color_split(char **strs_split, t_color *color)
 {
     if (strs_split[0] && strs_split[1] && strs_split[2] &&
-        ft_isdigit_strict(strs_split[0]) && 
-        ft_isdigit_strict(strs_split[1]) && 
+        ft_isdigit_strict(strs_split[0]) &&
+        ft_isdigit_strict(strs_split[1]) &&
         ft_isdigit_strict(strs_split[2]))
     {
         color->R = ft_atoi(strs_split[0]);

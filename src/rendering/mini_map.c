@@ -1,4 +1,4 @@
-#include "../../cub3d.h"
+#include "../../includes/cub3d.h"
 
 int	render_mini_map(t_game *game)
 {
@@ -16,7 +16,7 @@ void	draw_wall(t_game *game, t_wall_coordinate wall_coord)
 {
 	int		x;
 	int		y;
-	
+
 	y = 0;
 	while (y < SCALE_MINI_MAP)
 	{

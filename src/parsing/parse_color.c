@@ -1,4 +1,4 @@
-#include "../../cub3d.h"
+#include "../../includes/cub3d.h"
 
 int color_ranges_valid(int *r, int *g, int *b)
 {

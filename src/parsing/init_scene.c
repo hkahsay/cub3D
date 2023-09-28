@@ -1,4 +1,4 @@
-#include "../../cub3d.h"
+#include "../../includes/cub3d.h"
 
 void    init_color(t_color *color)
 {
@@ -49,7 +49,6 @@ void initialize_variables(t_scene_params *params)
     params->mapstarted = 0;
     params->shouldIncrementHeight = 1;
 }
-
 void    init_player(t_player *player)
 {
     player->moveSpeed = 0;

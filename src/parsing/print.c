@@ -1,4 +1,4 @@
-#include "../../cub3d.h"
+#include "../../includes/cub3d.h"
 #include <string.h>
 
 
@@ -22,11 +22,11 @@ void	print_scene(t_sceneData *data)
 	i = 0;
 	while (data->scene[i])
 	{
-		
+
 		printf( "print_scene: %s", data->scene[i]);
 		printf("\n");
 		i++;
 	}
 	printf("print_scene: %s\n", data->scene[i]);
-	
+
 }

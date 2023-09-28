@@ -1,4 +1,4 @@
-#include "../../cub3d.h"
+#include "../../includes/cub3d.h"
 // #include "../parser.h"
 
 
@@ -6,7 +6,7 @@ int is_map(char *line)
 {
     int i;
     int valid_char;
-    
+
     i = 0;
     valid_char = 0; // Initialize valid_char to 0
     if (ft_check_char(line, '1') == 1)
@@ -103,7 +103,7 @@ void    check_map(t_map *map_data)
         {
             if (map_data->map[i][j] == '0' || ft_strchr("NSEW", map_data->map[i][j]))
             {
-                
+
                 check_map_validty(map_data->map, map_data->m_height, i, j - 1);
                 check_map_validty(map_data->map, map_data->m_height, i, j + 1);
                 check_map_validty(map_data->map, map_data->m_height, i - 1, j);

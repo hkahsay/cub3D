@@ -1,5 +1,5 @@
-#include "../../cub3d.h"
-#include "../../parser.h"
+#include "../../includes/cub3d.h"
+#include "../../includes/parser.h"
 
 int lineContainsNonWhitespace(const char *line)
 {
@@ -66,11 +66,11 @@ void get_scene(t_sceneData *data)
 
     initialize_variables(&params);
     check_map_elm(data);
-    while (data->scene[params.i] != NULL) 
+    while (data->scene[params.i] != NULL)
     {
         process_scene_line(&params, data);
         params.i++; // Move to the next identifier/data pair
     }
     get_map(data, params.mapStartedIndex);
-   
+
 }

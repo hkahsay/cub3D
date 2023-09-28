@@ -1,5 +1,4 @@
-#include "../../cub3d.h"
-
+#include "../../includes/cub3d.h"
 
 // Function to trim whitespace and newline characters from both ends of a string
 // char *trim(char *str)
@@ -7,14 +6,14 @@
 //     while (isspace(*str)) {
 //         str++;
 //     }
-    
+
 //     char *end = str + ft_strlen(str) - 1;
 //     while (end > str && isspace(*end)) {
 //         end--;
 //     }
-    
+
 //     *(end + 1) = '\0';
-    
+
 //     return str;
 // }
 
