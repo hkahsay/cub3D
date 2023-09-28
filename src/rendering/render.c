@@ -111,26 +111,26 @@ int	init_graphics(t_game *game)
 	}
 	return (1);
 }
-void get_background(t_game *game)
+void	get_background(t_game *game)
 {
-    generate_img(&game->img, &game->mlx, MAX_WIDTH, MAX_HEIGHT);
-    init_rect_ceiling(&game->data->rect, game->data);
-    fill_rect_ceiling(game, game->data->rect);
-    init_rect_floor(&game->data->rect, game->data);
-    fill_rect_floor(game, game->data->rect);
-    mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_mlx, game->img.img, 0, 0);
-    // mlx_destroy_image(game->mlx.mlx_ptr, game->img.img);
+	generate_img(&game->img, &game->mlx, MAX_WIDTH, MAX_HEIGHT);
+	init_rect_ceiling(&game->data->rect, game->data);
+	fill_rect_ceiling(game, game->data->rect);
+	init_rect_floor(&game->data->rect, game->data);
+	fill_rect_floor(game, game->data->rect);
+	mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_mlx, game->img.img, 0, 0);
+// mlx_destroy_image(game->mlx.mlx_ptr, game->img.img);
 }
 // Updated rendering function
-void init_mlx_win(t_game *game)
+void	init_mlx_win(t_game *game)
 {
-    game->mlx.mlx_ptr = mlx_init();
-    game->mlx.win_mlx = mlx_new_window(game->mlx.mlx_ptr, MAX_WIDTH, MAX_HEIGHT, "cub3D");
+	game->mlx.mlx_ptr = mlx_init();
+	game->mlx.win_mlx = mlx_new_window(game->mlx.mlx_ptr, MAX_WIDTH, MAX_HEIGHT, "cub3D");
 
-    mlx_hook(game->mlx.win_mlx, 2, 0, key_press, game);//key_press
-    mlx_hook(game->mlx.win_mlx, 3, 0, key_release, game);//key_release
-    mlx_loop_hook(game->mlx.mlx_ptr, init_graphics, game);
-    mlx_loop(game->mlx.mlx_ptr);
+	mlx_hook(game->mlx.win_mlx, 2, 0, key_press, game);//key_press
+	mlx_hook(game->mlx.win_mlx, 3, 0, key_release, game);//key_release
+	mlx_loop_hook(game->mlx.mlx_ptr, init_graphics, game);
+	mlx_loop(game->mlx.mlx_ptr);
 }
 
 

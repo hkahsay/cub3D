@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 11:14:14 by ckarl             #+#    #+#             */
-/*   Updated: 2023/09/28 11:14:20 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/09/28 12:19:13 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@
 
 # define GREEN	"\033[1m\033[32m"
 # define RED	"\033[1m\033[31m"
-# define YELLOW  "\033[33m"
-# define BLUE    "\033[34m"
-# define VIOLET		"\033[0;36m"
-# define RESET			"\033[0m"
+# define YELLOW	"\033[33m"
+# define BLUE	"\033[34m"
+# define VIOLET	"\033[0;36m"
+# define RESET	"\033[0m"
 
 # define KEY_ESC 	53
 # define KEY_EXIT 17
@@ -54,17 +54,17 @@
 # define PI 3.14159265359
 # define MAX_TEXTURES 5
 
-typedef struct	s_img {
+typedef struct s_img
+{
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-	int 	width;
-	int 	height;
+	int		width;
+	int		height;
 
-} t_img;
-
+}	t_img;
 
 typedef struct s_wall_coordinate
 {
@@ -73,169 +73,167 @@ typedef struct s_wall_coordinate
 	int	z;
 }	t_wall_coordinate;
 
-typedef struct s_lineNode {
-    char *line;
-    struct s_lineNode *next;
-} t_lineNode;
+typedef struct s_lineNode
+{
+	char				*line;
+	struct s_lineNode	*next;
+}	t_lineNode;
 
 //  Color Name
 
 typedef struct s_texture
 {
-	char *path;
-	t_img img;
-	int tex_width;
-	int tex_height;
-
-
-} t_texture;
+	char	*path;
+	t_img	img;
+	int		tex_width;
+	int		tex_height;
+}	t_texture;
 
 typedef struct s_color
 {
-	int R;
-	int	G;
-	int	B;
-	char **colors;
-	int rgb;
-} 	t_color;
+	int		R;
+	int		G;
+	int		B;
+	char	**colors;
+	int		rgb;
+}	t_color;
 
 typedef struct s_map
 {
-	char **map;
-	int m_width;
-	int m_height;
+	char	**map;
+	int		m_width;
+	int		m_height;
 	char	*pos;
 }	t_map;
 
 typedef struct s_scene_params
 {
-	int i;
-    int mapStartedIndex;
-    int mapstarted;
-    int shouldIncrementHeight;
-}t_scene_params;
+	int	i;
+	int	mapStartedIndex;
+	int	mapstarted;
+	int	shouldIncrementHeight;
+}	t_scene_params;
 
-typedef	struct s_ray_coord
+typedef struct s_ray_coord
 {
-	double x;
-	double y;
+	double	x;
+	double	y;
 }	t_ray_coord;
 
 typedef struct s_player_coord
 {
-	float x;
-	float y;
-} t_player_coord;
+	float	x;
+	float	y;
+}	t_player_coord;
 
 typedef struct s_player
 {
-	t_ray_coord pos;
-	t_ray_coord dir;
-	t_ray_coord plane;
+	t_ray_coord	pos;
+	t_ray_coord	dir;
+	t_ray_coord	plane;
 	// t_player_coord dir;
 	// t_player_coord plane;
-	double moveSpeed;
-	double rotSpeed;
-	double rotAngle;
-} t_player;
+	double		moveSpeed;
+	double		rotSpeed;
+	double		rotAngle;
+}	t_player;
 
 typedef struct s_keys
 {
-	int w;
-	int s;
-	int a;
-	int d;
-	int left;
-	int right;
-	int esc;
+	int	w;
+	int	s;
+	int	a;
+	int	d;
+	int	left;
+	int	right;
+	int	esc;
 
-} t_keys;
+}	t_keys;
 
 typedef struct s_rect
 {
-	int x;
-	int y;
-	int width;
-	int height;
-	int border_color;
-	int border_width;
-} t_rect;
+	int	x;
+	int	y;
+	int	width;
+	int	height;
+	int	border_color;
+	int	border_width;
+}	t_rect;
 
 
 
 typedef struct s_ray
 {
-	t_ray_coord camera;
-	t_ray_coord rayDir;
-	t_ray_coord sideDist;
-	t_ray_coord deltaDist;
-	t_ray_coord perpWallDist;
-	t_ray_coord step;
-	t_ray_coord tileSize;
-	double wall;
-	int hit;
-	double lineHeight;
-	t_player player;
+	t_ray_coord	camera;
+	t_ray_coord	rayDir;
+	t_ray_coord	sideDist;
+	t_ray_coord	deltaDist;
+	t_ray_coord	perpWallDist;
+	t_ray_coord	step;
+	t_ray_coord	tileSize;
+	double		wall;
+	int			hit;
+	double		lineHeight;
+	t_player	player;
 
-} t_ray;
-
+}	t_ray;
 
 
 typedef struct s_mlx
 {
-	void		*img_ptr;
-	void		*mlx_ptr;
-	void		*win_mlx;
-} t_mlx;
+	void	*img_ptr;
+	void	*mlx_ptr;
+	void	*win_mlx;
+}	t_mlx;
+
+
 typedef struct s_sceneData
 {
 	// void 	wall;
-
-	t_texture	north_texture;
-	t_texture	south_texture;
-	t_texture	west_texture;
-	t_texture	east_texture;
-	t_texture	*texture_field;
+	t_texture				north_texture;
+	t_texture				south_texture;
+	t_texture				west_texture;
+	t_texture				east_texture;
+	t_texture				*texture_field;
 	struct s_parserState	*state;
-	t_color	floor_color;
-	t_color	ceiling_color;
-    int    elm;
-	t_map	map_data;
-	int	mini_map;
-	char 	**scene;
-	t_rect rect;
-	t_keys keys;
-	t_mlx mlx;
-	t_img img;
-	t_texture textures[MAX_TEXTURES];
-	int num_textures;
+	t_color					floor_color;
+	t_color					ceiling_color;
+	int						elm;
+	t_map					map_data;
+	int						mini_map;
+	char					**scene;
+	t_rect					rect;
+	t_keys					keys;
+	t_mlx					mlx;
+	t_img					img;
+	t_texture				textures[MAX_TEXTURES];
+	int						num_textures;
 	// struct s_game game;
-
-} t_sceneData;
+}	t_sceneData;
 
 typedef struct s_time
 {
-	double time;
-	double oldTime;
-	double frameTime;
-} t_time;
+	double	time;
+	double	oldTime;
+	double	frameTime;
+}	t_time;
 
 typedef struct s_game
 {
-	t_sceneData *data;
-	t_keys keys;
-	t_mlx mlx;
-	t_player player;
-	t_img img;
-	t_ray ray;
-	int mapx;
-	int mapy;
-	int mapsize;
-	t_time time;
+	t_sceneData	*data;
+	t_keys		keys;
+	t_mlx		mlx;
+	t_player	player;
+	t_img		img;
+	t_ray		ray;
+	int			mapx;
+	int			mapy;
+	int			mapsize;
+	t_time		time;
 	// t_img textures[MAX_TEXTURES];
 	// int num_textures;
 	// t_texture texture;
-} t_game;
+}	t_game;
 
 
 
@@ -274,17 +272,17 @@ void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t elementCount, size_t elementSize);
 
 //-------rendering------------//
-int    	init_graphics(t_game *game);
-int    	key_release(int keycode, t_game *game);
-int 	key_press(int keycode, t_game *game);
-void 	init_mlx(t_mlx *mlx);
+int		init_graphics(t_game *game);
+int		key_release(int keycode, t_game *game);
+int		key_press(int keycode, t_game *game);
+void	init_mlx(t_mlx *mlx);
 double	starting_angle(char c);
 void	get_starting_position(t_player *player, char **grid);
 void	get_player(t_game *game);
 void	draw_player(t_game *game);
 void	draw_mini_player(t_game *game);
-void 	move_mini(t_game *game);
-void 	init_mlx_win(t_game *game);
+void	move_mini(t_game *game);
+void	init_mlx_win(t_game *game);
 void	render_game(t_game *game);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void	draw_wall(t_game *game, t_wall_coordinate wall_coord);
@@ -295,8 +293,8 @@ void	fill_rect_floor(t_game *game, t_rect rect);
 void	generate_img(t_img *img, t_mlx *mlx, int width, int height);
 void	get_background(t_game *game);
 void	load_texture_img(void *mlx, t_img *img, t_texture *texture);
-void    load_textures_img(t_game *game, t_img *img);
-void    hooks(t_game *game);
+void	load_textures_img(t_game *game, t_img *img);
+void	hooks(t_game *game);
 // void load_textures_img(t_game *game);
 // void load_texture(t_game *game, char *file_path);
 
