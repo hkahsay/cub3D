@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/28 11:14:14 by ckarl             #+#    #+#             */
-/*   Updated: 2023/09/28 11:14:20 by ckarl            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -51,7 +39,7 @@
 
 # define TILE_SIZE 64
 # define SCALE_MINI_MAP 8
-# define PI 3.14159265359
+# define PI 3.14159265359  
 # define MAX_TEXTURES 5
 
 typedef struct	s_img {
@@ -62,7 +50,7 @@ typedef struct	s_img {
 	int		endian;
 	int 	width;
 	int 	height;
-
+	
 } t_img;
 
 
@@ -86,7 +74,7 @@ typedef struct s_texture
 	t_img img;
 	int tex_width;
 	int tex_height;
-
+	
 
 } t_texture;
 
@@ -120,6 +108,7 @@ typedef	struct s_ray_coord
 	double x;
 	double y;
 }	t_ray_coord;
+
 
 typedef struct s_player_coord
 {
@@ -210,7 +199,7 @@ typedef struct s_sceneData
 	t_texture textures[MAX_TEXTURES];
 	int num_textures;
 	// struct s_game game;
-
+	
 } t_sceneData;
 
 typedef struct s_time
@@ -296,7 +285,10 @@ void	generate_img(t_img *img, t_mlx *mlx, int width, int height);
 void	get_background(t_game *game);
 void	load_texture_img(void *mlx, t_img *img, t_texture *texture);
 void    load_textures_img(t_game *game, t_img *img);
-void    hooks(t_game *game);
+void	draw_2Dgrid(t_game *game);
+void put_player_pixel(t_game *game);
+void draw_player(t_game *game);
+
 // void load_textures_img(t_game *game);
 // void load_texture(t_game *game, char *file_path);
 
@@ -336,13 +328,12 @@ int 	ft_isdigit_strict(const char *str);
 char	*trim(char *str);
 int		ft_error_msg2(char *msg, char *msg2);
 int		close_file(int fd);
-
+void    skip_spaces(char *str);
 char	*ft_strncpy(char *dest, char *src, size_t n);
 void	*ft_realloc(void *ptr, size_t orig_size, size_t new_size);
 char	**ft_split2(char *str, char *charset);
 int 	is_space(char c);
 int 	ft_strcmp(const char *s1, const char *s2);
-char	*ft_strtok(const char *str);
 char	*my_strtok(char *srcString, char *delim);
 void empty_reso(char *str);
 //----------rendering utils----------//
@@ -373,7 +364,7 @@ int		has_empty_line(char **map, int height);
 
 void 	check_map_elm(t_sceneData *data);
 void    get_scene(t_sceneData  *data);
-void 	get_file(char *identifier, char *str, t_sceneData *data);//char **str,
+void 	get_file(char *identifier, char *str, t_sceneData *data);//char **str, 
 void	check_scene(t_sceneData	*data);
 int		valid_extension(char *tex_path);
 void	check_color(t_color *color, char *color_name);
