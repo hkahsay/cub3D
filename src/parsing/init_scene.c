@@ -48,7 +48,8 @@ void initialize_variables(t_scene_params *params)
     params->mapStartedIndex = 0;
     params->mapstarted = 0;
     params->shouldIncrementHeight = 1;
-} 
+}
+
 void    init_player(t_player *player)
 {
     player->moveSpeed = 0;
@@ -62,6 +63,7 @@ void init_mlx(t_mlx *mlx)
     mlx->win_mlx = NULL;
     mlx->img_ptr = NULL;
 }
+
 void    init_sceneData(t_sceneData *data)
 {
     init_mlx(&(data->mlx));

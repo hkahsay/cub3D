@@ -13,7 +13,6 @@ IdentifierParser parsers[] = {
 
 static void check_identifiers(char *identifier, char *str, t_sceneData *data, int i)
 {
-    printf("check_identifiers(%s, '%s', _, %d)\n", identifier, str, i);
     if (!ft_strcmp(identifier, parsers[i].identifier))
         {
             if(!ft_strcmp(parsers[i].identifier, "NO") )
@@ -69,7 +68,6 @@ void parse_texture(const char *str, t_texture *texture)
             printf("Error\nCould not allocate memory for texture path.\n");
             exit(EXIT_FAILURE);
         }
-        printf("parse_texture: %s\n", texture->path);
 
     }
     else
@@ -104,10 +102,7 @@ void parse_color(const char *str, t_color *color)
     init_color(color);
     empty_color((char*)str);
   
-    printf("parse_color: %s\n", str);
     strs_split = ft_split(str, ',');
-    printf("strs_split: %p\n", strs_split);
-    // printf("parse_color: %s\n", strs_split[0]);
     if (strs_split == NULL)
     {
         ft_error_msg("Error: could not split color components.");

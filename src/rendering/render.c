@@ -71,19 +71,19 @@ void generate_img(t_img *img, t_mlx *mlx, int width, int height)
     &img->line_length, &img->endian);
 }
 
-static void    draw_vertical_lines(t_game *game)
-{
-    int col;
-    (void)game;
-    col = 0;
-    while (col < MAX_WIDTH)
-    {
-        // draw_vertical_line(game, col);
-        // printf("draw vertical lines\n");
-        col++;
-    }
+// static void    draw_vertical_lines(t_game *game)
+// {
+//     int col;
+//     (void)game;
+//     col = 0;
+//     while (col < MAX_WIDTH)
+//     {
+//         draw_vertical_line(game, col);
+//         // printf("draw vertical lines\n");
+//         col++;
+//     }
     
-}
+// }
 // void    draw_vertical_line(t_game *game, int col)
 // {
 
@@ -93,7 +93,7 @@ void render_game(t_game *game)
 {
     generate_img(&game->img, &game->mlx, MAX_WIDTH, MAX_HEIGHT);
     get_background(game);
-    draw_vertical_lines(game);
+    // draw_vertical_lines(game);
     mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_mlx, game->img.img, 0, 0);                            
     // mlx_destroy_image(game->mlx.mlx_ptr, game->img.img);
 }

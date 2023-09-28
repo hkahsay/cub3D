@@ -2,17 +2,6 @@
 
 int main(int argc, char **argv)
 {
-	// char *str = "123,123,43";
-	// char **split;
-	// split = ft_split(str, ',');
-	// int i = 0;
-	// while (split[i])
-	// {
-	// 	printf("split[%d]: %s\n", i, split[i]);
-	// 	i++;
-	// }
-	
-	// return (0);
 	t_game *game;
 	
 	// data = NULL;

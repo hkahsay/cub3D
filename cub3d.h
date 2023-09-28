@@ -109,6 +109,7 @@ typedef	struct s_ray_coord
 	double y;
 }	t_ray_coord;
 
+
 typedef struct s_player_coord
 {
 	float x;
@@ -284,7 +285,10 @@ void	generate_img(t_img *img, t_mlx *mlx, int width, int height);
 void	get_background(t_game *game);
 void	load_texture_img(void *mlx, t_img *img, t_texture *texture);
 void    load_textures_img(t_game *game, t_img *img);
-void    hooks(t_game *game);
+void	draw_2Dgrid(t_game *game);
+void put_player_pixel(t_game *game);
+void draw_player(t_game *game);
+
 // void load_textures_img(t_game *game);
 // void load_texture(t_game *game, char *file_path);
 
@@ -324,13 +328,12 @@ int 	ft_isdigit_strict(const char *str);
 char	*trim(char *str);
 int		ft_error_msg2(char *msg, char *msg2);
 int		close_file(int fd);
-
+void    skip_spaces(char *str);
 char	*ft_strncpy(char *dest, char *src, size_t n);
 void	*ft_realloc(void *ptr, size_t orig_size, size_t new_size);
 char	**ft_split2(char *str, char *charset);
 int 	is_space(char c);
 int 	ft_strcmp(const char *s1, const char *s2);
-char	*ft_strtok(const char *str);
 char	*my_strtok(char *srcString, char *delim);
 void empty_reso(char *str);
 //----------rendering utils----------//

@@ -6,7 +6,6 @@ int lineContainsNonWhitespace(const char *line)
     int k;
 
     k = 0;
-    printf("(%s) => %d\n", line, line[k]);
     while(line[k] != '\0')
     {
         if (!is_space((unsigned char)line[k]))
