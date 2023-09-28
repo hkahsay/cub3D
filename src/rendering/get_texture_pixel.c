@@ -1,4 +1,4 @@
-#include "../../cub3d.h"
+#include "../../includes/cub3d.h"
 
 
 // In your ft_esc function, call destroy_textures to release textures before exiting
@@ -19,7 +19,7 @@ void load_texture_img(void *mlx, t_img *img, t_texture *texture)
     if (img->img != NULL)
     {
         mlx_destroy_image(mlx, img->img); // Free any existing image
-    } 
+    }
     if (texture->tex_width > 0 && texture->tex_height > 0)
     {
         // printf("game->data->north_texture.path: %s\n", data->north_texture.path);

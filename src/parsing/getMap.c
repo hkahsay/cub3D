@@ -1,5 +1,5 @@
-#include "../../cub3d.h"
-#include "../../parser.h"
+#include "../../includes/cub3d.h"
+#include "../../includes/parser.h"
 
 size_t get_width(char **maplines)
 {
@@ -7,7 +7,7 @@ size_t get_width(char **maplines)
     size_t length;
     int i;
     int j;
-    
+
     max_width = 0;
     i = -1;
     while (maplines[++i])

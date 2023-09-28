@@ -1,4 +1,4 @@
-#include "../../cub3d.h"
+#include "../../includes/cub3d.h"
 
 int	render_mini_map(t_game *game)
 {
@@ -7,7 +7,7 @@ int	render_mini_map(t_game *game)
 	// movement(game);
     // move_mini(game);
 	// draw_mini_player(game);
-    
+
 	// draw_arrow(game, game->scene->player.pos, game->scene->player.dir);
     mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_mlx, game->img.img, 0, 0);
     mlx_destroy_image(game->mlx.mlx_ptr, game->img.img);
@@ -18,7 +18,7 @@ void	draw_wall(t_game *game, t_wall_coordinate wall_coord)
 {
 	int		x;
 	int		y;
-	
+
 	y = 0;
 	while (y < SCALE_MINI_MAP)
 	{
