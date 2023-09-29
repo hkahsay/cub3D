@@ -91,8 +91,7 @@ void    get_rays(t_game *game)
         exit(EXIT_SUCCESS);
     }
    game->cast_rays.view_angle = angle_to_rad(FOV_ANGLE);
-   game->cast_rays.dist_to_plane = (MAX_WIDTH / 2) / tan(game->cast_rays.view_angle / 2);
-    
+   game->cast_rays.dist_to_plane = (MAX_WIDTH / 2) / tan(game->cast_rays.view_angle / 2); 
 }
 
 void    get_event(t_game *game)

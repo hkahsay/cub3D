@@ -11,6 +11,7 @@ IdentifierParser parsers[] = {
 
 };
 
+
 static void check_identifiers(char *identifier, char *str, t_sceneData *data, int i)
 {
     if (!ft_strcmp(identifier, parsers[i].identifier))
