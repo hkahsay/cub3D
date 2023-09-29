@@ -11,3 +11,11 @@ double    rad_to_angle(double angle)
     angle = angle * (180 / PI);
     return (angle);
 }
+
+int pixel_to_coord(float n)
+{
+    int res;
+
+    res = n / SCALE_MINI_MAP;
+    return (res);
+}

@@ -2,8 +2,8 @@
 
 void put_player_pixel(t_game *game)
 {
-     get_player(game);
-     draw_player(game);
+    get_player(game);
+    draw_player(game);
 }
 
 void	get_player(t_game *game)

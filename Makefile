@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+         #
+#    By: mac <mac@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/15 20:19:13 by hkahsay           #+#    #+#              #
-#    Updated: 2023/09/28 11:37:16 by ckarl            ###   ########.fr        #
+#    Updated: 2023/09/28 17:06:51 by mac              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,8 @@ REND_FILES	:=	render.c				\
 				mini_map.c				\
 				get_player.c			\
 				render_util.c			\
+				draw_C_F.c				\
+				movement.c				\
 
 	### OBJECTS ###
 MAIN_FILE	:= $(addprefix $(OBJS_PATH)/, $(MAIN_FILE:.c=.o))

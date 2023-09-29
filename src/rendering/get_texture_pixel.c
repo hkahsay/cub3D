@@ -42,7 +42,6 @@ void load_texture_img(void *mlx, t_img *img, t_texture *texture)
 void    load_textures_img(t_game *game, t_img *img)
 {
     load_texture_img(game->mlx.mlx_ptr, img, &game->data->north_texture);
-    // printf("game->data->north_texture.path: %s\n", game->data->north_texture.path);
     load_texture_img(game->mlx.mlx_ptr, img, &game->data->south_texture);
     load_texture_img(game->mlx.mlx_ptr, img, &game->data->west_texture);
     load_texture_img(game->mlx.mlx_ptr, img, &game->data->east_texture);
