@@ -2,13 +2,13 @@
 # define CUB3D_H
 
 # include "../libs/libft/libft.h"
-# include <fcntl.h>
-# include <string.h>
-# include <ctype.h>
-# include <stddef.h>
-# include <stdlib.h>
+#include <fcntl.h>
+#include <string.h>
+#include <ctype.h>
+#include <stddef.h>
+#include <stdlib.h>
 # include "../libs/mlx/mlx.h"
-# include <math.h>
+#include <math.h>
 // #include "parser.h"
 // # include "./mlx/mlx.h"
 
