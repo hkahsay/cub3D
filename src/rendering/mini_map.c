@@ -3,12 +3,10 @@
 int	render_mini_map(t_game *game)
 {
 	generate_img(&game->img, &game->mlx, MAX_WIDTH, MAX_HEIGHT);
-   render_2dMap_wall(game);
-	// movement(game);
-    // move_mini(game);
-	// draw_mini_player(game);
-
-	// draw_arrow(game, game->scene->player.pos, game->scene->player.dir);
+    render_2dMap_wall(game);
+    draw_2Dgrid(game);
+    // draw_player(game);
+	put_player_pixel(game);
     mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_mlx, game->img.img, 0, 0);
     mlx_destroy_image(game->mlx.mlx_ptr, game->img.img);
 	return (0);
@@ -53,5 +51,34 @@ void	render_2dMap_wall(t_game *game)
 			i++;
 		}
 		j++;
+	}
+}
+
+void	draw_2Dgrid(t_game *game)
+{
+	int i;
+	int j;
+	int cellSizeX;
+	int cellSizeY;
+
+	cellSizeX = SCALE_MINI_MAP;
+	cellSizeY = SCALE_MINI_MAP;
+	i = 0;
+	//draw vertical grid
+	while (i <= game->data->map_data.m_width *SCALE_MINI_MAP)
+	{
+		j = -1;
+		while (++j <= game->data->map_data.m_height *SCALE_MINI_MAP)
+			my_mlx_pixel_put(&game->img, i, j, 0x0000FF);
+		i += cellSizeX;
+	}
+	//draw horizontal grid
+	j = cellSizeY;
+	while (j <= game->data->map_data.m_height * SCALE_MINI_MAP)
+	{
+		i = -1;
+		while (++i <= game->data->map_data.m_width *SCALE_MINI_MAP)
+			my_mlx_pixel_put(&game->img, i, j, 0x0000FF);
+		j +=cellSizeY; 
 	}
 }

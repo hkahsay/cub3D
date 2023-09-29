@@ -29,20 +29,3 @@ int	create_rgb(int r, int g, int b)
 	return (r << 16 | g << 8 | b);
 }
 
-void	init_rect_ceiling(t_rect *rect, t_sceneData *data)
-{
-	rect->x = 0; // X-coordinate of the top-left corner of the rectangle
-	rect->y = 0; // Y-coordinate of the top-left corner of the rectangle
-	rect->width = MAX_WIDTH; // Width of the rectangle
-	rect->height = MAX_HEIGHT; // Height of the rectangle
-	rect->border_color = data->ceiling_color.rgb; // Color of the rectangle
-}
-
-void	init_rect_floor(t_rect *rect, t_sceneData *data)
-{
-	rect->x = 0; // X-coordinate of the top-left corner of the rectangle
-	rect->y = 0; // Y-coordinate of the top-left corner of the rectangle
-	rect->width = MAX_WIDTH; // Width of the rectangle
-	rect->height = MAX_HEIGHT/ 2; // Height of the rectangle
-	rect->border_color = data->floor_color.rgb; // Color of the rectangle
-}

@@ -1,5 +1,11 @@
 #include "../../includes/cub3d.h"
 
+void put_player_pixel(t_game *game)
+{
+    get_player(game);
+    draw_player(game);
+}
+
 void	get_player(t_game *game)
 {
     // generate_img(&game->img, &game->mlx, 4, 4);
@@ -46,26 +52,6 @@ double    starting_angle(char c)
     return (radian);
 }
 
-void draw_mini_player(t_game *game)
-{
-    int playerX = (int)game->player.pos.x;
-    int playerY = (int)game->player.pos.y;
-    int pixelSize = 35; // Adjust the size as needed
-
-    // Calculate the coordinates for the top-left and bottom-right corners of the square
-    int startX = playerX - pixelSize / 2;
-    int startY = playerY - pixelSize / 2;
-    int endX = playerX + pixelSize / 2;
-    int endY = playerY + pixelSize / 2;
-
-    // Draw the filled square
-    for (int x = startX; x <= endX; x++) {
-        for (int y = startY; y <= endY; y++) {
-            my_mlx_pixel_put(&game->img, x, y, 0x00FF00); // Draws a green pixel
-            // mlx_pixel_put(game->mlx.mlx_ptr, game->mlx.win_mlx, x, y, 0x0000FF); // Draws a white pixel
-        }
-    }
-}
 void move_mini(t_game *game)
 {
     if (game->keys.w)

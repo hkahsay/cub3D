@@ -15,6 +15,8 @@ typedef struct
 
 extern IdentifierParser parsers[];
 
+
+
 // IdentifierParser parsers[] = {
 //     {"R", parse_resolution},
 //     {"NO", parse_texture},

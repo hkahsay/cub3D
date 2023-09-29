@@ -30,7 +30,6 @@ void	check_texture(char *texture, char *tex_name)
 
 int	valid_extension(char *tex_path)
 {
-	printf("valid_extension: %s\n", tex_path);
 	int len;
 
 	len = ft_strlen(tex_path);

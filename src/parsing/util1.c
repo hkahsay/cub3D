@@ -43,11 +43,14 @@ int is_space(char c)
     return(0);
 }
 
-// void    skip_spaces(t_parserState *state)
-// {
-//     while (is_space(current_char(state)))
-//         ++state->pos;
-// }
+void    skip_spaces(char *str)
+{
+	int i;
+
+	i = 0;
+    while (is_space((str[i])))
+        i++;
+}
 
 
 
