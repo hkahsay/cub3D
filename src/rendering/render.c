@@ -25,7 +25,7 @@ void render_game(t_game *game)
     // draw_vertical_lines(game);
     // update(game);
     // draw(game);
-    mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_mlx, game->img.img, 0, 0);                            
+    mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_mlx, game->img.img, 0, 0);
     mlx_destroy_image(game->mlx.mlx_ptr, game->img.img);
 }
 
@@ -50,7 +50,7 @@ int	init_graphics(t_game *game)
 	}
 	return (1);
 }
-void get_background(t_game *game)
+void	get_background(t_game *game)
 {
     generate_img(&game->img, &game->mlx, MAX_WIDTH, MAX_HEIGHT);
     draw_ceiling(game, &game->rect);
@@ -63,7 +63,7 @@ void get_background(t_game *game)
 
 
 // Updated rendering function
-void init_mlx_win(t_game *game)
+void	init_mlx_win(t_game *game)
 {
     game->mlx.mlx_ptr = mlx_init();
     game->mlx.win_mlx = mlx_new_window(game->mlx.mlx_ptr, MAX_WIDTH, MAX_HEIGHT, "cub3D");
@@ -91,7 +91,7 @@ void    get_rays(t_game *game)
         exit(EXIT_SUCCESS);
     }
    game->cast_rays.view_angle = angle_to_rad(FOV_ANGLE);
-   game->cast_rays.dist_to_plane = (MAX_WIDTH / 2) / tan(game->cast_rays.view_angle / 2); 
+   game->cast_rays.dist_to_plane = (MAX_WIDTH / 2) / tan(game->cast_rays.view_angle / 2);
 }
 
 void    get_event(t_game *game)
@@ -151,7 +151,7 @@ int exit_game(t_game *game)
 //         // printf("draw vertical lines\n");
 //         col++;
 //     }
-    
+
 // }
 // void    draw_vertical_line(t_game *game, int col)
 // {

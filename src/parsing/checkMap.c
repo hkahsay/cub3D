@@ -2,48 +2,48 @@
 // #include "../parser.h"
 
 
-int is_map(char *line)
+int	is_map(char *line)
 {
-    int i;
-    int valid_char;
+	int	i;
+	int	valid_char;
 
-    i = 0;
-    valid_char = 0; // Initialize valid_char to 0
-    if (ft_check_char(line, '1') == 1)
-    {
-        // Check if the character is not one of the valid map characters
-        if (!ft_strchr("01NSEW \n\t\v\f\r", line[i]))
-            return (0);
-        if (line[i] == '1' || line[i] == ' ')
-            valid_char = 1; // Set valid_char to 1 if '1' is found
-    }
-    return (valid_char); // Return the value of valid_char
+	i = 0;
+	valid_char = 0; // Initialize valid_char to 0
+	if (ft_check_char(line, '1') == 1)
+	{
+		// Check if the character is not one of the valid map characters
+		if (!ft_strchr("01NSEW \n\t\v\f\r", line[i]))
+			return (0);
+		if (line[i] == '1' || line[i] == ' ')
+			valid_char = 1; // Set valid_char to 1 if '1' is found
+	}
+	return (valid_char); // Return the value of valid_char
 }
 
-void check_map_elm(t_sceneData *data)
+void	check_map_elm(t_sceneData *data)
 {
-    int i;
-    int found;
+	int	i;
+	int	found;
 
-    i = 0;
-    found = 0;
-    while (data->scene[i] != NULL)
-    {
-        if (is_map(data->scene[i]) == 0)
-            data->elm++;
-        else if(is_map(data->scene[i]) == 1)
-        {
-            found = 1;
-            break;
-        }
-        i++;
-    }
-    if (!found)
-    {
-        printf("Error\n");
-        printf("%s%s%s\n", RED, "Map should be the last element or no wall", RESET);
-        exit(EXIT_FAILURE);
-    }
+	i = 0;
+	found = 0;
+	while (data->scene[i] != NULL)
+	{
+		if (is_map(data->scene[i]) == 0)
+			data->elm++;
+		else if (is_map(data->scene[i]) == 1)
+		{
+			found = 1;
+			break ;
+		}
+		i++;
+	}
+	if (!found)
+	{
+		printf("Error\n");
+		printf("%s%s%s\n", RED, "Map should be the last element or no wall", RESET);
+		exit(EXIT_FAILURE);
+	}
 }
 
 
