@@ -1,5 +1,5 @@
-#ifndef CSTRUCTURE_H
-# define CSTRUCTURE_H
+#ifndef STRUCTURE_H
+# define STRUCTURE_H
 
  #include "cub3d.h"
 #include "constant.h"

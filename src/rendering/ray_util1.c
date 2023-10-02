@@ -30,7 +30,7 @@ int check_south(double angle)
         return (0);
 }
 
-//check_west is returns 1 if the angle is between 90 and 270 degrees that is the player is facing west 
+//check_west is returns 1 if the angle is between 90 and 270 degrees that is the player is facing west
 //else it returns 0 thats is the player is facing east
 
 int check_west(double angle)
