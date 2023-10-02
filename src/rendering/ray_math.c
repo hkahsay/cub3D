@@ -46,5 +46,5 @@ void	init_ray_struct(t_game *game, t_ray *ray,  double angle)
 	ray->rayDir.y = sin(angle);
 	ray->deltaDist.x = get_delta_distance(ray->rayDir.x);
 	ray->deltaDist.y = get_delta_distance(ray->rayDir.y);
-	init_side_dist(ray);
+    calculate_step_sideDist(ray);
 }
