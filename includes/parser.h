@@ -1,7 +1,7 @@
-#ifndef PARSERS_H
-#define PARSERS_H
+#ifndef PARSER_H
+#define PARSER_H
 
-#include "cub3d.h"
+# include "structure.h"
 // Define the parsers array here
 
 // void parse_resolution(const char *str, t_resolution *resolution);

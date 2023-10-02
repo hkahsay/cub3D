@@ -72,5 +72,4 @@ void	get_scene(t_sceneData *data)
 		params.i++; // Move to the next identifier/data pair
 	}
 	get_map(data, params.mapStartedIndex);
-
 }

@@ -79,6 +79,6 @@ void	draw_2Dgrid(t_game *game)
 		i = -1;
 		while (++i <= game->data->map_data.m_width *SCALE_MINI_MAP)
 			my_mlx_pixel_put(&game->img, i, j, 0x0000FF);
-		j +=cellSizeY; 
+		j +=cellSizeY;
 	}
 }

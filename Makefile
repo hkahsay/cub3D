@@ -6,7 +6,7 @@
 #    By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/15 20:19:13 by hkahsay           #+#    #+#              #
-#    Updated: 2023/10/02 16:37:52 by ckarl            ###   ########.fr        #
+#    Updated: 2023/10/02 17:57:03 by ckarl            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,10 +63,12 @@ REND_FILES	:=	render.c				\
 				hook.c					\
 				mini_map.c				\
 				get_player.c			\
-				ray_util1.c			    \
-				ray_util2.c			    \
+				ray_math.c				\
+				ray_util1.c				\
+				ray_util2.c				\
 				draw_C_F.c				\
 				movement.c				\
+				exit.c					\
 
 	### OBJECTS ###
 MAIN_FILE	:= $(addprefix $(OBJS_PATH)/, $(MAIN_FILE:.c=.o))

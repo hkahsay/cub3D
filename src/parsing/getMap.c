@@ -5,8 +5,8 @@ size_t	get_width(char **maplines)
 {
 	size_t	max_width;
 	size_t	length;
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	max_width = 0;
 	i = -1;
@@ -34,7 +34,7 @@ static void	map_allocate_memory(t_sceneData *data, int mapStartedIndex)
 	if (!data->map_data.map)
 	{
 		ft_error_msg(RED"Error: Dynamic allocation failed."RESET);
-		free_map_data(&data->map_data);
+		// free_map_data(&data->map_data);
 	}
 	data->map_data.m_width = get_width(&data->scene[mapStartedIndex]);
 }
@@ -47,13 +47,14 @@ void	get_map(t_sceneData *data, int mapStartedIndex)
 	map_allocate_memory(data, mapStartedIndex);
 	while (i < data->map_data.m_height)
 	{
-		data->map_data.map[i] = malloc(sizeof(char) * (data->map_data.m_width + 1));
-		if (!data->map_data.map[i])
-		{
-			ft_error_msg(RED"Error: Dynamic allocation failed."RESET);
-			free_map_data(&data->map_data);
-		}
-		strcpy(data->map_data.map[i], data->scene[mapStartedIndex + i]);
+		// data->map_data.map[i] = malloc(sizeof(char) * (data->map_data.m_width + 1));
+		// if (!data->map_data.map[i])
+		// {
+		// 	ft_error_msg(RED"Error: Dynamic allocation failed."RESET);
+		// 	free_map_data(&data->map_data);
+		// }
+		// strcpy(data->map_data.map[i], data->scene[mapStartedIndex + i]);
+		data->map_data.map[i] = data->scene[mapStartedIndex + i];
 		i++;
 	}
 	data->map_data.map[data->map_data.m_height] = NULL;

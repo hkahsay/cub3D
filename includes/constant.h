@@ -1,9 +1,6 @@
 # ifndef CONSTANT_H
 # define CONSTANT_H
 
-#include "cub3d.h"
-#include "constant.h"
-
 # define BUFFER_SIZE 	42
 
 # define GREEN	"\033[1m\033[32m"
@@ -29,8 +26,8 @@
 # define FOV_ANGLE 60
 
 # define TILE_SIZE 64
-# define SCALE_MINI_MAP 8
-# define PI 3.14159265359  
+# define SCALE_MINI_MAP 15
+# define PI 3.14159265359
 # define MAX_TEXTURES 5
 
 #endif

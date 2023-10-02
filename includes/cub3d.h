@@ -9,6 +9,7 @@
 # include <stdlib.h>
 # include "../libs/mlx/mlx.h"
 # include "structure.h"
+# include "parser.h"
 # include "constant.h"
 # include <math.h>
 
@@ -43,7 +44,6 @@ void	initialize_variables(t_scene_params *params);
 //--------------exit----------------//
 int		exit_game(t_game *game);
 int		ft_esc(t_game *game);
-// void destroy_textures(void *mlx, t_img *img);
 void	destroy_textures(t_game *game);
 
 //------------------free------------------//
@@ -134,8 +134,9 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void	generate_img(t_img *img, t_mlx *mlx, int width, int height);
 void	get_background(t_game *game);
 void	put_player_pixel(t_game *game);
-int    	key_release(int keycode, t_game *game);
-int 	key_press(int keycode, t_game *game);
+int		key_release(int keycode, t_game *game);
+int		key_press(int keycode, t_game *game);
+int		key_event(t_game *game);
 
 //--------movement render------//
 
@@ -147,6 +148,5 @@ void 	move_mini(t_game *game);
 
 //--------raycasting----------//
 void	get_rays(t_game *game);
-
 
 #endif

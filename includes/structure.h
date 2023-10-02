@@ -1,9 +1,7 @@
 #ifndef STRUCTURE_H
 # define STRUCTURE_H
 
- #include "cub3d.h"
 #include "constant.h"
-
 
 typedef struct	s_img {
 	void	*img;
@@ -13,7 +11,7 @@ typedef struct	s_img {
 	int		endian;
 	int 	width;
 	int 	height;
-	
+
 } t_img;
 
 
@@ -34,7 +32,7 @@ typedef struct s_texture
 	t_img img;
 	int tex_width;
 	int tex_height;
-	
+
 
 } t_texture;
 
@@ -127,7 +125,7 @@ typedef struct s_ray
 	double wall_orientation;
 	int hit;
 	double lineHeight;
-	t_player player;
+	t_player *player;
 
 } t_ray;
 
@@ -161,13 +159,13 @@ typedef struct s_sceneData
 	int	mini_map;
 	char 	**scene;
 	t_rect rect;
-	t_keys keys;
-	t_mlx mlx;
-	t_img img;
+	// t_keys keys;
+	// t_mlx mlx;
+	// t_img img;
 	t_texture textures[MAX_TEXTURES];
 	int num_textures;
 	// struct s_game game;
-	
+
 } t_sceneData;
 
 typedef struct s_time

@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:02:52 by ckarl             #+#    #+#             */
-/*   Updated: 2023/09/28 12:03:18 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/02 18:36:07 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(int argc, char **argv)
 	init_mlx_win(game);
 	free_map_data(&(game->data->map_data));
 	free(game->data);
-	// free(game);
+	free(game);
 	return (0);
 }
 
@@ -67,7 +67,6 @@ void	check_arg(int ac, char **av)
 		printf("%s\n", RED"Invalid File");
 		exit(1);
 	}
-
 	if (ft_strncmp((ft_strrchr(av[1], '.')), ".cub", 5))
 	{
 		printf("Error\n");
@@ -81,13 +80,13 @@ int	open_file(char *file)
 	int	fd;
 
 	fd = open(file, O_RDONLY);
-	if(fd == -1)
+	if (fd == -1)
 	{
 		printf("Error\n");
 		printf("%s\n", RED"No file to read"RESET);
 		exit(0);
 	}
-	return(fd);
+	return (fd);
 }
 
 void	read_scene(char *file, t_sceneData *data)

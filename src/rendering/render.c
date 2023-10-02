@@ -72,6 +72,8 @@ void	init_mlx_win(t_game *game)
     // mlx_hook(game->mlx.win_mlx, 3, 0, key_release, game);//key_release
     mlx_loop_hook(game->mlx.mlx_ptr, init_graphics, game);
     mlx_loop(game->mlx.mlx_ptr);
+	// while (1)
+		// key_event(game);
 }
 
 void ready_game(t_game *game)
@@ -94,23 +96,17 @@ void    get_rays(t_game *game)
    game->cast_rays.dist_to_plane = (MAX_WIDTH / 2) / tan(game->cast_rays.view_angle / 2);
 }
 
-void    get_event(t_game *game)
+void	get_event(t_game *game)
 {
-    // Disable key autorepeat
-    mlx_do_key_autorepeatoff(game->mlx.mlx_ptr);
-    // Register keypress and keyrelease events
-    mlx_hook(game->mlx.win_mlx, 2, 0, key_press, game);//key_press
-    mlx_hook(game->mlx.win_mlx, 3, 0, key_release, game);//key_release
-    mlx_hook(game->mlx.win_mlx, 17, 0, exit_game, game);//exit_game
+	// Disable key autorepeat
+	mlx_do_key_autorepeatoff(game->mlx.mlx_ptr);
+	// Register keypress and keyrelease events
+	mlx_key_hook(game->mlx.win_mlx, &key_press, game);//key_press
+	// mlx_hook(game->mlx.win_mlx, 3, 0, key_release, game);//key_release
+	// mlx_key_hook(game->mlx.win_mlx, &key_event, game);
+	mlx_hook(game->mlx.win_mlx, 17, 0, exit_game, game);//exit_game
 }
 
-int exit_game(t_game *game)
-{
-    free_map_data(&game->data->map_data);
-    free(game->data);
-    free(game);
-    exit(EXIT_SUCCESS);
-}
     // mlx_hook(data->mlx.win_mlx, 3, 0, key_release, data);//key_release
 
 
