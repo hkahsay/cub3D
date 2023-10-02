@@ -31,7 +31,7 @@ void load_texture_img(void *mlx, t_img *img, t_texture *texture)
                 &img->line_length, &img->endian);
         }
         else
-            ft_error_msg(RED"Error\nTexturee not found\n"RESET);
+            ft_error_msg(RED"Error\nTexture not found\n"RESET);
     }
     else
         ft_error_msg(RED"Error\n image is not found\n"RESET);

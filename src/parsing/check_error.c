@@ -1,4 +1,5 @@
 #include "../../includes/cub3d.h"
+
 void	check_scene(t_sceneData	*data)
 {
 	check_texture(data->north_texture.path, "north");
@@ -12,28 +13,28 @@ void	check_scene(t_sceneData	*data)
 
 
 
-int ft_error_msg(char *msg)
+int	ft_error_msg(char *msg)
 {
-    printf("%s\n", msg);
-    exit(EXIT_FAILURE);
+	printf("%s\n", msg);
+	exit(EXIT_FAILURE);
 }
 
-int ft_error_msg2(char *msg, char *msg2)
+int	ft_error_msg2(char *msg, char *msg2)
 {
-    printf("%s%s\n", msg, msg2);
-    exit(EXIT_FAILURE);
+	printf("%s%s\n", msg, msg2);
+	exit(EXIT_FAILURE);
 }
 
-int    check_wall(char *line)
+int	check_wall(char *line)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (line[i])
-    {
-        if (line[i] != '1' && !is_space(line[i]))
-            return(1);
-        i++;
-    }
-    return(0);
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] != '1' && !is_space(line[i]))
+			return (1);
+		i++;
+	}
+	return (0);
 }

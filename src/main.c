@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/28 12:02:52 by ckarl             #+#    #+#             */
+/*   Updated: 2023/09/28 12:03:18 by ckarl            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	// char *str = "123,123,43";
 	// char **split;
@@ -35,7 +47,7 @@ int main(int argc, char **argv)
 	return (0);
 }
 
-void check_arg(int ac, char **av)
+void	check_arg(int ac, char **av)
 {
 	if (ac < 2)
 	{
@@ -64,11 +76,11 @@ void check_arg(int ac, char **av)
 	}
 }
 
-int open_file(char *file)
+int	open_file(char *file)
 {
 	int	fd;
-	fd = open(file, O_RDONLY);
 
+	fd = open(file, O_RDONLY);
 	if(fd == -1)
 	{
 		printf("Error\n");
@@ -78,22 +90,23 @@ int open_file(char *file)
 	return(fd);
 }
 
-void    read_scene(char *file, t_sceneData *data)
+void	read_scene(char *file, t_sceneData *data)
 {
-    char *combined_map = NULL;
-    char *current_line = NULL;
-    char *temp_map = NULL;
+	char *combined_map = NULL;
+	char *current_line;
+	char *temp_map = NULL;
 	int fd;
+
 	current_line = NULL;
 	fd = open_file(file);
-	combined_map = ft_strdup(""); // Allocate memory for a string to store the file contents, initialize with an empty string.
+	combined_map = ft_strdup("");// Allocate memory for a string to store the file contents, initialize with an empty string.
 	if(!combined_map)
 		return;
 	while (1)
 	{
 		current_line = get_next_line(fd);
 		if (current_line == NULL)
-			break; // Exit the loop if no more lines can be read from the file.
+			break ; // Exit the loop if no more lines can be read from the file.
 		temp_map = combined_map;
 		combined_map = ft_strjoin(temp_map, current_line);// Concatenate the new line to the existing file contents.
 		free(temp_map);
@@ -106,7 +119,7 @@ void    read_scene(char *file, t_sceneData *data)
 	close_file(fd);
 }
 
-int close_file(int fd)
+int	close_file(int fd)
 {
 	if (close(fd) == -1)
 	{
