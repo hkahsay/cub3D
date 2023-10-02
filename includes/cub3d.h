@@ -66,10 +66,13 @@ int 	is_space(char c);
 int 	ft_strcmp(const char *s1, const char *s2);
 char	*my_strtok(char *srcString, char *delim);
 
-//----------rendering utils----------//
+//----------ray_utils----------//
 double	rad_to_angle(double angle);
 double	angle_to_rad(double rad);
 int		pixel_to_coord(float n);
+int		check_south(double angle);
+int		check_west(double angle);
+void    normalize_angle_rad(double *angle);
 
 //----------print----------//
 void	print_scene(t_sceneData *data);

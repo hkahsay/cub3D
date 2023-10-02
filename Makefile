@@ -6,7 +6,7 @@
 #    By: mac <mac@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/15 20:19:13 by hkahsay           #+#    #+#              #
-#    Updated: 2023/09/28 17:06:51 by mac              ###   ########.fr        #
+#    Updated: 2023/10/02 03:57:02 by mac              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,8 @@ REND_FILES	:=	render.c				\
 				hook.c					\
 				mini_map.c				\
 				get_player.c			\
-				render_util.c			\
+				ray_util1.c			    \
+				ray_util2.c			    \
 				draw_C_F.c				\
 				movement.c				\
 

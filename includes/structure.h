@@ -124,7 +124,7 @@ typedef struct s_ray
 	t_ray_coord perpWallDist;
 	t_ray_coord step;
 	t_ray_coord tileSize;
-	double wall;
+	double wall_orientation;
 	int hit;
 	double lineHeight;
 	t_player player;
