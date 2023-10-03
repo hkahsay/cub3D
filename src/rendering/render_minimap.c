@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:50:22 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/03 11:59:44 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/03 16:45:17 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ int	render_mini_map(t_game *game)
 	generate_img(&game->img, &game->mlx, MAX_WIDTH, MAX_HEIGHT);
 	render_2dmap_wall(game);
 	draw_2dgrid(game);
-	// draw_player(game);
-	put_player_pixel(game);
+	draw_player_minimap(game);
 	mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_mlx, \
 							game->img.img, 0, 0);
 	mlx_destroy_image(game->mlx.mlx_ptr, game->img.img);

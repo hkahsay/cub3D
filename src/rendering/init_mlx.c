@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:47:22 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/03 11:36:23 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/03 17:43:18 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,19 @@ void	init_mlx_win(t_game *game)
 	game->mlx.mlx_ptr = mlx_init();
 	game->mlx.win_mlx = mlx_new_window(game->mlx.mlx_ptr, \
 	MAX_WIDTH, MAX_HEIGHT, "cub3D");
+	mlx_loop_hook(game->mlx.mlx_ptr, init_graphics, game);
 	ready_game(game);
 	// mlx_hook(game->mlx.win_mlx, 2, 0, key_press, game);//key_press
 	// mlx_hook(game->mlx.win_mlx, 3, 0, key_release, game);//key_release
-	mlx_loop_hook(game->mlx.mlx_ptr, init_graphics, game);
 	mlx_loop(game->mlx.mlx_ptr);
 }
 
 void	ready_game(t_game *game)
 {
-	get_player(game);
+	get_player(&game->player, &game->data->map_data);
+	
 	get_event(game);
 	get_rays(game);
 	load_textures_img(game, &game->img);
+	printf("end of ready game\n");
 }

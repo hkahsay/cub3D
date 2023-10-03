@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:59:47 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/03 12:08:13 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/03 15:06:22 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	check_map_valid_characters(t_map *map_data)
 			if(ft_strchr("NSEW", map_data->map[i][j]))
 			{
 				get_play_pos_coord(map_data, i, j, map_data->map[i][j]);
-				printf("player dir: %d\n", map_data->play_pos.dir);
+				map_data->map[i][j] = '0';
 				start_postion++;
 			}
 		}

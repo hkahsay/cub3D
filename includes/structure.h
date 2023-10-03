@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:07:08 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/03 12:24:57 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/03 17:41:40 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,14 +95,15 @@ typedef struct s_player_coord
 
 typedef struct s_player
 {
-	t_ray_coord pos;
-	t_ray_coord dir;
-	t_ray_coord plane;
+	t_ray_coord		pos;
+	t_ray_coord		dir;
+	t_ray_coord		plane;
+	// t_player_coord	delta;
 	// t_player_coord dir;
 	// t_player_coord plane;
-	double moveSpeed;
-	double rotSpeed;
-	double rotAngle;
+	double			moveSpeed;
+	double			rotSpeed;
+	double			rotAngle;
 } t_player;
 
 typedef struct s_keys
