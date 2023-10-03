@@ -16,17 +16,17 @@ void    print_map(t_map *map_data)
 
 void	print_scene(t_sceneData *data)
 {
-	int i;
-
+	int	i;
 
 	i = 0;
+	printf("in print scene\n");
+	if (!data->scene)
+		return ;
 	while (data->scene[i])
 	{
-
 		printf( "print_scene: %s", data->scene[i]);
 		printf("\n");
 		i++;
 	}
 	printf("print_scene: %s\n", data->scene[i]);
-
 }

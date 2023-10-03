@@ -27,7 +27,6 @@ static void	process_non_map_line(t_sceneData *data, int i)
 data->elm++;
 }
 
-
 static void	process_map_line(t_sceneData *data, t_scene_params *params)
 {
 	if (params->mapstarted == 1)//&& params->shouldIncrementHeight == 1
@@ -44,9 +43,7 @@ static void	process_map_line(t_sceneData *data, t_scene_params *params)
 		process_non_map_line(data, params->i);
 }
 
-
 //function to process scene line
-
 static void	process_scene_line(t_scene_params *params, t_sceneData *data)
 {
 	if (params->mapstarted == 0)
@@ -65,11 +62,14 @@ void	get_scene(t_sceneData *data)
 	t_scene_params	params;
 
 	initialize_variables(&params);
+	printf("in get scene: after initialize var\n");
 	check_map_elm(data);
 	while (data->scene[params.i] != NULL)
 	{
 		process_scene_line(&params, data);
 		params.i++; // Move to the next identifier/data pair
 	}
+	printf("in get scene before get map\n");
 	get_map(data, params.mapStartedIndex);
+	printf("in get scene after get map\n");
 }

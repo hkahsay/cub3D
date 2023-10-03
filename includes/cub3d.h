@@ -87,8 +87,9 @@ void    get_map(t_sceneData *data,int mapStartedIndex);
 size_t  get_width(char **maplines);
 void 	free_map_data(t_map *map_data);
 void    check_map(t_map *map_data);
-void    check_map_valid_characters(char **map);
+void	check_map_valid_characters(t_map *map_data);
 int		check_wall(char *line);
+void	get_play_pos_coord(t_map *map_data, int row, int col, char dir);
 
 //----------parse----------//
 
@@ -111,10 +112,10 @@ int    	init_graphics(t_game *game);
 void	draw_player(t_game *game);
 void	draw_wall(t_game *game, t_wall_coordinate wall_coord);
 void	fill_rect(t_game *game, t_rect rect);
-void	render_2dMap_wall(t_game *game);
+void	render_2dmap_wall(t_game *game);
 void	draw_ceiling(t_game *game, t_rect *rect);
 void	draw_floor(t_game *game, t_rect *rect);
-void	draw_2Dgrid(t_game *game);
+void	draw_2dgrid(t_game *game);
 void	draw_player(t_game *game);
 
 //----------load texture----------//
@@ -124,7 +125,7 @@ void    load_textures_img(t_game *game, t_img *img);
 
 //-------rendering------------//
 double	starting_angle(char c);
-void	get_starting_position(t_player *player, char **grid);
+void	get_starting_position(t_player *player, t_map *map);
 void	get_player(t_game *game);
 void	ready_game(t_game *game);
 void	render_game(t_game *game);

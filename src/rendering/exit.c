@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:53:48 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/02 18:45:10 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/03 11:55:29 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	destroy_textures(t_game *game)
 	{
 		if (game->data->textures[i].img.img != NULL)
 		{
-			mlx_destroy_image(game->mlx.mlx_ptr, game->data->textures[i].img.img);
+			mlx_destroy_image(game->mlx.mlx_ptr, \
+					game->data->textures[i].img.img);
 			game->data->textures[i].img.img = NULL;
 		}
 	}
@@ -30,8 +31,7 @@ void	destroy_textures(t_game *game)
 
 int	exit_game(t_game *game)
 {
-	// free_map_data(&game->data->map_data);
-	free(game->data->map_data.map);
+	free_map_data(&game->data->map_data);
 	free(game->data);
 	free(game);
 	exit(EXIT_SUCCESS);
