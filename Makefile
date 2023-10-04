@@ -6,7 +6,7 @@
 #    By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/15 20:19:13 by hkahsay           #+#    #+#              #
-#    Updated: 2023/10/02 16:37:52 by ckarl            ###   ########.fr        #
+#    Updated: 2023/10/03 10:53:14 by ckarl            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,15 +58,18 @@ PARSE_FILES	:=	get_next_line.c			\
 				parse_color.c			\
 				parse_color_tex.c		\
 
-REND_FILES	:=	render.c				\
+REND_FILES	:=	render_game.c			\
 				get_texture_pixel.c		\
 				hook.c					\
-				mini_map.c				\
+				render_minimap.c		\
 				get_player.c			\
-				ray_util1.c			    \
-				ray_util2.c			    \
+				ray_math.c				\
+				ray_util1.c				\
+				ray_util2.c				\
 				draw_C_F.c				\
 				movement.c				\
+				exit.c					\
+				init_mlx.c				\
 
 	### OBJECTS ###
 MAIN_FILE	:= $(addprefix $(OBJS_PATH)/, $(MAIN_FILE:.c=.o))

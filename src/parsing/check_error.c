@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_error.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/03 11:16:34 by ckarl             #+#    #+#             */
+/*   Updated: 2023/10/03 11:16:35 by ckarl            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
 
 void	check_scene(t_sceneData	*data)
@@ -10,8 +22,6 @@ void	check_scene(t_sceneData	*data)
 	check_color(&data->ceiling_color, "ceiling");
 	check_map(&data->map_data);
 }
-
-
 
 int	ft_error_msg(char *msg)
 {

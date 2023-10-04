@@ -9,6 +9,7 @@
 # include <stdlib.h>
 # include "../libs/mlx/mlx.h"
 # include "structure.h"
+# include "parser.h"
 # include "constant.h"
 # include <math.h>
 
@@ -43,7 +44,6 @@ void	initialize_variables(t_scene_params *params);
 //--------------exit----------------//
 int		exit_game(t_game *game);
 int		ft_esc(t_game *game);
-// void destroy_textures(void *mlx, t_img *img);
 void	destroy_textures(t_game *game);
 
 //------------------free------------------//
@@ -87,8 +87,9 @@ void    get_map(t_sceneData *data,int mapStartedIndex);
 size_t  get_width(char **maplines);
 void 	free_map_data(t_map *map_data);
 void    check_map(t_map *map_data);
-void    check_map_valid_characters(char **map);
+void	check_map_valid_characters(t_map *map_data);
 int		check_wall(char *line);
+void	get_play_pos_coord(t_map *map_data, int row, int col, char dir);
 
 //----------parse----------//
 
@@ -108,14 +109,13 @@ void 	init_mlx_win(t_game *game);
 int    	init_graphics(t_game *game);
 
 //----------draw----------//
-void	draw_player(t_game *game);
+void	draw_player_minimap(t_game *game);
 void	draw_wall(t_game *game, t_wall_coordinate wall_coord);
 void	fill_rect(t_game *game, t_rect rect);
-void	render_2dMap_wall(t_game *game);
+void	render_2dmap_wall(t_game *game);
 void	draw_ceiling(t_game *game, t_rect *rect);
 void	draw_floor(t_game *game, t_rect *rect);
-void	draw_2Dgrid(t_game *game);
-void	draw_player(t_game *game);
+void	draw_2dgrid(t_game *game);
 
 //----------load texture----------//
 
@@ -124,8 +124,7 @@ void    load_textures_img(t_game *game, t_img *img);
 
 //-------rendering------------//
 double	starting_angle(char c);
-void	get_starting_position(t_player *player, char **grid);
-void	get_player(t_game *game);
+void	get_player(t_player *player, t_map *map_data);
 void	ready_game(t_game *game);
 void	render_game(t_game *game);
 void	get_event(t_game *game);
@@ -133,9 +132,9 @@ int		render_mini_map(t_game *game);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void	generate_img(t_img *img, t_mlx *mlx, int width, int height);
 void	get_background(t_game *game);
-void	put_player_pixel(t_game *game);
-int    	key_release(int keycode, t_game *game);
-int 	key_press(int keycode, t_game *game);
+int		key_release(int keycode, t_game *game);
+int		key_press(int keycode, t_game *game);
+int		key_event(t_game *game);
 
 //--------movement render------//
 
@@ -147,6 +146,5 @@ void 	move_mini(t_game *game);
 
 //--------raycasting----------//
 void	get_rays(t_game *game);
-
 
 #endif

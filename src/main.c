@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:02:52 by ckarl             #+#    #+#             */
-/*   Updated: 2023/09/28 12:03:18 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/03 12:06:18 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,19 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	check_arg(argc, argv);
+	// printf("after check arg\n");
 	init_sceneData(game->data);
+	printf("after scene data\n");
 	read_scene(argv[1], game->data);
+	printf("after read scene\n");
 	get_scene(game->data);
+	printf("after get scene\n");
 	check_scene(game->data);
+	printf("after check scene\n");
 	init_mlx_win(game);
 	free_map_data(&(game->data->map_data));
 	free(game->data);
-	// free(game);
+	free(game);
 	return (0);
 }
 
@@ -67,7 +72,6 @@ void	check_arg(int ac, char **av)
 		printf("%s\n", RED"Invalid File");
 		exit(1);
 	}
-
 	if (ft_strncmp((ft_strrchr(av[1], '.')), ".cub", 5))
 	{
 		printf("Error\n");
@@ -81,13 +85,13 @@ int	open_file(char *file)
 	int	fd;
 
 	fd = open(file, O_RDONLY);
-	if(fd == -1)
+	if (fd == -1)
 	{
 		printf("Error\n");
 		printf("%s\n", RED"No file to read"RESET);
 		exit(0);
 	}
-	return(fd);
+	return (fd);
 }
 
 void	read_scene(char *file, t_sceneData *data)
@@ -114,6 +118,7 @@ void	read_scene(char *file, t_sceneData *data)
 	}
 	data->scene = ft_split(combined_map, '\n');
 	print_scene(data);
+	// printf("after print scene\n");
 	free(combined_map);
 	free(current_line);
 	close_file(fd);

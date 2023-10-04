@@ -1,18 +1,5 @@
 #include "../../includes/cub3d.h"
 
-
-// In your ft_esc function, call destroy_textures to release textures before exiting
-int ft_esc(t_game *game)
-{
-    if (game->keys.esc == 1)
-    {
-        mlx_destroy_window(game->mlx.mlx_ptr, game->mlx.win_mlx);
-        destroy_textures(game);
-        exit(0);
-    }
-    return (0);
-}
-
 // Updated get_texture_img function
 void load_texture_img(void *mlx, t_img *img, t_texture *texture)
 {
@@ -65,16 +52,6 @@ void    load_textures_img(t_game *game, t_img *img)
 //     load_texture(game, game->data->east_texture.path);
 // }
 
-// Function to destroy all loaded textures
-void destroy_textures(t_game *game)
-{
-    for (int i = 0; i < game->data->num_textures; i++) {
-        if (game->data->textures[i].img.img != NULL) {
-            mlx_destroy_image(game->mlx.mlx_ptr, game->data->textures[i].img.img);
-            game->data->textures[i].img.img = NULL;
-        }
-    }
-}
 
 // Function to load a texture and store it in the game struct
 // void load_texture(t_game *game, char *file_path)

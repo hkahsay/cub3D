@@ -100,9 +100,9 @@ void parse_color(const char *str, t_color *color)
 {
     char **strs_split;
 
-    init_color(color);
+    // init_color(color);
     empty_color((char*)str);
-  
+
     strs_split = ft_split(str, ',');
     if (strs_split == NULL)
     {

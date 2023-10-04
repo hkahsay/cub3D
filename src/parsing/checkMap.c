@@ -1,6 +1,16 @@
-#include "../../includes/cub3d.h"
-// #include "../parser.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checkMap.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/03 10:59:47 by ckarl             #+#    #+#             */
+/*   Updated: 2023/10/03 15:06:22 by ckarl            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "../../includes/cub3d.h"
 
 int	is_map(char *line)
 {
@@ -46,71 +56,85 @@ void	check_map_elm(t_sceneData *data)
 	}
 }
 
-
-void    check_map_validty(char **map, int m_height, int row, int col)
+void	check_map_validty(char **map, int m_height, int row, int col)
 {
-    if (row < 0 || row >= m_height || col < 0 || col >= (int)ft_strlen(map[row]))
-    {
-        printf("Error\n");
-        printf(RED"Invalid map: (%d, %d) is outside of the map or map is not surrounded by 1.\n"RESET, row, col);
-        exit(EXIT_FAILURE);
-    }
-
+	if (row < 0 || row >= m_height || col < 0 || \
+		col >= (int)ft_strlen(map[row]))
+	{
+		printf("Error\n");
+		printf(RED"Invalid map: (%d, %d) is outside of \
+				the map or map is not surrounded by 1.\n"RESET, row, col);
+		exit(EXIT_FAILURE);
+	}
 }
 
-void    check_map_valid_characters(char **map)
+void	get_play_pos_coord(t_map *map_data, int row, int col, char dir)
 {
-    int i;
-    int j;
-    int start_postion;
-
-    i = -1;
-    start_postion = 0;
-    while (map[++i])
-    {
-        j = -1;
-        while (map[i][++j])
-        {
-            if (!ft_strchr("01NSEW ", map[i][j]))
-                ft_error_msg(RED"Invalid map: Invalid character found in the map."RESET);
-            // printf("start_postionnn: %d\n", start_postion);
-            if(ft_strchr("NSEW", map[i][j]))
-            {
-                start_postion++;
-            }
-        }
-    }
-    if(start_postion != 1)
-    {
-        printf("Error\n");
-        // printf("start_postion: %d\n", start_postion);
-        ft_error_msg(RED"Invalid map: There should be exactly one starting point (NSWE)."RESET);
-    }
+	map_data->play_pos.row = row;
+	map_data->play_pos.col = col;
+	if (dir == 'N')
+		map_data->play_pos.dir = 90;
+	else if (dir == 'E')
+		map_data->play_pos.dir = 0;
+	else if (dir == 'S')
+		map_data->play_pos.dir = 270;
+	else if (dir == 'W')
+		map_data->play_pos.dir = 180;
 }
 
-
-
-void    check_map(t_map *map_data)
+void	check_map_valid_characters(t_map *map_data)
 {
-    int i;
-    int j;
+	int	i;
+	int	j;
+	int	start_postion;
 
-    i = 0;
-    while (i < map_data->m_height)
-    {
-        j = 0;
-        while (map_data->map[i][j])
-        {
-            if (map_data->map[i][j] == '0' || ft_strchr("NSEW", map_data->map[i][j]))
-            {
+	i = -1;
+	start_postion = 0;
+	while (map_data->map[++i])
+	{
+		j = -1;
+		while (map_data->map[i][++j])
+		{
+			if (!ft_strchr("01NSEW ", map_data->map[i][j]))
+				ft_error_msg(RED"Invalid map: Invalid character found in the map."RESET);
+			// printf("start_postionnn: %d\n", start_postion);
+			if(ft_strchr("NSEW", map_data->map[i][j]))
+			{
+				get_play_pos_coord(map_data, i, j, map_data->map[i][j]);
+				map_data->map[i][j] = '0';
+				start_postion++;
+			}
+		}
+	}
+	if (start_postion != 1)
+	{
+		printf("Error\n");
+		// printf("start_postion: %d\n", start_postion);
+		ft_error_msg(RED"Invalid map: There should be exactly one starting point (NSWE)."RESET);
+	}
+}
 
-                check_map_validty(map_data->map, map_data->m_height, i, j - 1);
-                check_map_validty(map_data->map, map_data->m_height, i, j + 1);
-                check_map_validty(map_data->map, map_data->m_height, i - 1, j);
-                check_map_validty(map_data->map, map_data->m_height, i + 1, j);
-            }
-            j++;
-        }
-        i++;
-    }
+void	check_map(t_map *map_data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < map_data->m_height)
+	{
+		j = 0;
+		while (map_data->map[i][j])
+		{
+			if (map_data->map[i][j] == '0' || ft_strchr("NSEW", \
+				map_data->map[i][j]))
+			{
+				check_map_validty(map_data->map, map_data->m_height, i, j - 1);
+				check_map_validty(map_data->map, map_data->m_height, i, j + 1);
+				check_map_validty(map_data->map, map_data->m_height, i - 1, j);
+				check_map_validty(map_data->map, map_data->m_height, i + 1, j);
+			}
+			j++;
+		}
+		i++;
+	}
 }

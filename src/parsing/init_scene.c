@@ -41,8 +41,10 @@ void	init_map(t_map *grid)
 	grid->m_height = 0;
 	grid->m_width = 0;
 	grid->pos = NULL;
+	// grid->play_pos.row = 0;
+	// grid->play_pos.col = 0;
+	// grid->play_pos.dir = 0;
 }
-
 
 void	initialize_variables(t_scene_params *params)
 {
@@ -68,9 +70,9 @@ void	init_mlx(t_mlx *mlx)
 
 void	init_sceneData(t_sceneData *data)
 {
-	init_mlx(&(data->mlx));
-	init_img(&(data->img));
-	init_keys(&(data->keys));
+	// init_mlx(&(data->mlx));
+	// init_img(&(data->img));
+	// init_keys(&(data->keys));
 	data->scene = NULL;
 	data->mini_map = 0;
 	data->elm = 0;
