@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:07:08 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/03 17:41:40 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/05 14:34:31 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,7 @@ typedef struct s_cast_rays
 	t_ray *rays;
 	double view_angle;
 	double dist_to_plane;
+	double	sub_ray_angle;
 }	t_cast_rays;
 
 typedef struct s_mlx

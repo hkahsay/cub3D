@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 18:47:37 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/03 16:59:09 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/04 16:22:14 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	key_release(int keycode, t_game *game)
 
 int	key_press(int keycode, t_game *game)
 {
+	// printf("keycode %d\n", keycode);
 	if (keycode == KEY_W)
 		move_forward(game);
 	else if (keycode == KEY_A)

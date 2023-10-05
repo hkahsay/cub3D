@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:56:58 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/03 17:37:43 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/04 16:22:30 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,23 +85,23 @@ void	move_left(t_game *game)
 
 void	move_right(t_game *game)
 {
+	t_ray_coord	update;
+
+	update.y = game->player.pos.y;
+	update.x = game->player.pos.x + 1;
 	// game->player.rotAngle -= angle_to_rad(5);
 	// if (game->player.rotAngle > 2 * PI)
 	// 	game->player.rotAngle -= 2 * PI;
 	// game->player.delta.x = cos(game->player.rotAngle) * 5;
 	// game->player.delta.y = sin(game->player.rotAngle) * 5;
-	t_ray_coord	update;
-
-	update.y = game->player.pos.y;
-	update.x = game->player.pos.x + 1;
 
 	// update = &game->player.pos;
 	// update->x += cos(game->player.rotAngle + angle_to_rad(90))\
 	// * game->player.moveSpeed;
 	// update->y += sin(game->player.rotAngle + angle_to_rad(90))\
 	// * game->player.moveSpeed;
-	if (game->data->map_data.map[pixel_to_coord(update.y)]\
-	[pixel_to_coord(update.x)] == '0')
+	// if (game->data->map_data.map[pixel_to_coord(update.y)]\
+	// [pixel_to_coord(update.x)] == '0')
 
 	if (game->data->map_data.map[(int)update.y]\
 	[(int)(update.x)] == '0')
