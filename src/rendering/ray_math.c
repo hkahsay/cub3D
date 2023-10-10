@@ -14,26 +14,26 @@ void get_deltaSide(double deltaSide)
 		deltaSide = fabs(1 / deltaSide);
 }
 
-void calculate_step_sideDist(t_ray *ray)
-{
-	if (ray->rayDir.x < 0)
-	{
-		ray->step.x = -1;
-		ray->sideDist.x = (ray->player->pos.x - ray->tileSize.x) * ray->deltaDist.x;
-	}
-	else
-	{
-		ray->step.x = 1;
-		ray->sideDist.x = (ray->tileSize.x + 1.0f - ray->player->pos.x) *ray->deltaDist.x;
-	}
-	if (ray->rayDir.y < 0)
-	{
-		ray->step.y = -1;
-		ray->sideDist.y = (ray->player->pos.y - ray->tileSize.y) * ray->deltaDist.y;
-	}
-	else
-	{
-		ray->step.y = 1;
-		ray->sideDist.y = (ray->tileSize.y + 1.0f - ray->player->pos.y) * ray->deltaDist.y;
-	}
-}
+// void calculate_step_sideDist(t_ray *ray)
+// {
+// 	if (ray->rayDir.x < 0)
+// 	{
+// 		ray->step.x = -1;
+// 		ray->sideDist.x = (ray->player->pos.x - ray->tileSize.x) * ray->deltaDist.x;
+// 	}
+// 	else
+// 	{
+// 		ray->step.x = 1;
+// 		ray->sideDist.x = (ray->tileSize.x + 1.0f - ray->player->pos.x) *ray->deltaDist.x;
+// 	}
+// 	if (ray->rayDir.y < 0)
+// 	{
+// 		ray->step.y = -1;
+// 		ray->sideDist.y = (ray->player->pos.y - ray->tileSize.y) * ray->deltaDist.y;
+// 	}
+// 	else
+// 	{
+// 		ray->step.y = 1;
+// 		ray->sideDist.y = (ray->tileSize.y + 1.0f - ray->player->pos.y) * ray->deltaDist.y;
+// 	}
+// }

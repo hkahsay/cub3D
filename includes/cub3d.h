@@ -132,9 +132,13 @@ int		render_mini_map(t_game *game);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void	generate_img(t_img *img, t_mlx *mlx, int width, int height);
 void	get_background(t_game *game);
+
+//-------hook-------//
 int		key_release(int keycode, t_game *game);
 int		key_press(int keycode, t_game *game);
 int		key_event(t_game *game);
+void	turn_left(t_game *game);
+void	turn_right(t_game *game);
 
 //--------movement render------//
 
@@ -142,6 +146,7 @@ void	move_forward(t_game *game);
 void    move_backward(t_game *game);
 void 	move_left(t_game *game);
 void 	move_right(t_game *game);
+void	turn_left(t_game *game);
 void 	move_mini(t_game *game);
 
 //--------raycasting----------//

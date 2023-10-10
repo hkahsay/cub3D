@@ -58,7 +58,7 @@ void	init_player(t_player *player)
 {
 	player->moveSpeed = 0;
 	player->rotSpeed = 0;
-	player->rotAngle = 0;
+	player->dir = 0;
 }
 
 void	init_mlx(t_mlx *mlx)

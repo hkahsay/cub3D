@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:41:24 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/09 18:21:00 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/10 17:14:07 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	render_game(t_game *game)
 {
 	generate_img(&game->img, &game->mlx, MAX_WIDTH, MAX_HEIGHT);
 	get_background(game);
-	draw_ray(&game->ray_data, game);
+	// draw_ray(&game->ray_data, game);
 	// draw_vertical_lines(game);
 	// update(game);
 	// draw(game);

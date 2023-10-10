@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:57:44 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/09 17:54:00 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/10 16:03:53 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	get_player(t_player *player, t_map *map_data)
 {
-	player->pos.x = map_data->play_pos.col;
-	player->pos.y = map_data->play_pos.row;
-	player->rotAngle = angle_to_rad(map_data->play_pos.dir);
+	player->pos.x = map_data->play_pos.col + 0.5;
+	player->pos.y = map_data->play_pos.row + 0.5;
+	player->dir = angle_to_rad(map_data->play_pos.dir);
 	player->moveSpeed = 0.15;
 	// player->delta.x = cos(player->rotAngle) * 5;
 	// player->delta.y = sin(player->rotAngle) * 5;
@@ -24,13 +24,13 @@ void	get_player(t_player *player, t_map *map_data)
 
 void	draw_player_minimap(t_game *game)
 {
-	int	y;
-	int	x;
-	int	start_x;
-	int	start_y;
+	double	y;
+	double	x;
+	double	start_x;
+	double	start_y;
 
-	start_x = ((int)game->player.pos.x) * SCALE_MINI_MAP + 5;
-	start_y = ((int)game->player.pos.y) * SCALE_MINI_MAP + 5;
+	start_x = (game->player.pos.x) * SCALE_MINI_MAP;
+	start_y = (game->player.pos.y) * SCALE_MINI_MAP;
 	if (start_x < 0)
 		start_x = 0;
 	if (start_y < 0)

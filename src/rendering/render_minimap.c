@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:50:22 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/03 16:45:17 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/10 16:02:09 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,10 @@ void	render_2dmap_wall(t_game *game)
 
 void	draw_2dgrid(t_game *game)
 {
-	int	i;
-	int	j;
-	int	cellsize_x;
-	int	cellsize_y;
+	double	i;
+	double	j;
+	double	cellsize_x;
+	double 	cellsize_y;
 
 	cellsize_x = SCALE_MINI_MAP;
 	cellsize_y = SCALE_MINI_MAP;

@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:02:08 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/09 17:06:26 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/10 15:51:42 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,18 @@
 # define SCALE_MINI_MAP	15
 # define PI				3.14159265359
 # define MAX_TEXTURES	5
+
+# define N 1
+# define S 2
+# define W 3
+# define E 4
+# define N_E 5
+# define N_W 6
+# define S_E 7
+# define S_W 8
+# define north (M_PI / 2)
+# define west (M_PI)
+# define south (3 * M_PI / 2)
+# define east (2 * M_PI)
 
 #endif
