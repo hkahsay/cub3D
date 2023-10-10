@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:55:00 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/02 16:56:32 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/09 17:01:00 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 double	angle_to_rad(double rad)
 {
-	rad = rad * (PI / 180);
+	rad = rad * (M_PI / 180);
 	return (rad);
 }
 
@@ -32,10 +32,10 @@ int	pixel_to_coord(float n)
 	return (res);
 }
 
-//check_north is returns 1 if the angle is between 180 and 360 degrees
+//check_north is returns 1 if the angle is between 0 and 180 degrees
 //that is the player is facing north
 //else it returns 0 thats is the player is facing south
-int	check_south(double angle)
+int	check_north(double angle)
 {
 	if (angle > 0 && angle < M_PI)
 		return (1);

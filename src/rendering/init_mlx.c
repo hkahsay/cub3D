@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:47:22 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/03 17:43:18 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/09 18:06:26 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,7 @@ void	init_mlx_win(t_game *game)
 void	ready_game(t_game *game)
 {
 	get_player(&game->player, &game->data->map_data);
-	
 	get_event(game);
 	get_rays(game);
 	load_textures_img(game, &game->img);
-	printf("end of ready game\n");
 }

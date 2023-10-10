@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:41:24 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/05 14:45:13 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/09 18:21:00 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	render_game(t_game *game)
 {
 	generate_img(&game->img, &game->mlx, MAX_WIDTH, MAX_HEIGHT);
 	get_background(game);
+	draw_ray(&game->ray_data, game);
 	// draw_vertical_lines(game);
 	// update(game);
 	// draw(game);
@@ -49,22 +50,6 @@ void	get_background(t_game *game)
 	mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_mlx, \
 							game->img.img, 0, 0);
 	// mlx_destroy_image(game->mlx.mlx_ptr, game->img.img);
-}
-
-void	get_rays(t_game *game)
-{
-	game->cast_rays.rays = malloc(sizeof(t_ray) * MAX_WIDTH);
-	if (!game->cast_rays.rays)
-	{
-		printf("Error\nMalloc failed\n");
-		exit(EXIT_SUCCESS);
-	}
-	//initiate each ray by 1. calculating first intersection (is ray facing up or down, left or right?),
-	//2. then increase until 3. wall is hit, 3. distance and 4. draw line
-	game->cast_rays.view_angle = angle_to_rad(FOV_ANGLE);
-	game->cast_rays.dist_to_plane = (MAX_WIDTH / 2) \
-				/ tan(game->cast_rays.view_angle / 2);
-	game->cast_rays.sub_ray_angle = FOV_ANGLE / MAX_WIDTH;
 }
 
 void	get_event(t_game *game)

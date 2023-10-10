@@ -146,5 +146,7 @@ void 	move_mini(t_game *game);
 
 //--------raycasting----------//
 void	get_rays(t_game *game);
+void	draw_ray(t_ray_data *ray_data, t_game *game);
+void	init_ray_struct(t_ray *ray, t_game *game);
 
 #endif

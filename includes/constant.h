@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:02:08 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/03 11:02:15 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/09 17:06:26 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 # define MAX_HEIGHT	512
 # define FOV_ANGLE	60
 
-# define TILE_SIZE		64
+# define SCALE_GAME		64
 # define SCALE_MINI_MAP	15
 # define PI				3.14159265359
 # define MAX_TEXTURES	5

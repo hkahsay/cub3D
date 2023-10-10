@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:07:08 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/05 14:34:31 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/06 12:02:01 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,8 +129,6 @@ typedef struct s_rect
 	int fill_color;
 } t_rect;
 
-
-
 typedef struct s_ray
 {
 	t_ray_coord camera;
@@ -140,6 +138,7 @@ typedef struct s_ray
 	t_ray_coord perpWallDist;
 	t_ray_coord step;
 	t_ray_coord tileSize;
+	float		a_tan;
 	double wall_orientation;
 	int hit;
 	double lineHeight;
@@ -147,13 +146,13 @@ typedef struct s_ray
 
 }	t_ray;
 
-typedef struct s_cast_rays
+typedef struct s_ray_data
 {
 	t_ray *rays;
 	double view_angle;
 	double dist_to_plane;
 	double	sub_ray_angle;
-}	t_cast_rays;
+}	t_ray_data;
 
 typedef struct s_mlx
 {
@@ -203,7 +202,7 @@ typedef struct s_game
 	t_img img;
 	t_ray ray;
 	t_rect rect;
-	t_cast_rays cast_rays;
+	t_ray_data ray_data;
 	int mapx;
 	int mapy;
 	int mapsize;

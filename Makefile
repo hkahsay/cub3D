@@ -6,7 +6,7 @@
 #    By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/15 20:19:13 by hkahsay           #+#    #+#              #
-#    Updated: 2023/10/03 10:53:14 by ckarl            ###   ########.fr        #
+#    Updated: 2023/10/06 11:31:03 by ckarl            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,7 @@ REND_FILES	:=	render_game.c			\
 				hook.c					\
 				render_minimap.c		\
 				get_player.c			\
+				ray_init.c				\
 				ray_math.c				\
 				ray_util1.c				\
 				ray_util2.c				\
