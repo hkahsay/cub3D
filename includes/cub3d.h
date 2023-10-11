@@ -140,7 +140,7 @@ int		key_event(t_game *game);
 void	turn_left(t_game *game);
 void	turn_right(t_game *game);
 
-//--------movement render------//
+//--------movement.c------//
 
 void	move_forward(t_game *game);
 void    move_backward(t_game *game);
@@ -148,6 +148,12 @@ void 	move_left(t_game *game);
 void 	move_right(t_game *game);
 void	turn_left(t_game *game);
 void 	move_mini(t_game *game);
+
+//--------movement_dir.c------//
+void	check_direction(t_player *player);
+void	move_straight(t_coord *update, t_game *game, int dir);
+void	straight_dir(t_coord *update, t_game *game, int flag);
+void	move_in_angle(t_coord *update, t_player *player, int flag, double dir);
 
 //--------raycasting----------//
 void	get_rays(t_game *game);
