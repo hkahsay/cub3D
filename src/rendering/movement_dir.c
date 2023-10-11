@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 13:36:36 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/11 13:52:21 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/11 17:33:13 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,20 @@ void	check_direction(t_player *player)
 		player->dir_field = E;
 }
 
-//forward = dir = 1, backward = dir = -1
+// FORWARD = dir = 1, BACKWARD = dir = -1
 void	move_straight(t_coord *update, t_game *game, int dir)
 {
 	if (dir != 1 && dir != -1)
 		return ;
-	if (dir == forward)
+	if (dir == FORWARD)
 	{
 		if (game->player.dir_field == N || game->player.dir_field == W)
 			straight_dir(update, game, 1);
 		else
 			straight_dir(update, game, 0);
 	}
-	else if (dir == backward)
-		{
+	else if (dir == BACKWARD)
+	{
 		if (game->player.dir_field == N || game->player.dir_field == W)
 			straight_dir(update, game, 0);
 		else
@@ -60,10 +60,10 @@ void	move_straight(t_coord *update, t_game *game, int dir)
 }
 
 /*
-north or west & forward: flag = 1
-north or west & backward: flag = 0
-south or east & forward: flag = 1
-south or east & backward: flag = 0
+north or west & FORWARD: flag = 1
+north or west & BACKWARD: flag = 0
+south or east & FORWARD: flag = 1
+south or east & BACKWARD: flag = 0
 */
 void	straight_dir(t_coord *update, t_game *game, int flag)
 {
@@ -90,11 +90,10 @@ void	straight_dir(t_coord *update, t_game *game, int flag)
 }
 
 /*
-for north angle & forward motion: flag == 1
-for north angle & backward motion: flag == 0
-for south angle & forward motion: flag == 0
-for south angle & backward motion: flag == 1
-
+for north angle & FORWARD motion: flag == 1
+for north angle & BACKWARD motion: flag == 0
+for south angle & FORWARD motion: flag == 0
+for south angle & BACKWARD motion: flag == 1
 dir: already the beta angle depending on direction for sin/cos
 */
 void	move_in_angle(t_coord *update, t_player *player, int flag, double dir)
@@ -118,5 +117,31 @@ void	move_in_angle(t_coord *update, t_player *player, int flag, double dir)
 	{
 		update->x = player->pos.x + cos(dir) * 0.2;
 		update->y = player->pos.y + sin(dir) * 0.2;
+	}
+}
+
+/*
+side = 1 = LEFT, side = 0 = RIGHT
+adjust the dir_field but not the dir itself for right/left turns
+*/
+void	left_right_adjust(t_player *player, int side)
+{
+	if (side == LEFT)
+	{
+		if (player->dir_field == N)
+			player->dir_field = W;
+		else if (player->dir_field == N_E)
+			player->dir_field = N_W;
+		else
+			player->dir_field -= 1;
+	}
+	else
+	{
+		if (player->dir_field == W)
+			player->dir_field = N;
+		else if (player->dir_field == N_W)
+			player->dir_field = N_E;
+		else
+			player->dir_field += 1;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:02:08 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/11 13:54:02 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/11 17:31:26 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,9 @@
 # define S_E 6
 # define S_W 7
 # define N_W 8
-# define north (M_PI / 2)
-# define west (M_PI)
-# define south (3 * M_PI / 2)
-# define east (2 * M_PI)
-# define forward 1
-# define backward -1
+# define FORWARD 1
+# define BACKWARD -1
+# define LEFT 1
+# define RIGHT 0
 
 #endif

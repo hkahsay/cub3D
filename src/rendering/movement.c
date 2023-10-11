@@ -6,29 +6,45 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:56:58 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/11 13:57:10 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/11 18:09:59 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
+void	beta_angle_calc(t_player *player)
+{
+	if (player->dir_field == N_E)
+		player->beta = (M_PI / 2) - player->dir;
+	else if (player->dir_field == N_W)
+		player->beta = M_PI - player->dir;
+	else if (player->dir_field == S_W)
+		player->beta = (3 * M_PI / 2) - player->dir;
+	else if (player->dir_field == S_E)
+		player->beta = (2 * M_PI) - player->dir;
+
+}
 
 void	move_forward(t_game *game)
 {
 	t_coord	update;
 
 	check_direction(&(game->player));
-	if (game->player.dir_field == N_E) //north east
-		move_in_angle(&update, &(game->player), 1, north - game->player.dir);
-	else if (game->player.dir_field == N_W) //north west
-		move_in_angle(&update, &(game->player), 1, west - game->player.dir);
-	else if (game->player.dir_field == S_W) //south east
-		move_in_angle(&update, &(game->player), 0, south - game->player.dir);
-	else if (game->player.dir_field == S_E) //south west
-		move_in_angle(&update, &(game->player), 0, east - game->player.dir);
+	beta_angle_calc(&game->player);
+	if (game->player.dir_field == N_E)
+		move_in_angle(&update, &(game->player), 1, game->player.beta);		//try with beta angle
+	else if (game->player.dir_field == N_W)
+		move_in_angle(&update, &(game->player), 1, \
+		M_PI - game->player.dir);
+	else if (game->player.dir_field == S_W)
+		move_in_angle(&update, &(game->player), 0, \
+		(3 * M_PI / 2) - game->player.dir);
+	else if (game->player.dir_field == S_E)
+		move_in_angle(&update, &(game->player), 0, \
+		(2 * M_PI) - game->player.dir);
 	else
-		move_straight(&update, game, forward);
-	if (game->data->map_data.map[(int)update.y]\
+		move_straight(&update, game, FORWARD);
+	if (game->data->map_data.map[(int)update.y] \
 	[(int)(update.x)] == '0')
 	{
 		game->player.pos.x = update.x;
@@ -41,17 +57,21 @@ void	move_backward(t_game *game)
 	t_coord	update;
 
 	check_direction(&(game->player));
-	if (game->player.dir_field == N_E) //north east
-		move_in_angle(&update, &(game->player), 0, north - game->player.dir);
-	else if (game->player.dir_field == N_W) //north west
-		move_in_angle(&update, &(game->player), 0, west - game->player.dir);
-	else if (game->player.dir_field == S_W) //south east
-		move_in_angle(&update, &(game->player), 1, south - game->player.dir);
-	else if (game->player.dir_field == S_E) //south west
-		move_in_angle(&update, &(game->player), 1, east - game->player.dir);
+	if (game->player.dir_field == N_E)
+		move_in_angle(&update, &(game->player), 0, \
+		(M_PI / 2) - game->player.dir);
+	else if (game->player.dir_field == N_W)
+		move_in_angle(&update, &(game->player), 0, \
+		M_PI - game->player.dir);
+	else if (game->player.dir_field == S_W)
+		move_in_angle(&update, &(game->player), 1, \
+		(3 * M_PI / 2) - game->player.dir);
+	else if (game->player.dir_field == S_E)
+		move_in_angle(&update, &(game->player), 1, \
+		(2 * M_PI) - game->player.dir);
 	else
-		move_straight(&update, game, backward);
-	if (game->data->map_data.map[(int)update.y]\
+		move_straight(&update, game, BACKWARD);
+	if (game->data->map_data.map[(int)update.y] \
 	[(int)(update.x)] == '0')
 	{
 		game->player.pos.x = update.x;
@@ -64,26 +84,22 @@ void	move_left(t_game *game)
 	t_coord	update;
 
 	check_direction(&(game->player));
-	if (game->player.dir_field == N)
-		game->player.dir_field = W;
-	else if (game->player.dir_field == N_E)
-		game->player.dir_field = N_W;
+	left_right_adjust(&(game->player), LEFT);
+	if (game->player.dir_field == N_E)
+		move_in_angle(&update, &(game->player), 1, \
+		(M_PI / 2) - (game->player.dir + M_PI / 2));
+	else if (game->player.dir_field == N_W)
+		move_in_angle(&update, &(game->player), 1, \
+		M_PI - (game->player.dir + M_PI / 2));
+	else if (game->player.dir_field == S_W)
+		move_in_angle(&update, &(game->player), 0, \
+		(3 * M_PI / 2) - (game->player.dir + M_PI / 2));
+	else if (game->player.dir_field == S_E)
+		move_in_angle(&update, &(game->player), 0, \
+		(2 * M_PI) - (game->player.dir + M_PI / 2));
 	else
-		game->player.dir_field -= 1;
-
-
-
-	if (game->player.dir_field == N_E) //north east
-		move_in_angle(&update, &(game->player), 1, north - game->player.dir);
-	else if (game->player.dir_field == N_W) //north west
-		move_in_angle(&update, &(game->player), 1, west - game->player.dir);
-	else if (game->player.dir_field == S_W) //south east
-		move_in_angle(&update, &(game->player), 0, south - game->player.dir);
-	else if (game->player.dir_field == S_E) //south west
-		move_in_angle(&update, &(game->player), 0, east - game->player.dir);
-	else
-		move_straight(&update, game, forward);
-	if (game->data->map_data.map[(int)update.y]\
+		move_straight(&update, game, FORWARD);
+	if (game->data->map_data.map[(int)update.y] \
 	[(int)(update.x)] == '0')
 	{
 		game->player.pos.x = update.x;
@@ -95,24 +111,24 @@ void	move_right(t_game *game)
 {
 	t_coord	update;
 
-	update.y = game->player.pos.y;
-	update.x = game->player.pos.x + 1;
-	// game->player.dir -= angle_to_rad(5);
-	// if (game->player.dir > 2 * PI)
-	// 	game->player.dir -= 2 * PI;
-	// game->player.delta.x = cos(game->player.dir) * 5;
-	// game->player.delta.y = sin(game->player.dir) * 5;
-
-	// update = &game->player.pos;
-	// update->x += cos(game->player.dir + angle_to_rad(90))\
-	// * game->player.moveSpeed;
-	// update->y += sin(game->player.dir + angle_to_rad(90))\
-	// * game->player.moveSpeed;
-	// if (game->data->map_data.map[pixel_to_coord(update.y)]\
-	// [pixel_to_coord(update.x)] == '0')
-
-	if (game->data->map_data.map[(int)update.y]\
-	[(int)(update.x)] == '0')
+	check_direction(&(game->player));
+	left_right_adjust(&(game->player), RIGHT);
+	if (game->player.dir_field == N_E)
+		move_in_angle(&update, &(game->player), 1, \
+		(M_PI / 2) - (game->player.dir - M_PI / 2));
+	else if (game->player.dir_field == N_W)
+		move_in_angle(&update, &(game->player), 1, \
+		M_PI - (game->player.dir - M_PI / 2));
+	else if (game->player.dir_field == S_W)
+		move_in_angle(&update, &(game->player), 0, \
+		(3 * M_PI / 2) - (game->player.dir - M_PI / 2));
+	else if (game->player.dir_field == S_E)
+		move_in_angle(&update, &(game->player), 0, \
+		(2 * M_PI) - (game->player.dir - M_PI / 2));
+	else
+		move_straight(&update, game, FORWARD);
+	if (game->data->map_data.map[(int)update.y] \
+	[(int)update.x] == '0')
 	{
 		game->player.pos.x = update.x;
 		game->player.pos.y = update.y;

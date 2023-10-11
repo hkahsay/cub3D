@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:07:08 by ckarl						       #+#    #+#             */
-/*   Updated: 2023/10/10 18:02:07 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/11 17:53:53 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ typedef struct s_player
 	double			moveSpeed;
 	double			rotSpeed;
 	double			dir;
+	double			beta;
 	int				dir_field;
 }	t_player;
 
@@ -135,7 +136,6 @@ typedef struct s_ray
 	t_coord	deltaDist;
 	t_coord	perpWallDist;
 	t_coord	step;
-	float		a_tan;
 	double	wall_orientation;
 	int	hit;
 	double	lineHeight;

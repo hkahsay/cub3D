@@ -148,12 +148,14 @@ void 	move_left(t_game *game);
 void 	move_right(t_game *game);
 void	turn_left(t_game *game);
 void 	move_mini(t_game *game);
+void	beta_angle_calc(t_player *player);
 
 //--------movement_dir.c------//
 void	check_direction(t_player *player);
 void	move_straight(t_coord *update, t_game *game, int dir);
 void	straight_dir(t_coord *update, t_game *game, int flag);
 void	move_in_angle(t_coord *update, t_player *player, int flag, double dir);
+void	left_right_adjust(t_player *player, int side);
 
 //--------raycasting----------//
 void	get_rays(t_game *game);
