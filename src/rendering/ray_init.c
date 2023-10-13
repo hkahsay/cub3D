@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 11:14:21 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/13 17:32:39 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/13 17:36:01 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	draw_ray(t_game *game)
 		ray.sidedist.x = ray.ray_pos.x + ray.coef.x * \
 		((ray.sidedist.y - ray.ray_pos.y) / tan(ray.player.beta));
 	else
-		ray.sidedist.x = ray.ray_pos.x + ray.coef.x;
+		ray.sidedist.x = (int)ray.ray_pos.x + ray.coef.x;
 	my_mlx_pixel_put(&game->img, ray.sidedist.x * SCALE_MINI_MAP, ray.sidedist.y * SCALE_MINI_MAP, 0x0000FF00);
 	// printf("distance x %f and y %f\n", ray.sidedist.x, ray.sidedist.y);
 }
