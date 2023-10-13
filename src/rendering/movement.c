@@ -6,23 +6,11 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:56:58 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/13 12:23:17 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/13 14:10:09 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-void	beta_angle_calc(t_player *player)
-{
-	if (player->dir_field == N_E)
-		player->beta = (M_PI / 2) - player->dir;
-	else if (player->dir_field == N_W)
-		player->beta = M_PI - player->dir;
-	else if (player->dir_field == S_W)
-		player->beta = (3 * M_PI / 2) - player->dir;
-	else if (player->dir_field == S_E)
-		player->beta = (2 * M_PI) - player->dir;
-}
 
 void	move_forward(t_game *game)
 {

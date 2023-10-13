@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movement_dir.c                                     :+:      :+:    :+:   */
+/*   movement_utils_2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 13:36:36 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/13 12:22:53 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/13 14:50:07 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,31 +147,5 @@ void	move_angle_left_right(t_coord *update, t_player *player, int flag)
 	{
 		update->x = player->pos.x + cos(player->beta) * 0.2;
 		update->y = player->pos.y + sin(player->beta) * 0.2;
-	}
-}
-
-/*
-side = 1 = LEFT, side = 0 = RIGHT
-adjust the dir_field but not the dir itself for right/left turns
-*/
-void	left_right_adjust(t_player *player, int side)
-{
-	if (side == LEFT)
-	{
-		if (player->dir_field == N)
-			player->dir_field = W;
-		else if (player->dir_field == N_E)
-			player->dir_field = N_W;
-		else
-			player->dir_field -= 1;
-	}
-	else
-	{
-		if (player->dir_field == W)
-			player->dir_field = N;
-		else if (player->dir_field == N_W)
-			player->dir_field = N_E;
-		else
-			player->dir_field += 1;
 	}
 }

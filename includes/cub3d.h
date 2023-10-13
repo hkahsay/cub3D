@@ -136,31 +136,37 @@ void	get_background(t_game *game);
 //-------hook-------//
 int		key_release(int keycode, t_game *game);
 int		key_press(int keycode, t_game *game);
-int		key_event(t_game *game);
 void	turn_left(t_game *game);
 void	turn_right(t_game *game);
+
+int		key_event(t_game *game);
 
 //--------movement.c------//
 
 void	move_forward(t_game *game);
-void    move_backward(t_game *game);
-void 	move_left(t_game *game);
-void 	move_right(t_game *game);
-void	turn_left(t_game *game);
-void 	move_mini(t_game *game);
-void	beta_angle_calc(t_player *player);
-void	move_angle_left_right(t_coord *update, t_player *player, int flag);
+void	move_backward(t_game *game);
+void	move_left(t_game *game);
+void	move_right(t_game *game);
 
-//--------movement_dir.c------//
+void	move_mini(t_game *game);
+
+//--------movement_utils.c------//
+void	left_right_adjust(t_player *player, int side);
+void	beta_angle_calc(t_player *player);
+
+//--------movement_utils_2.c------//
 void	check_direction(t_player *player);
 void	move_straight(t_coord *update, t_game *game, int dir);
 void	straight_dir(t_coord *update, t_game *game, int flag);
 void	move_in_angle(t_coord *update, t_player *player, int flag);
-void	left_right_adjust(t_player *player, int side);
+void	move_angle_left_right(t_coord *update, t_player *player, int flag);
 
 //--------raycasting----------//
 void	get_rays(t_game *game);
-void	draw_ray(t_ray_data *ray_data, t_game *game);
+
+//--------raycasting----------//
+void	set_ray_coef(t_ray *ray);
+void	draw_ray(t_game *game);
 void	init_ray_struct(t_ray *ray, t_game *game);
 
 #endif
