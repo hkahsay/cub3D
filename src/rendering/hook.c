@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 18:47:37 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/10 14:45:15 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/11 17:44:33 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	key_press(int keycode, t_game *game)
 	else if (keycode == KEY_RIGHT)
 		turn_right(game);
 	else if (keycode == KEY_LEFT)
-		turn_right(game);
+		turn_left(game);
 	else if (keycode == KEY_H)
 		game->data->mini_map ^= 1;
 	else if (keycode == KEY_ESC || keycode == KEY_EXIT)
@@ -61,6 +61,7 @@ void	turn_right(t_game *game)
 	game->player.dir -= 0.1;
 	if (game->player.dir < 0)
 		game->player.dir += 2 * M_PI;
+	// check_direction(&(game->player));
 }
 
 void	turn_left(t_game *game)
@@ -68,6 +69,7 @@ void	turn_left(t_game *game)
 	game->player.dir += 0.1;
 	if (game->player.dir > 2 * M_PI)
 		game->player.dir -= 2 * M_PI;
+	// check_direction(&(game->player));
 }
 
 // int	key_event(t_game *game)
