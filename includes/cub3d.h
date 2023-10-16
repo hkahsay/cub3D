@@ -168,5 +168,6 @@ void	get_rays(t_game *game);
 void	set_ray_coef(t_ray *ray);
 void	draw_ray(t_game *game);
 void	init_ray_struct(t_ray *ray, t_game *game);
+int		check_map_error(double x, double y, t_map *map_data);
 
 #endif
