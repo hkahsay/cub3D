@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:57:44 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/11 17:43:59 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/13 12:05:35 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	get_player(t_player *player, t_map *map_data)
 	player->pos.y = map_data->play_pos.row + 0.5;
 	player->dir = angle_to_rad(map_data->play_pos.dir);
 	player->moveSpeed = 0.15;
-	// check_direction(player);
+	check_direction(player);
+	beta_angle_calc(player);
 	// player->delta.x = cos(player->rotAngle) * 5;
 	// player->delta.y = sin(player->rotAngle) * 5;
 }

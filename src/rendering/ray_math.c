@@ -6,13 +6,13 @@ void init_time(t_time *time)
 	time->oldTime = 0;
 }
 
-void get_deltaSide(double deltaSide)
-{
-	if (deltaSide == 0)
-		deltaSide = 1e30;
-	else
-		deltaSide = fabs(1 / deltaSide);
-}
+// void get_deltaSide(double deltaSide)
+// {
+// 	if (deltaSide == 0)
+// 		deltaSide = 1e30;
+// 	else
+// 		deltaSide = fabs(1 / deltaSide);
+// }
 
 // void calculate_step_sideDist(t_ray *ray)
 // {

@@ -6,7 +6,7 @@
 #    By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/15 20:19:13 by hkahsay           #+#    #+#              #
-#    Updated: 2023/10/11 13:44:08 by ckarl            ###   ########.fr        #
+#    Updated: 2023/10/13 14:11:27 by ckarl            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,8 @@ REND_FILES	:=	render_game.c			\
 				ray_util2.c				\
 				draw_C_F.c				\
 				movement.c				\
-				movement_dir.c			\
+				movement_utils.c		\
+				movement_utils_2.c		\
 				exit.c					\
 				init_mlx.c				\
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movement_dir.c                                     :+:      :+:    :+:   */
+/*   movement_utils_2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 13:36:36 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/11 17:33:13 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/13 14:50:07 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,52 +96,56 @@ for south angle & FORWARD motion: flag == 0
 for south angle & BACKWARD motion: flag == 1
 dir: already the beta angle depending on direction for sin/cos
 */
-void	move_in_angle(t_coord *update, t_player *player, int flag, double dir)
+void	move_in_angle(t_coord *update, t_player *player, int flag)
 {
 	if ((player->dir_field == N_E || player->dir_field == S_W) && flag)
 	{
-		update->x = player->pos.x + sin(dir) * 0.2;
-		update->y = player->pos.y - cos(dir) * 0.2;
+		update->x = player->pos.x + sin(player->beta) * 0.2;
+		update->y = player->pos.y - cos(player->beta) * 0.2;
 	}
 	else if ((player->dir_field == N_W || player->dir_field == S_E) && flag)
 	{
-		update->x = player->pos.x - cos(dir) * 0.2;
-		update->y = player->pos.y - sin(dir) * 0.2;
+		update->x = player->pos.x - cos(player->beta) * 0.2;
+		update->y = player->pos.y - sin(player->beta) * 0.2;
 	}
 	else if ((player->dir_field == N_E || player->dir_field == S_W) && !flag)
 	{
-		update->x = player->pos.x - sin(dir) * 0.2;
-		update->y = player->pos.y + cos(dir) * 0.2;
+		update->x = player->pos.x - sin(player->beta) * 0.2;
+		update->y = player->pos.y + cos(player->beta) * 0.2;
 	}
 	else if ((player->dir_field == N_W || player->dir_field == S_E) && !flag)
 	{
-		update->x = player->pos.x + cos(dir) * 0.2;
-		update->y = player->pos.y + sin(dir) * 0.2;
+		update->x = player->pos.x + cos(player->beta) * 0.2;
+		update->y = player->pos.y + sin(player->beta) * 0.2;
 	}
 }
 
 /*
-side = 1 = LEFT, side = 0 = RIGHT
-adjust the dir_field but not the dir itself for right/left turns
+	NW or NE and left: flag = 1
+	SE or SW and left: flag = 0
+	NW or NE and right: flag = 0
+	SE or SW and right: flag = 1
 */
-void	left_right_adjust(t_player *player, int side)
+void	move_angle_left_right(t_coord *update, t_player *player, int flag)
 {
-	if (side == LEFT)
+	if ((player->dir_field == N_W || player->dir_field == S_E) && flag)
 	{
-		if (player->dir_field == N)
-			player->dir_field = W;
-		else if (player->dir_field == N_E)
-			player->dir_field = N_W;
-		else
-			player->dir_field -= 1;
+		update->x = player->pos.x - sin(player->beta) * 0.2;
+		update->y = player->pos.y + cos(player->beta) * 0.2;
 	}
-	else
+	else if ((player->dir_field == N_E || player->dir_field == S_W) && flag)
 	{
-		if (player->dir_field == W)
-			player->dir_field = N;
-		else if (player->dir_field == N_W)
-			player->dir_field = N_E;
-		else
-			player->dir_field += 1;
+		update->x = player->pos.x - cos(player->beta) * 0.2;
+		update->y = player->pos.y - sin(player->beta) * 0.2;
+	}
+	else if ((player->dir_field == S_E || player->dir_field == N_W) && !flag)
+	{
+		update->x = player->pos.x + sin(player->beta) * 0.2;
+		update->y = player->pos.y - cos(player->beta) * 0.2;
+	}
+	else if ((player->dir_field == S_W || player->dir_field == N_E) && !flag)
+	{
+		update->x = player->pos.x + cos(player->beta) * 0.2;
+		update->y = player->pos.y + sin(player->beta) * 0.2;
 	}
 }
