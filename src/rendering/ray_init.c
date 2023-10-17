@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 11:14:21 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/13 17:36:01 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/16 22:26:15 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,11 @@ void	init_ray_struct(t_ray *ray, t_game *game)
 
 void	set_ray_coef(t_ray *ray)
 {
+	ray->coef.y = -1;
 	if (ray->player.dir_field == N_E)
-	{
 		ray->coef.x = -1;
-		ray->coef.y = -1;
-	}
 	else if (ray->player.dir_field == N_W)
-	{
 		ray->coef.x = 1;
-		ray->coef.y = -1;
-	}
 	else if (ray->player.dir_field == S_W)
 	{
 		ray->coef.x = -1;
@@ -74,6 +69,7 @@ void	draw_ray(t_game *game)
 
 {
 	t_ray	ray;
+	int		i;
 
 	ray.ray_pos = game->player.pos;
 	ray.player.dir = game->player.dir + (M_PI / 6);
@@ -93,6 +89,38 @@ void	draw_ray(t_game *game)
 		((ray.sidedist.y - ray.ray_pos.y) / tan(ray.player.beta));
 	else
 		ray.sidedist.x = (int)ray.ray_pos.x + ray.coef.x;
-	my_mlx_pixel_put(&game->img, ray.sidedist.x * SCALE_MINI_MAP, ray.sidedist.y * SCALE_MINI_MAP, 0x0000FF00);
-	// printf("distance x %f and y %f\n", ray.sidedist.x, ray.sidedist.y);
+
+	ray.deltadist.y = ray.coef.y;
+	if (ray.player.dir_field == S_W || ray.player.dir_field == N_E)
+		ray.deltadist.x = (ray.coef.x * ray.coef.y) * tan(ray.player.beta);
+	else if (ray.player.dir_field == S_E || ray.player.dir_field == N_W)
+		ray.deltadist.x = (ray.coef.x * ray.coef.y) / tan(ray.player.beta);
+	else
+		ray.deltadist.x  = ray.coef.x;
+	ray.ray_pos = ray.sidedist;
+	i = 1;
+	my_mlx_pixel_put(&game->img, ray.ray_pos.x * SCALE_MINI_MAP, ray.ray_pos.y * SCALE_MINI_MAP, 0x0000FF00);
+	while (check_map_error(ray.ray_pos.x, ray.ray_pos.y, &game->data->map_data) == 0)
+	{
+		ray.ray_pos.x += ray.deltadist.x;
+		ray.ray_pos.y += ray.deltadist.y;
+		if (check_map_error(ray.ray_pos.x, ray.ray_pos.y, &game->data->map_data) != 0)
+			break ;
+		my_mlx_pixel_put(&game->img, (ray.ray_pos.x) * SCALE_MINI_MAP, \
+		(ray.ray_pos.y)* SCALE_MINI_MAP, 0x0000FF00);
+		i++;
+	}
+}
+
+//check if coordinates are outside of map or hit a wall
+//0 = all clear, 1 = wall, 2 = outside of map
+int	check_map_error(double x, double y, t_map *map_data)
+{
+	if ((int)x < 0 || (int)x >= map_data->m_width || \
+		(int)y < 0 || (int)y>= map_data->m_height)
+		return (2);
+	else if (map_data->map[(int)y] \
+	[(int)x] != '0')
+		return (1);
+	return (0);
 }
