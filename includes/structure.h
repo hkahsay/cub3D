@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:07:08 by ckarl						       #+#    #+#             */
-/*   Updated: 2023/10/17 11:50:24 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/17 14:41:42 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,11 @@ typedef struct s_ray_coord
 	double	y;
 }	t_coord;
 
+typedef struct s_hz_vt
+{
+	double	hz;
+	double	vt;
+}	t_hz_vt;
 
 // typedef struct s_player_coord
 // {
@@ -136,7 +141,7 @@ typedef struct s_ray
 	t_coord		deltadist;
 	t_coord		perpwalldist;
 	t_coord		step;
-	double		eucl_dist;
+	t_hz_vt		eucl_dist;
 	double		wall_orientation;
 	int			hit;
 	double		lineheight;
