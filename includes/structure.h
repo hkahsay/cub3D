@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:07:08 by ckarl						       #+#    #+#             */
-/*   Updated: 2023/10/13 15:26:21 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/17 11:50:24 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,7 @@ typedef struct s_ray
 	t_coord		deltadist;
 	t_coord		perpwalldist;
 	t_coord		step;
+	double		eucl_dist;
 	double		wall_orientation;
 	int			hit;
 	double		lineheight;

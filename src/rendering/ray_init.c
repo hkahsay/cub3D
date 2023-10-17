@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 11:14:21 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/16 22:26:15 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/17 14:19:43 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,45 @@ void	set_ray_coef(t_ray *ray)
 		ray->coef.x = 1;
 }
 
-void	draw_ray(t_game *game)
+void	get_sidedist(t_ray *ray)
+{
+	if (check_north(ray->player.dir) == 1)
+		ray->sidedist.y = ((int)ray->ray_pos.y) - ray->ray_pos.y;
+	else
+		ray->sidedist.y = ((int)(ray->ray_pos.y + ray->coef.y)) - ray->ray_pos.y;
+	if (ray->player.dir_field == S_W || ray->player.dir_field == N_E)
+		ray->sidedist.x = ray->coef.x * \
+		(ray->sidedist.y * tan(ray->player.beta));
+	else if (ray->player.dir_field == S_E || ray->player.dir_field == N_W)
+		ray->sidedist.x = ray->coef.x * \
+		(ray->sidedist.y / tan(ray->player.beta));
+	else
+		ray->sidedist.x = (int)ray->coef.x;
+	// ray->eucl_dist = hypot(ray->sidedist.y, ray->sidedist.x);
+}
 
+void	get_deltadist(t_ray *ray)
+{
+	ray->deltadist.y = ray->coef.y;
+	if (ray->player.dir_field == S_W || ray->player.dir_field == N_E)
+		ray->deltadist.x = (ray->coef.x * ray->coef.y) * tan(ray->player.beta);
+	else if (ray->player.dir_field == S_E || ray->player.dir_field == N_W)
+		ray->deltadist.x = (ray->coef.x * ray->coef.y) / tan(ray->player.beta);
+	else
+		ray->deltadist.x = ray->coef.x;
+}
+
+void	get_euclidian_dist(double *euclid, double x_dist, double y_dist)
+{
+	if (*euclid == 0)
+		*euclid = hypot(x_dist, y_dist);
+	else
+		*euclid += hypot(x_dist, y_dist);
+}
+
+void	draw_ray(t_game *game)
 {
 	t_ray	ray;
-	int		i;
 
 	ray.ray_pos = game->player.pos;
 	ray.player.dir = game->player.dir + (M_PI / 6);
@@ -80,46 +114,33 @@ void	draw_ray(t_game *game)
 	check_direction(&ray.player);
 	beta_angle_calc(&ray.player);
 	set_ray_coef(&ray);
-	ray.sidedist.y = (int)(ray.ray_pos.y + ray.coef.y);
-	if (ray.player.dir_field == S_W || ray.player.dir_field == N_E)
-		ray.sidedist.x = ray.ray_pos.x + ray.coef.x * \
-		((ray.sidedist.y - ray.ray_pos.y) * tan(ray.player.beta));
-	else if (ray.player.dir_field == S_E || ray.player.dir_field == N_W)
-		ray.sidedist.x = ray.ray_pos.x + ray.coef.x * \
-		((ray.sidedist.y - ray.ray_pos.y) / tan(ray.player.beta));
-	else
-		ray.sidedist.x = (int)ray.ray_pos.x + ray.coef.x;
-
-	ray.deltadist.y = ray.coef.y;
-	if (ray.player.dir_field == S_W || ray.player.dir_field == N_E)
-		ray.deltadist.x = (ray.coef.x * ray.coef.y) * tan(ray.player.beta);
-	else if (ray.player.dir_field == S_E || ray.player.dir_field == N_W)
-		ray.deltadist.x = (ray.coef.x * ray.coef.y) / tan(ray.player.beta);
-	else
-		ray.deltadist.x  = ray.coef.x;
-	ray.ray_pos = ray.sidedist;
-	i = 1;
+	get_sidedist(&ray);
+	get_deltadist(&ray);
+	ray.ray_pos.x += ray.sidedist.x;
+	ray.ray_pos.y += ray.sidedist.y;
 	my_mlx_pixel_put(&game->img, ray.ray_pos.x * SCALE_MINI_MAP, ray.ray_pos.y * SCALE_MINI_MAP, 0x0000FF00);
-	while (check_map_error(ray.ray_pos.x, ray.ray_pos.y, &game->data->map_data) == 0)
+	while (check_map_error(ray.ray_pos.x, ray.ray_pos.y, game) == 0)
 	{
 		ray.ray_pos.x += ray.deltadist.x;
 		ray.ray_pos.y += ray.deltadist.y;
-		if (check_map_error(ray.ray_pos.x, ray.ray_pos.y, &game->data->map_data) != 0)
+		if (check_map_error(ray.ray_pos.x, ray.ray_pos.y, game) != 0)
 			break ;
 		my_mlx_pixel_put(&game->img, (ray.ray_pos.x) * SCALE_MINI_MAP, \
-		(ray.ray_pos.y)* SCALE_MINI_MAP, 0x0000FF00);
-		i++;
+		(ray.ray_pos.y) * SCALE_MINI_MAP, 0x0000FF00);
 	}
 }
 
 //check if coordinates are outside of map or hit a wall
 //0 = all clear, 1 = wall, 2 = outside of map
-int	check_map_error(double x, double y, t_map *map_data)
+int	check_map_error(double x, double y, t_game *game)
 {
-	if ((int)x < 0 || (int)x >= map_data->m_width || \
-		(int)y < 0 || (int)y>= map_data->m_height)
+	t_map	map_data;
+
+	map_data = game->data->map_data;
+	if ((int)x < 0 || (int)x >= map_data.m_width || \
+		(int)y < 0 || (int)y >= map_data.m_height)
 		return (2);
-	else if (map_data->map[(int)y] \
+	else if (map_data.map[(int)y] \
 	[(int)x] != '0')
 		return (1);
 	return (0);

@@ -1,18 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray_math.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/17 11:18:34 by ckarl             #+#    #+#             */
+/*   Updated: 2023/10/17 11:18:43 by ckarl            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
 
-void init_time(t_time *time)
+void	init_time(t_time *time)
 {
 	time->time = 0;
 	time->oldTime = 0;
 }
-
-// void get_deltaSide(double deltaSide)
-// {
-// 	if (deltaSide == 0)
-// 		deltaSide = 1e30;
-// 	else
-// 		deltaSide = fabs(1 / deltaSide);
-// }
 
 // void calculate_step_sideDist(t_ray *ray)
 // {
