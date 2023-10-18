@@ -9,8 +9,8 @@ void parse_texture(const char *str, t_texture *texture);
 void parse_color(const char *str, t_color *color);
 typedef struct
 {
-    const char *identifier;
-    void (*parser)(const char *, void *); // This is correct for second argument type
+	const char	*identifier;
+	void		(*parser)(const char *, void *); // This is correct for second argument type
 } IdentifierParser;
 
 extern IdentifierParser parsers[];
