@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 11:14:21 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/18 15:04:06 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/18 16:39:51 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,21 @@ void	init_ray_struct(t_ray *ray, t_game *game)
 	// calculate_step_sideDist(ray);
 }
 
+void	draw_wall_slice(t_game *game, t_ray *ray, int x)
+{
+	int	y_start;
+	int	y_end;
+
+	y_start = MAX_HEIGHT / 2 - (int)ray->wallheight / 2;
+	y_end = MAX_HEIGHT / 2 + (int)ray->wallheight / 2;
+	while (y_start <= y_end)
+	{
+		my_mlx_pixel_put(&game->img, x, \
+		y_start, 0x00FF0000);
+		y_start++;
+	}
+}
+
 void	draw_all_rays(t_game *game)
 {
 	t_ray	*rays;
@@ -61,6 +76,7 @@ void	draw_all_rays(t_game *game)
 		if (ray_angle < 0)
 			ray_angle += 2 * M_PI;
 	}
+	draw_wall_slice(game, &rays[0], 0);								//gives seg fault for now
 	free(rays);
 }
 
@@ -85,7 +101,7 @@ void	get_wall_height(t_ray *ray, t_game *game, double distance)
 			ray->perpwallangle = M_PI - (game->player.dir - ray->player.dir);
 	}
 	ray->perpwalldist = fabs(distance * sin(ray->perpwallangle));
-	// ray->wallheight = ;
+	ray->wallheight = 1 / ray->perpwalldist * game->ray_data.dist_to_plane;
 }
 
 void	draw_single_ray(t_ray *ray, t_game *game)

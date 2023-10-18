@@ -169,6 +169,7 @@ void	draw_all_rays(t_game *game);
 void	draw_single_ray(t_ray *ray, t_game *game);
 void	init_ray_struct(t_ray *ray, t_game *game);
 int		check_map_error(double x, double y, t_game *game);
+void	draw_wall_slice(t_game *game, t_ray *ray, int x);
 
 //--------ray_util1.c------//
 int		check_north(double angle);

@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:50:58 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/18 11:53:33 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/18 16:25:33 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	get_horizontal_ray(t_ray *ray, t_game *game)
 			if (check_map_error(ray->ray_pos.x, ray->ray_pos.y - 1, game) != 0)
 				break ;
 		}
-		my_mlx_pixel_put(&game->img, (ray->ray_pos.x) * SCALE_MINI_MAP, \
-		(ray->ray_pos.y) * SCALE_MINI_MAP, 0x00FF0000);
+		// my_mlx_pixel_put(&game->img, (ray->ray_pos.x) * SCALE_MINI_MAP, \
+		// (ray->ray_pos.y) * SCALE_MINI_MAP, 0x00FF0000);
 		ray->ray_pos.x += ray->deltadist.x;
 		ray->ray_pos.y += ray->deltadist.y;
 		ray->eucl_dist.hz += hypot(ray->deltadist.x, ray->deltadist.y);
