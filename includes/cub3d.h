@@ -165,9 +165,30 @@ void	move_angle_left_right(t_coord *update, t_player *player, int flag);
 void	get_rays(t_game *game);
 
 //--------raycasting----------//
-void	set_ray_coef(t_ray *ray);
-void	draw_ray(t_game *game);
+void	draw_all_rays(t_game *game);
+void	draw_single_ray(t_ray *ray, t_game *game);
 void	init_ray_struct(t_ray *ray, t_game *game);
-int		check_map_error(double x, double y, t_map *map_data);
+int		check_map_error(double x, double y, t_game *game);
+void	draw_wall_slice(t_game *game, t_ray *ray, int x);
+
+//--------ray_util1.c------//
+int		check_north(double angle);
+int		check_west(double angle);
+int		check_ne_sw(double angle);
+
+//--------ray_util2.c------//
+
+
+//--------ray_vertical.c------//
+void	get_vertical_ray(t_ray *ray, t_game *game);
+void	get_sidedist_vt(t_ray *ray);
+void	get_deltadist_vt(t_ray *ray);
+void	set_ray_coef_vt(t_ray *ray);
+
+//--------ray_horizontal.c------//
+void	get_horizontal_ray(t_ray *ray, t_game *game);
+void	get_sidedist_hz(t_ray *ray);
+void	get_deltadist_hz(t_ray *ray);
+void	set_ray_coef_hz(t_ray *ray);
 
 #endif

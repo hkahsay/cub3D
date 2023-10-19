@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:55:00 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/10 14:43:04 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/17 17:56:34 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,21 @@ int	check_west(double angle)
 		return (1);
 	else
 		return (0);
+}
+
+//if angle is N_E or S_W > returns 1
+//if angle is N_W or S_E > returns 0
+//if right angle NESW > returns -1
+int	check_ne_sw(double angle)
+{
+	if (angle < M_PI / 2 && angle > 0)
+		return (1);
+	else if (angle < 3 * M_PI / 2 && angle > M_PI)
+		return (1);
+	else if (angle > M_PI / 2 && angle < M_PI)
+		return (0);
+	else if (angle < 2 * M_PI && angle > 3 * M_PI / 2)
+		return (0);
+	else
+		return (-1);
 }
