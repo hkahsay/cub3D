@@ -62,14 +62,11 @@ void	get_scene(t_sceneData *data)
 	t_scene_params	params;
 
 	initialize_variables(&params);
-	printf("in get scene: after initialize var\n");
 	check_map_elm(data);
 	while (data->scene[params.i] != NULL)
 	{
 		process_scene_line(&params, data);
 		params.i++; // Move to the next identifier/data pair
 	}
-	printf("in get scene before get map\n");
 	get_map(data, params.mapStartedIndex);
-	printf("in get scene after get map\n");
 }

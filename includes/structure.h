@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:07:08 by ckarl						       #+#    #+#             */
-/*   Updated: 2023/10/18 15:02:04 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/20 17:15:19 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,10 @@ typedef struct s_wall_coordinate
 typedef struct s_texture
 {
 	char	*path;
-	t_img	img;
-	int	tex_width;
-	int	tex_height;
+	t_img	*img;
+	int		*color;
+	int		tex_width;
+	int		tex_height;
 }	t_texture;
 
 typedef struct s_color
@@ -98,16 +99,13 @@ typedef struct s_hz_vt
 
 typedef struct s_player
 {
-	t_coord		pos;
-	t_coord		plane;
-	//	t_player_coord	delta;
-	//	t_player_coord	dir;
-	//	t_player_coord	plane;
-	double			moveSpeed;
-	double			rotSpeed;
-	double			dir;
-	double			beta;
-	int				dir_field;
+	t_coord	pos;
+	t_coord	plane;
+	double	moveSpeed;
+	double	rotSpeed;
+	double	dir;
+	double	beta;
+	int		dir_field;
 }	t_player;
 
 typedef struct s_keys
@@ -149,7 +147,6 @@ typedef struct s_ray
 
 typedef struct s_ray_data
 {
-	t_ray	*rays;
 	double	view_angle;
 	double	dist_to_plane;
 	double	sub_ray_angle;
@@ -164,7 +161,6 @@ typedef struct s_mlx
 
 typedef struct s_sceneData
 {
-	//	void		wall;
 	t_texture				north_texture;
 	t_texture				south_texture;
 	t_texture				west_texture;
@@ -178,12 +174,8 @@ typedef struct s_sceneData
 	int						mini_map;
 	char					**scene;
 	t_rect					rect;
-	//	t_keys	keys;
-	//	t_mlx	mlx;
-	//	t_img	img;
 	t_texture				textures[MAX_TEXTURES];
 	int						num_textures;
-	//	struct	s_game	game;
 
 }	t_sceneData;
 
@@ -197,20 +189,13 @@ typedef struct s_time
 typedef struct s_game
 {
 	t_sceneData	*data;
-	t_keys	keys;
-	t_mlx	mlx;
+	t_keys		keys;
+	t_mlx		mlx;
+	t_img		img;
 	t_player	player;
-	t_img	img;
-	t_ray	ray;
-	t_rect	rect;
+	t_rect		rect;
 	t_ray_data	ray_data;
-	int	mapx;
-	int	mapy;
-	int	mapsize;
-	t_time	time;
-	//	t_img	textures[MAX_TEXTURES];
-	//	int	num_textures;
-	//	t_texture	texture;
+	t_time		time;
 }	t_game;
 
 #endif

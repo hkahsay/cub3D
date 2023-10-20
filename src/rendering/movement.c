@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:56:58 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/13 14:10:09 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/20 14:52:07 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ void	move_forward(t_game *game)
 		move_in_angle(&update, &(game->player), 0);
 	else
 		move_straight(&update, game, FORWARD);
-	if (game->data->map_data.map[(int)update.y] \
-	[(int)(update.x)] == '0')
+	if (check_map_error(update.x, update.y, game) == 0)
 	{
 		game->player.pos.x = update.x;
 		game->player.pos.y = update.y;
@@ -48,8 +47,7 @@ void	move_backward(t_game *game)
 		move_in_angle(&update, &(game->player), 1);
 	else
 		move_straight(&update, game, BACKWARD);
-	if (game->data->map_data.map[(int)update.y] \
-	[(int)(update.x)] == '0')
+	if (check_map_error(update.x, update.y, game) == 0)
 	{
 		game->player.pos.x = update.x;
 		game->player.pos.y = update.y;
@@ -74,8 +72,7 @@ void	move_left(t_game *game)
 		move_straight(&update, game, FORWARD);
 		left_right_adjust(&(game->player), RIGHT);
 	}
-	if (game->data->map_data.map[(int)update.y] \
-	[(int)(update.x)] == '0')
+	if (check_map_error(update.x, update.y, game) == 0)
 	{
 		game->player.pos.x = update.x;
 		game->player.pos.y = update.y;
@@ -100,8 +97,7 @@ void	move_right(t_game *game)
 		move_straight(&update, game, FORWARD);
 		left_right_adjust(&(game->player), LEFT);
 	}
-	if (game->data->map_data.map[(int)update.y] \
-	[(int)update.x] == '0')
+	if (check_map_error(update.x, update.y, game) == 0)
 	{
 		game->player.pos.x = update.x;
 		game->player.pos.y = update.y;
