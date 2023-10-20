@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 13:36:36 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/13 14:50:07 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/20 14:50:59 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,23 +69,23 @@ void	straight_dir(t_coord *update, t_game *game, int flag)
 {
 	if ((game->player.dir_field == N || game->player.dir_field == S) && flag)
 	{
-		update->y = game->player.pos.y - 0.2;
+		update->y = game->player.pos.y - 0.1;
 		update->x = game->player.pos.x;
 	}
 	if ((game->player.dir_field == W || game->player.dir_field == E) && flag)
 	{
 		update->y = game->player.pos.y;
-		update->x = game->player.pos.x - 0.2;
+		update->x = game->player.pos.x - 0.1;
 	}
 	if ((game->player.dir_field == S || game->player.dir_field == N) && !flag)
 	{
-		update->y = game->player.pos.y + 0.2;
+		update->y = game->player.pos.y + 0.1;
 		update->x = game->player.pos.x;
 	}
 	if ((game->player.dir_field == E || game->player.dir_field == W) && !flag)
 	{
 		update->y = game->player.pos.y;
-		update->x = game->player.pos.x + 0.2;
+		update->x = game->player.pos.x + 0.1;
 	}
 }
 
@@ -100,23 +100,23 @@ void	move_in_angle(t_coord *update, t_player *player, int flag)
 {
 	if ((player->dir_field == N_E || player->dir_field == S_W) && flag)
 	{
-		update->x = player->pos.x + sin(player->beta) * 0.2;
-		update->y = player->pos.y - cos(player->beta) * 0.2;
+		update->x = player->pos.x + sin(player->beta) * 0.1;
+		update->y = player->pos.y - cos(player->beta) * 0.1;
 	}
 	else if ((player->dir_field == N_W || player->dir_field == S_E) && flag)
 	{
-		update->x = player->pos.x - cos(player->beta) * 0.2;
-		update->y = player->pos.y - sin(player->beta) * 0.2;
+		update->x = player->pos.x - cos(player->beta) * 0.1;
+		update->y = player->pos.y - sin(player->beta) * 0.1;
 	}
 	else if ((player->dir_field == N_E || player->dir_field == S_W) && !flag)
 	{
-		update->x = player->pos.x - sin(player->beta) * 0.2;
-		update->y = player->pos.y + cos(player->beta) * 0.2;
+		update->x = player->pos.x - sin(player->beta) * 0.1;
+		update->y = player->pos.y + cos(player->beta) * 0.1;
 	}
 	else if ((player->dir_field == N_W || player->dir_field == S_E) && !flag)
 	{
-		update->x = player->pos.x + cos(player->beta) * 0.2;
-		update->y = player->pos.y + sin(player->beta) * 0.2;
+		update->x = player->pos.x + cos(player->beta) * 0.1;
+		update->y = player->pos.y + sin(player->beta) * 0.1;
 	}
 }
 
@@ -130,22 +130,22 @@ void	move_angle_left_right(t_coord *update, t_player *player, int flag)
 {
 	if ((player->dir_field == N_W || player->dir_field == S_E) && flag)
 	{
-		update->x = player->pos.x - sin(player->beta) * 0.2;
-		update->y = player->pos.y + cos(player->beta) * 0.2;
+		update->x = player->pos.x - sin(player->beta) * 0.1;
+		update->y = player->pos.y + cos(player->beta) * 0.1;
 	}
 	else if ((player->dir_field == N_E || player->dir_field == S_W) && flag)
 	{
-		update->x = player->pos.x - cos(player->beta) * 0.2;
-		update->y = player->pos.y - sin(player->beta) * 0.2;
+		update->x = player->pos.x - cos(player->beta) * 0.1;
+		update->y = player->pos.y - sin(player->beta) * 0.1;
 	}
 	else if ((player->dir_field == S_E || player->dir_field == N_W) && !flag)
 	{
-		update->x = player->pos.x + sin(player->beta) * 0.2;
-		update->y = player->pos.y - cos(player->beta) * 0.2;
+		update->x = player->pos.x + sin(player->beta) * 0.1;
+		update->y = player->pos.y - cos(player->beta) * 0.1;
 	}
 	else if ((player->dir_field == S_W || player->dir_field == N_E) && !flag)
 	{
-		update->x = player->pos.x + cos(player->beta) * 0.2;
-		update->y = player->pos.y + sin(player->beta) * 0.2;
+		update->x = player->pos.x + cos(player->beta) * 0.1;
+		update->y = player->pos.y + sin(player->beta) * 0.1;
 	}
 }

@@ -6,22 +6,14 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 11:14:21 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/20 12:12:44 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/20 16:54:13 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	get_rays(t_game *game)
+void	get_ray_data(t_game *game)
 {
-	// game->ray_data.rays = malloc(sizeof(t_ray) * MAX_WIDTH);
-	// if (!game->ray_data.rays)
-	// {
-	// 	printf("Error\nMalloc failed\n");
-	// 	exit(EXIT_SUCCESS);
-	// }
-	//initiate each ray by 1. calculating first intersection (is ray facing up or down, left or right?),
-	//2. then increase until 3. wall is hit, 3. distance and 4. draw line
 	game->ray_data.view_angle = angle_to_rad((double)FOV_ANGLE);
 	game->ray_data.dist_to_plane = (double)(MAX_WIDTH / 2.00) \
 				/ tan(game->ray_data.view_angle / 2.00);
@@ -33,7 +25,9 @@ void	draw_wall_slice(t_game *game, t_ray *ray, int x)
 {
 	int	y_start;
 	int	y_end;
+	t_texture *texture;
 
+	texture = ray->texture;
 	y_start = MAX_HEIGHT / 2 - (int)ray->wallheight / 2;
 	y_end = MAX_HEIGHT / 2 + (int)ray->wallheight / 2;
 	// printf("in wall slice after decalaration y_start: %d and y_end: %d\n", y_start, y_end);

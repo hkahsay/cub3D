@@ -118,9 +118,8 @@ void	draw_floor(t_game *game, t_rect *rect);
 void	draw_2dgrid(t_game *game);
 
 //----------load texture----------//
-
-void	load_texture_img(void *mlx, t_img *img, t_texture *texture);
-void    load_textures_img(t_game *game, t_img *img);
+void	load_texture_img(void *mlx, t_texture *texture);
+void	load_textures_img(t_game *game);
 
 //-------rendering------------//
 double	starting_angle(char c);
@@ -133,14 +132,12 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void	generate_img(t_img *img, t_mlx *mlx, int width, int height);
 void	get_background(t_game *game);
 
-//-------hook-------//
+//-------hook.c-------//
 int		key_release(int keycode, t_game *game);
 int		key_press(int keycode, t_game *game);
-int		key_event(t_game *game);
+void	key_event(t_game *game);
 void	turn_left(t_game *game);
 void	turn_right(t_game *game);
-
-int		key_event(t_game *game);
 
 //--------movement.c------//
 
@@ -163,7 +160,7 @@ void	move_in_angle(t_coord *update, t_player *player, int flag);
 void	move_angle_left_right(t_coord *update, t_player *player, int flag);
 
 //--------raycasting----------//
-void	get_rays(t_game *game);
+void	get_ray_data(t_game *game);
 
 //--------raycasting----------//
 void	draw_all_rays(t_game *game);

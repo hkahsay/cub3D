@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:02:52 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/17 13:34:10 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/20 15:52:56 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,8 @@
 
 int	main(int argc, char **argv)
 {
-	// char *str = "123,123,43";
-	// char **split;
-	// split = ft_split(str, ',');
-	// int i = 0;
-	// while (split[i])
-	// {
-	// 	printf("split[%d]: %s\n", i, split[i]);
-	// 	i++;
-	// }
-
-	// return (0);
 	t_game *game;
 
-	// data = NULL;
 	game = malloc(sizeof(t_game));
 	game->data = malloc(sizeof(t_sceneData));
 	if(!game->data)
@@ -46,6 +34,7 @@ int	main(int argc, char **argv)
 	check_scene(game->data);
 	// printf("after check scene\n");
 	init_mlx_win(game);
+	// printf("after init mlx\n");
 	free_map_data(&(game->data->map_data));
 	free(game->data);
 	free(game);

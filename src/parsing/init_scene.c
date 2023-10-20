@@ -7,15 +7,15 @@ void	init_color(t_color *color)
 	color->B = -1;
 }
 
-void	init_keys(t_keys *keys)
-{
-	keys->w = 0;
-	keys->a = 0;
-	keys->s = 0;
-	keys->d = 0;
-	keys->left = 0;
-	keys->right = 0;
-}
+// void	init_keys(t_keys *keys)
+// {
+// 	keys->w = 0;
+// 	keys->a = 0;
+// 	keys->s = 0;
+// 	keys->d = 0;
+// 	keys->left = 0;
+// 	keys->right = 0;
+// }
 
 void	init_img(t_img *img)
 {

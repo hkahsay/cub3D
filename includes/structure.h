@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:07:08 by ckarl						       #+#    #+#             */
-/*   Updated: 2023/10/20 12:16:30 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/20 17:15:19 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,10 @@ typedef struct s_wall_coordinate
 typedef struct s_texture
 {
 	char	*path;
-	t_img	img;
-	int	tex_width;
-	int	tex_height;
+	t_img	*img;
+	int		*color;
+	int		tex_width;
+	int		tex_height;
 }	t_texture;
 
 typedef struct s_color
