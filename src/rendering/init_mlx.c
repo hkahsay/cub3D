@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:47:22 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/13 12:04:59 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/20 11:30:40 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,13 @@ void	ready_game(t_game *game)
 	get_event(game);
 	get_rays(game);
 	load_textures_img(game, &game->img);
+}
+
+void	get_event(t_game *game)
+{
+	// Disable key autorepeat
+	mlx_do_key_autorepeatoff(game->mlx.mlx_ptr);
+	mlx_hook(game->mlx.win_mlx, 2, 0, key_press, game);
+	mlx_hook(game->mlx.win_mlx, 3, 0, key_release, game);
+	mlx_hook(game->mlx.win_mlx, 17, 0, exit_game, game);
 }

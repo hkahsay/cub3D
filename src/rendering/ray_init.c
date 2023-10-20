@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 11:14:21 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/18 16:39:51 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/20 12:12:44 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,6 @@ void	get_rays(t_game *game)
 				/ (double)MAX_WIDTH);
 }
 
-void	init_ray_struct(t_ray *ray, t_game *game)
-{
-	// ray->player = &(game->player);
-	ray->ray_pos.x = cos(game->ray_data.view_angle);
-	ray->ray_pos.y = sin(game->ray_data.view_angle);
-	// ray->deltaDist.x = get_delta_distance(ray->rayDir.x);
-	// ray->deltaDist.y = get_delta_distance(ray->rayDir.y);
-	// calculate_step_sideDist(ray);
-}
-
 void	draw_wall_slice(t_game *game, t_ray *ray, int x)
 {
 	int	y_start;
@@ -46,10 +36,10 @@ void	draw_wall_slice(t_game *game, t_ray *ray, int x)
 
 	y_start = MAX_HEIGHT / 2 - (int)ray->wallheight / 2;
 	y_end = MAX_HEIGHT / 2 + (int)ray->wallheight / 2;
-	while (y_start <= y_end)
+	// printf("in wall slice after decalaration y_start: %d and y_end: %d\n", y_start, y_end);
+	while (y_start < y_end)
 	{
-		my_mlx_pixel_put(&game->img, x, \
-		y_start, 0x00FF0000);
+		my_mlx_pixel_put(&game->img, x, y_start, 0x00FF0000);
 		y_start++;
 	}
 }
@@ -72,11 +62,12 @@ void	draw_all_rays(t_game *game)
 		rays[i].ray_pos = game->player.pos;
 		rays[i].player.dir = ray_angle;
 		draw_single_ray(&rays[i], game);
+		if (game->data->mini_map == 0)
+			draw_wall_slice(game, &rays[i], i);
 		ray_angle -= game->ray_data.sub_ray_angle;
 		if (ray_angle < 0)
 			ray_angle += 2 * M_PI;
 	}
-	draw_wall_slice(game, &rays[0], 0);								//gives seg fault for now
 	free(rays);
 }
 
@@ -84,24 +75,26 @@ void	get_wall_height(t_ray *ray, t_game *game, double distance)
 {
 	if (game->player.dir < ray->player.dir)
 	{
-		if ((game->player.dir_field == N_E || game->player.dir_field == E) \
-		&& ray->player.dir_field == S_E)
-			ray->perpwallangle = M_PI - (game->player.dir + 2 * M_PI - \
+		if ((ray->player.dir_field == S_E || ray->player.dir_field == E) \
+		&& game->player.dir_field == N_E)
+			ray->perpwallangle = M_PI / 2 - (game->player.dir + 2 * M_PI - \
 			ray->player.dir);
 		else
-			ray->perpwallangle = M_PI - (ray->player.dir - game->player.dir);
+			ray->perpwallangle = M_PI / 2 - (ray->player.dir - game->player.dir);
 	}
 	else
 	{
 		if ((game->player.dir_field == S_E || game->player.dir_field == E) \
 		&& ray->player.dir_field == N_E)
-			ray->perpwallangle = M_PI - (ray->player.dir + 2 * M_PI - \
+			ray->perpwallangle = M_PI / 2 - (ray->player.dir + 2 * M_PI - \
 			game->player.dir);
 		else
-			ray->perpwallangle = M_PI - (game->player.dir - ray->player.dir);
+			ray->perpwallangle = M_PI / 2 - (game->player.dir - ray->player.dir);
 	}
 	ray->perpwalldist = fabs(distance * sin(ray->perpwallangle));
-	ray->wallheight = 1 / ray->perpwalldist * game->ray_data.dist_to_plane;
+	ray->wallheight = MAX_HEIGHT / ray->perpwalldist;
+	if (ray->wallheight > MAX_HEIGHT)
+		ray->wallheight = MAX_HEIGHT;
 }
 
 void	draw_single_ray(t_ray *ray, t_game *game)
@@ -112,7 +105,6 @@ void	draw_single_ray(t_ray *ray, t_game *game)
 	get_vertical_ray(ray, game);
 	if (ray->eucl_dist.hz < ray->eucl_dist.vt)
 	{
-		printf("hz is smaller\n");
 		get_wall_height(ray, game, ray->eucl_dist.hz);
 		if (check_north(ray->player.dir) == 1)
 			ray->texture = &game->data->south_texture;
@@ -121,7 +113,6 @@ void	draw_single_ray(t_ray *ray, t_game *game)
 	}
 	else
 	{
-		printf("vt is smaller\n");
 		get_wall_height(ray, game, ray->eucl_dist.vt);
 		if (check_west(ray->player.dir) == 1)
 			ray->texture = &game->data->east_texture;

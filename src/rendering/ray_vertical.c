@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:50:16 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/18 16:25:25 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/20 12:10:16 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ void	get_vertical_ray(t_ray *ray, t_game *game)
 			if (check_map_error(ray->ray_pos.x - 1, ray->ray_pos.y, game) != 0)
 				break ;
 		}
-		// my_mlx_pixel_put(&game->img, (ray->ray_pos.x) * SCALE_MINI_MAP, \
-		// (ray->ray_pos.y) * SCALE_MINI_MAP, 0x0000FF00);
+		if (game->data->mini_map == 1)
+			my_mlx_pixel_put(&game->img, (ray->ray_pos.x) * SCALE_MINI_MAP, \
+				(ray->ray_pos.y) * SCALE_MINI_MAP, 0x0000FF00);
 		ray->ray_pos.x += ray->deltadist.x;
 		ray->ray_pos.y += ray->deltadist.y;
 		ray->eucl_dist.vt += hypot(ray->deltadist.x, ray->deltadist.y);

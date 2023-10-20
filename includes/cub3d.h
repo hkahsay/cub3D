@@ -136,6 +136,7 @@ void	get_background(t_game *game);
 //-------hook-------//
 int		key_release(int keycode, t_game *game);
 int		key_press(int keycode, t_game *game);
+int		key_event(t_game *game);
 void	turn_left(t_game *game);
 void	turn_right(t_game *game);
 
@@ -167,7 +168,6 @@ void	get_rays(t_game *game);
 //--------raycasting----------//
 void	draw_all_rays(t_game *game);
 void	draw_single_ray(t_ray *ray, t_game *game);
-void	init_ray_struct(t_ray *ray, t_game *game);
 int		check_map_error(double x, double y, t_game *game);
 void	draw_wall_slice(t_game *game, t_ray *ray, int x);
 
