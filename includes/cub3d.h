@@ -93,15 +93,15 @@ void	get_play_pos_coord(t_map *map_data, int row, int col, char dir);
 
 //----------parse----------//
 
-void 	check_map_elm(t_sceneData *data);
-void    get_scene(t_sceneData  *data);
-void 	get_file(char *identifier, char *str, t_sceneData *data);//char **str,
+void	check_map_elm(t_sceneData	*data);
+void	get_scene(t_sceneData	*data);
+void	get_file(char *identifier, char *str,
+			t_sceneData *data, t_identifier_parser *parsers);//char **str,
 void	check_scene(t_sceneData	*data);
 int		valid_extension(char *tex_path);
 void	check_color(t_color *color, char *color_name);
 int		create_rgb(int r, int g, int b);
 void	check_texture(char *texture, char *tex_name);
-
 
 //----------init_rendering----------//
 void 	init_mlx(t_mlx *mlx);

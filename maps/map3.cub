@@ -3,8 +3,8 @@ SO ./textures/Bricks.xpm
 WE ./textures/coal.xpm
 EA ./textures/Dirt.xpm
 
-F 100,197,170
-C 197,131,100
+F 200,197,200
+C 130,150,100
 
 
 

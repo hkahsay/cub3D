@@ -1,30 +1,19 @@
-#ifndef PARSER_H
-#define PARSER_H
+# ifndef PARSER_H
+# define PARSER_H
 
 # include "structure.h"
 // Define the parsers array here
-
-// void parse_resolution(const char *str, t_resolution *resolution);
-void parse_texture(const char *str, t_texture *texture);
-void parse_color(const char *str, t_color *color);
-typedef struct
+typedef void				(*t_parser)(const char *, void *);
+typedef struct s_identifier_parser
 {
 	const char	*identifier;
-	void		(*parser)(const char *, void *); // This is correct for second argument type
-} IdentifierParser;
+	t_parser	parser;
+}t_identifier_parser;
 
-extern IdentifierParser parsers[];
-
-
-
-// IdentifierParser parsers[] = {
-//     {"R", parse_resolution},
-//     {"NO", parse_texture},
-//     {"SO", parse_texture},
-//     {"WE", parse_texture},
-//     {"EA", parse_texture},
-//     {"F", parse_color},
-//     {"C", parse_color},
-// };
+void	get_identifier_parsers(t_identifier_parser *parsers);
+// void parse_resolution(const char *str, t_resolution *resolution);
+void				parse_texture(const char *str, void *data);
+void				parse_color(const char *str, void *data);
+// Define the parsers array getter function
 
 #endif // PARSERS_H

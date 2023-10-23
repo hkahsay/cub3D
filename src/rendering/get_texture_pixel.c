@@ -19,9 +19,6 @@ void	load_texture_img(void *mlx, t_texture *texture)
 		texture->img->addr = mlx_get_data_addr(texture->img->img, \
 			&texture->img->bits_per_pixel, \
 			&texture->img->line_length, &texture->img->endian);
-
-
-
 	// }
 	// else
 	// 	ft_error_msg(RED"Error\n image is not found\n"RESET);
@@ -34,7 +31,6 @@ void    load_textures_img(t_game *game)
 	load_texture_img(game->mlx.mlx_ptr, &game->data->west_texture);
 	load_texture_img(game->mlx.mlx_ptr, &game->data->east_texture);
 }
-
 
 // static int	*ft_get_color(t_img *img)
 // {

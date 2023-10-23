@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:41:24 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/20 14:43:09 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/23 14:27:39 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	render_game(t_game *game)
 	get_background(game);
 	key_event(game);
 	draw_all_rays(game);
+	
 	mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_mlx, \
 							game->img.img, 0, 0);
 	mlx_destroy_image(game->mlx.mlx_ptr, game->img.img);

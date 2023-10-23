@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:53:48 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/20 17:18:06 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/23 14:42:14 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	exit_game(t_game *game)
 {
 	(void)game;
 	free_map_data(&game->data->map_data);
+	destroy_textures(game);
 	free(game->data);
 	free(game);
 	exit(EXIT_SUCCESS);
