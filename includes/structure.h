@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:07:08 by ckarl						       #+#    #+#             */
-/*   Updated: 2023/10/20 17:15:19 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/23 18:33:23 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ typedef struct s_texture
 	char	*path;
 	t_img	*img;
 	int		*color;
-	int		tex_width;
-	int		tex_height;
+	// int		tex_width;
+	// int		tex_height;
 }	t_texture;
 
 typedef struct s_color
@@ -97,6 +97,12 @@ typedef struct s_hz_vt
 // 	float	y;
 // }	t_player_coord;
 
+typedef struct s_texel
+{
+	int	x;
+	int	y;
+}	t_texel;
+
 typedef struct s_player
 {
 	t_coord	pos;
@@ -142,6 +148,7 @@ typedef struct s_ray
 	double		perpwallangle;
 	double		perpwalldist;
 	double		wallheight;
+	float		wall_pos_x;
 	t_texture	*texture;
 }	t_ray;
 

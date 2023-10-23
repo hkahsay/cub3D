@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 13:36:36 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/20 14:50:59 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/23 17:23:21 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	check_direction(t_player *player)
 	}
 	else if (player->dir == M_PI)
 		player->dir_field = W;
-	else if (player->dir == 0 && player->dir == 2 * M_PI)
+	else if (player->dir == 0 || player->dir == 2 * M_PI)
 		player->dir_field = E;
 }
 
@@ -62,8 +62,8 @@ void	move_straight(t_coord *update, t_game *game, int dir)
 /*
 north or west & FORWARD: flag = 1
 north or west & BACKWARD: flag = 0
-south or east & FORWARD: flag = 1
-south or east & BACKWARD: flag = 0
+south or east & FORWARD: flag = 0
+south or east & BACKWARD: flag = 1
 */
 void	straight_dir(t_coord *update, t_game *game, int flag)
 {

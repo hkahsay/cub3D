@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:02:08 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/18 11:14:14 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/23 17:40:52 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define KEY_M		46
 # define KEY_H		4
 
-# define MAX_WIDTH	1024
+# define MAX_WIDTH	800
 # define MAX_HEIGHT	512
 # define FOV_ANGLE	60
 

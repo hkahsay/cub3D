@@ -181,11 +181,13 @@ void	get_vertical_ray(t_ray *ray, t_game *game);
 void	get_sidedist_vt(t_ray *ray);
 void	get_deltadist_vt(t_ray *ray);
 void	set_ray_coef_vt(t_ray *ray);
+void	get_vertical_wall_xpos(t_ray *ray);
 
 //--------ray_horizontal.c------//
 void	get_horizontal_ray(t_ray *ray, t_game *game);
 void	get_sidedist_hz(t_ray *ray);
 void	get_deltadist_hz(t_ray *ray);
 void	set_ray_coef_hz(t_ray *ray);
+void	get_horizontal_wall_xpos(t_ray *ray);
 
 #endif

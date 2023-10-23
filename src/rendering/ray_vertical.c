@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:50:16 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/20 13:50:24 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/23 18:27:07 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,12 @@ void	set_ray_coef_vt(t_ray *ray)
 		ray->coef.y = 1;
 	else if (ray->player.dir_field == E)
 		ray->coef.y = 0;
+}
+
+void	get_vertical_wall_xpos(t_ray *ray)
+{
+	if (check_west(ray->player.dir) == 0)
+		ray->wall_pos_x = fabs((int)ray->ray_pos.y - ray->ray_pos.y);
+	else
+		ray->wall_pos_x = (int)(ray->ray_pos.y + 1) - ray->ray_pos.y;
 }

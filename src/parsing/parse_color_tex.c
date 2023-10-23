@@ -62,8 +62,8 @@ void parse_texture(const char *str, t_texture *texture)
     {
         texture->path = ft_strdup_const(str);
         texture->path = ft_strtrim(texture->path, " ");
-        texture->tex_height = 64;
-        texture->tex_width = 64;
+        // texture->tex_height = 64;
+        // texture->tex_width = 64;
         if(!texture->path)
         {
             printf("Error\nCould not allocate memory for texture path.\n");
