@@ -1,4 +1,3 @@
-#include "../../includes/parser.h"
 #include "../../includes/cub3d.h"
 
 

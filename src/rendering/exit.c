@@ -6,13 +6,13 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:53:48 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/23 14:42:14 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/24 18:29:27 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-// Function to destroy all loaded textures
+//destroy all loaded textures before exiting the game
 void	destroy_textures(t_game *game)
 {
 	int	i;
@@ -29,6 +29,7 @@ void	destroy_textures(t_game *game)
 	}
 }
 
+//free all data before exiting the game
 int	exit_game(t_game *game)
 {
 	(void)game;

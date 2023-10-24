@@ -6,12 +6,13 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 18:47:37 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/20 15:52:37 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/24 18:26:05 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
+//unset variables when key is being released
 int	key_release(int keycode, t_game *game)
 {
 	if (keycode == KEY_W)
@@ -29,6 +30,7 @@ int	key_release(int keycode, t_game *game)
 	return (0);
 }
 
+//set variables when key is being pressed
 int	key_press(int keycode, t_game *game)
 {
 	if (keycode == KEY_W)
@@ -54,6 +56,7 @@ int	key_press(int keycode, t_game *game)
 	return (0);
 }
 
+//redirect to right key events depending if key is pressed or not
 void	key_event(t_game *game)
 {
 	if (game->keys.w == 1)
@@ -70,6 +73,7 @@ void	key_event(t_game *game)
 		turn_left(game);
 }
 
+//turn viewer angle to the right
 void	turn_right(t_game *game)
 {
 	game->player.dir -= 0.01;
@@ -79,6 +83,7 @@ void	turn_right(t_game *game)
 	beta_angle_calc(&game->player);
 }
 
+//turn viewer angle to the left
 void	turn_left(t_game *game)
 {
 	game->player.dir += 0.01;

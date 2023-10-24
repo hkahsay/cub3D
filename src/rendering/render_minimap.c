@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:50:22 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/20 11:59:08 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/24 18:16:25 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,32 @@ void	draw_2dgrid(t_game *game)
 		while (++i <= game->data->map_data.m_width * SCALE_MINI_MAP)
 			my_mlx_pixel_put(&game->img, i, j, 0x0000FF);
 		j +=cellsize_y;
+	}
+}
+
+//draw little red square on minimap
+void	draw_player_minimap(t_game *game)
+{
+	double	y;
+	double	x;
+	double	start_x;
+	double	start_y;
+
+	start_x = (game->player.pos.x) * SCALE_MINI_MAP;
+	start_y = (game->player.pos.y) * SCALE_MINI_MAP;
+	if (start_x < 0)
+		start_x = 0;
+	if (start_y < 0)
+		start_y = 0;
+	x = start_x;
+	while (x <= start_x + 2 && x <= game->data->map_data.m_width * SCALE_MINI_MAP)
+	{
+		y = start_y;
+		while (y <= start_y + 2 && y <= game->data->map_data.m_height * SCALE_MINI_MAP)
+		{
+			my_mlx_pixel_put(&game->img, x, y, 0x00FF0000);
+			y++;
+		}
+		x++;
 	}
 }

@@ -41,9 +41,7 @@ void	initialize_variables(t_scene_params *params);
 
 
 //--------------exit----------------//
-int		exit_game(t_game *game);
 int		ft_esc(t_game *game);
-void	destroy_textures(t_game *game);
 
 //------------------free------------------//
 void	free_map_data(t_map *map_data);
@@ -65,13 +63,6 @@ int 	is_space(char c);
 int 	ft_strcmp(const char *s1, const char *s2);
 char	*my_strtok(char *srcString, char *delim);
 
-//----------ray utils----------//
-double	rad_to_angle(double angle);
-double	angle_to_rad(double rad);
-int		pixel_to_coord(float n);
-int		check_south(double angle);
-int		check_west(double angle);
-void    normalize_angle_rad(double *angle);
 //----------print----------//
 void	print_scene(t_sceneData *data);
 void	print_map(t_map *map_data);
@@ -105,17 +96,14 @@ void	parse_texture(const char *str, void *data);
 void	parse_color(const char *str, void *data);
 
 //----------init_rendering----------//
-void 	init_mlx(t_mlx *mlx);
-void 	init_mlx_win(t_game *game);
-int    	init_graphics(t_game *game);
+void	init_mlx(t_mlx *mlx);
+void	init_mlx_win(t_game *game);
+int		init_graphics(t_game *game);
 
 //----------draw----------//
 void	draw_player_minimap(t_game *game);
 void	draw_wall(t_game *game, t_wall_coordinate wall_coord);
-void	fill_rect(t_game *game, t_rect rect);
 void	render_2dmap_wall(t_game *game);
-void	draw_ceiling(t_game *game, t_rect *rect);
-void	draw_floor(t_game *game, t_rect *rect);
 void	draw_2dgrid(t_game *game);
 
 //----------load texture----------//
@@ -123,8 +111,6 @@ void	load_texture_img(void *mlx, t_texture *texture);
 void	load_textures_img(t_game *game);
 
 //-------rendering------------//
-double	starting_angle(char c);
-void	get_player(t_player *player, t_map *map_data);
 void	ready_game(t_game *game);
 void	render_game(t_game *game);
 void	get_event(t_game *game);
@@ -132,6 +118,18 @@ int		render_mini_map(t_game *game);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void	generate_img(t_img *img, t_mlx *mlx, int width, int height);
 void	get_background(t_game *game);
+
+//-------get_player.c-------//
+void	get_player(t_player *player, t_map *map_data);
+
+//-------draw_C_F.c-------//
+void	draw_ceiling(t_game *game, t_rect *rect);
+void	draw_floor(t_game *game, t_rect *rect);
+void	fill_rect(t_game *game, t_rect rect);
+
+//-------exit.c-------//
+void	destroy_textures(t_game *game);
+int		exit_game(t_game *game);
 
 //-------hook.c-------//
 int		key_release(int keycode, t_game *game);
@@ -141,41 +139,38 @@ void	turn_left(t_game *game);
 void	turn_right(t_game *game);
 
 //--------movement.c------//
-
 void	move_forward(t_game *game);
 void	move_backward(t_game *game);
 void	move_left(t_game *game);
 void	move_right(t_game *game);
 
-void	move_mini(t_game *game);
-
-//--------movement_utils.c------//
+//--------movement_utils1.c------//
 void	left_right_adjust(t_player *player, int side);
 void	beta_angle_calc(t_player *player);
 
-//--------movement_utils_2.c------//
+//--------movement_utils2.c------//
 void	check_direction(t_player *player);
 void	move_straight(t_coord *update, t_game *game, int dir);
 void	straight_dir(t_coord *update, t_game *game, int flag);
 void	move_in_angle(t_coord *update, t_player *player, int flag);
 void	move_angle_left_right(t_coord *update, t_player *player, int flag);
 
-//--------raycasting----------//
+//--------ray_init.c----------//
 void	get_ray_data(t_game *game);
-
-//--------raycasting----------//
 void	draw_all_rays(t_game *game);
 void	draw_single_ray(t_ray *ray, t_game *game);
-int		check_map_error(double x, double y, t_game *game);
 void	draw_wall_slice(t_game *game, t_ray *ray, int x);
+void	get_wall_height(t_ray *ray, t_game *game, double distance);
 
-//--------ray_util1.c------//
+//--------ray_utils1.c------//
+double	angle_to_rad(double rad);
+double	rad_to_angle(double angle);
 int		check_north(double angle);
 int		check_west(double angle);
-int		check_ne_sw(double angle);
+void	normalize_angle_rad(double *angle);
 
-//--------ray_util2.c------//
-
+//--------ray_utils2.c------//
+int		check_map_error(double x, double y, t_game *game);
 
 //--------ray_vertical.c------//
 void	get_vertical_ray(t_ray *ray, t_game *game);

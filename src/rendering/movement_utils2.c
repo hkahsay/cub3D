@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movement_utils_2.c                                 :+:      :+:    :+:   */
+/*   movement_utils2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 13:36:36 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/23 17:23:21 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/24 17:58:23 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
+//check player direction(N, E, S, W) or in between (N_E, S_E, S_W, N_W)
 void	check_direction(t_player *player)
 {
 	if (player->dir > 0 && player->dir < M_PI)

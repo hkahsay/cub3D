@@ -6,12 +6,15 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:56:58 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/20 14:52:07 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/24 18:28:26 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
+/*player moves forward when W key is pressed;
+all movement functions take into account the viewer angle as well as
+if the player collides with a wall*/
 void	move_forward(t_game *game)
 {
 	t_coord	update;
@@ -33,6 +36,7 @@ void	move_forward(t_game *game)
 	}
 }
 
+//player moves backward when S key is pressed
 void	move_backward(t_game *game)
 {
 	t_coord	update;
@@ -54,6 +58,7 @@ void	move_backward(t_game *game)
 	}
 }
 
+//player moves lef when A key is pressed
 void	move_left(t_game *game)
 {
 	t_coord	update;
@@ -79,6 +84,7 @@ void	move_left(t_game *game)
 	}
 }
 
+//player moves right when D key is pressed
 void	move_right(t_game *game)
 {
 	t_coord	update;
