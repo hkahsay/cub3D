@@ -1,5 +1,4 @@
 #include "../../includes/cub3d.h"
-#include "../../includes/parser.h"
 
 static int	line_contains_non_whitespace(const char *line)
 {
@@ -19,25 +18,17 @@ static void	process_non_map_line(t_sceneData *data, int i)
 {
 	char				*identifier;
 	char				*dataline;
-	char				**parsers;
 
-	parsers = malloc(sizeof(char *) * 7);
-	if (!parsers)
+	if (line_contains_non_whitespace(data->scene[i]) == 0)
 		return ;
-	get_identifier_parsers(parsers);
 	identifier = my_strtok(data->scene[i], " ");
 	dataline = my_strtok(NULL, "");
-	printf("identifier_strtok %s, dataline %s\n", identifier, dataline);
-	if (identifier && !dataline)
-	{
+	if (!identifier)
 		return ;
-	}
-	get_file(identifier, dataline, data, parsers);
+	get_file(identifier, dataline, data);
 	data->elm++;
-	free(parsers);
 }
 
-	//&& params->shouldIncrementHeight == 1
 static void	process_map_line(t_sceneData *data, t_scene_params *params)
 {
 	if (params->mapstarted == 1)
@@ -77,7 +68,7 @@ void	get_scene(t_sceneData *data)
 	while (data->scene[params.i] != NULL)
 	{
 		process_scene_line(&params, data);
-		params.i++; // Move to the next identifier/data pair
+		params.i++;
 	}
 	get_map(data, params.mapStartedIndex);
 }

@@ -1,66 +1,25 @@
 #include "../../includes/cub3d.h"
-#include "../../includes/parser.h"
 
-void	get_identifier_parsers(char **parsers)
+void	get_file(char *identifier, char *str, t_sceneData *data)
 {
-	parsers[0] = "NO";
-	parsers[1] = "SO";
-	parsers[2] = "WE";
-	parsers[3] = "EA";
-	parsers[4] = "F";
-	parsers[5] = "C";
-	parsers[6] = 0;
-
-}
-
-// static int	error_identifier(char *message)
-// {
-// 	printf("Error\n");
-// 	printf("Unknown identifier: %s\n", message);
-// 	exit(EXIT_FAILURE);
-// }
-
-void	get_file(char *identifier, char *str, t_sceneData *data,
-char **parsers)
-{
-
-	size_t	i;
-
-	i = -1;
-	printf("before loop identifier from getfile (%s)\n", identifier);
-	while (++i < 6)
+	if (!ft_strcmp(identifier, "NO"))
+		parse_texture(str, &data->north_texture);
+	else if (!ft_strcmp(identifier, "SO"))
+		parse_texture(str, &data->south_texture);
+	else if (!ft_strcmp(identifier, "WE"))
+		parse_texture(str, &data->west_texture);
+	else if (!ft_strcmp(identifier, "EA"))
+		parse_texture(str, &data->east_texture);
+	else if (!ft_strcmp(identifier, "F"))
+		parse_color(str, &data->floor_color);
+	else if (!ft_strcmp(identifier, "C"))
+		parse_color(str, &data->ceiling_color);
+	else if (!ft_strcmp(identifier, "\n"))
+		return ;
+	else
 	{
-		if (!ft_strcmp(identifier, parsers[i]))
-		{
-			printf("identifier from getfile (%s)\n", identifier);
-			if (!ft_strcmp(parsers[i], "NO"))
-				parse_texture(str, &data->north_texture);
-			else if (!ft_strcmp(parsers[i], "SO"))
-				parse_texture(str, &data->south_texture);
-			else if (!ft_strcmp(parsers[i], "WE"))
-				parse_texture(str, &data->west_texture);
-			else if (!ft_strcmp(parsers[i], "EA"))
-				parse_texture(str, &data->east_texture);
-			else if (!ft_strcmp(parsers[i], "F"))
-				parse_color(str, &data->floor_color);
-			else if (!ft_strcmp(parsers[i], "C"))
-				parse_color(str, &data->ceiling_color);
-			else
-			{
-				printf("enter when the identifiers don't match\n");
-				printf("Error\n");
-				printf("Unknown identifier: %s\n", identifier);
-				exit(EXIT_FAILURE);
-			}
-				// error_identifier(identifier);
-		}
-		// else
-		// {
-		// 	printf("Error\n");
-		// 	printf("Unknown identifier: %s\n", identifier);
-		// 	exit(EXIT_FAILURE);
-		// }
-
+		printf(RED"Error\nUnknown identifier: %s\n"RESET, identifier);
+		exit(EXIT_FAILURE);
 	}
 }
 
