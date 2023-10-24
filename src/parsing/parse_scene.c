@@ -19,16 +19,22 @@ static void	process_non_map_line(t_sceneData *data, int i)
 {
 	char				*identifier;
 	char				*dataline;
-	t_identifier_parser	parsers[6];
+	char				**parsers;
 
+	parsers = malloc(sizeof(char *) * 7);
+	if (!parsers)
+		return ;
 	get_identifier_parsers(parsers);
 	identifier = my_strtok(data->scene[i], " ");
 	dataline = my_strtok(NULL, "");
 	printf("identifier_strtok %s, dataline %s\n", identifier, dataline);
-	if (identifier || !dataline)
+	if (identifier && !dataline)
+	{
 		return ;
+	}
 	get_file(identifier, dataline, data, parsers);
 	data->elm++;
+	free(parsers);
 }
 
 	//&& params->shouldIncrementHeight == 1

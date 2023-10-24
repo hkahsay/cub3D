@@ -1,14 +1,15 @@
 #include "../../includes/cub3d.h"
 #include "../../includes/parser.h"
 
-void	get_identifier_parsers(t_identifier_parser *parsers)
+void	get_identifier_parsers(char **parsers)
 {
-	parsers[0] = (t_identifier_parser){"NO", parse_texture};
-	parsers[1] = (t_identifier_parser){"SO", parse_texture};
-	parsers[2] = (t_identifier_parser){"WE", parse_texture};
-	parsers[3] = (t_identifier_parser){"EA", parse_texture};
-	parsers[4] = (t_identifier_parser){"F", parse_color};
-	parsers[5] = (t_identifier_parser){"C", parse_color};
+	parsers[0] = "NO";
+	parsers[1] = "SO";
+	parsers[2] = "WE";
+	parsers[3] = "EA";
+	parsers[4] = "F";
+	parsers[5] = "C";
+	parsers[6] = 0;
 
 }
 
@@ -20,7 +21,7 @@ void	get_identifier_parsers(t_identifier_parser *parsers)
 // }
 
 void	get_file(char *identifier, char *str, t_sceneData *data,
-t_identifier_parser *parsers)
+char **parsers)
 {
 
 	size_t	i;
@@ -29,24 +30,24 @@ t_identifier_parser *parsers)
 	printf("before loop identifier from getfile (%s)\n", identifier);
 	while (++i < 6)
 	{
-		if (!ft_strcmp(identifier, parsers[i].identifier))
+		if (!ft_strcmp(identifier, parsers[i]))
 		{
 			printf("identifier from getfile (%s)\n", identifier);
-			if (!ft_strcmp(parsers[i].identifier, "NO"))
+			if (!ft_strcmp(parsers[i], "NO"))
 				parse_texture(str, &data->north_texture);
-			else if (!ft_strcmp(parsers[i].identifier, "SO"))
+			else if (!ft_strcmp(parsers[i], "SO"))
 				parse_texture(str, &data->south_texture);
-			else if (!ft_strcmp(parsers[i].identifier, "WE"))
+			else if (!ft_strcmp(parsers[i], "WE"))
 				parse_texture(str, &data->west_texture);
-			else if (!ft_strcmp(parsers[i].identifier, "EA"))
+			else if (!ft_strcmp(parsers[i], "EA"))
 				parse_texture(str, &data->east_texture);
-			else if (!ft_strcmp(parsers[i].identifier, "F"))
+			else if (!ft_strcmp(parsers[i], "F"))
 				parse_color(str, &data->floor_color);
-			else if (!ft_strcmp(parsers[i].identifier, "C"))
+			else if (!ft_strcmp(parsers[i], "C"))
 				parse_color(str, &data->ceiling_color);
 			else
 			{
-				printf("enter when the identifiers not matchs\n");
+				printf("enter when the identifiers don't match\n");
 				printf("Error\n");
 				printf("Unknown identifier: %s\n", identifier);
 				exit(EXIT_FAILURE);
