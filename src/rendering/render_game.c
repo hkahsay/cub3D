@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:41:24 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/23 14:27:39 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/24 20:29:33 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,9 @@
 int	init_graphics(t_game *game)
 {
 	if (game->data->mini_map == 1)
-	{
-		// printf("render minimap\n");
 		render_mini_map(game);
-	}
 	else
-	{
-		// printf("render game\n");
 		render_game(game);
-	}
 	return (1);
 }
 
@@ -33,7 +27,6 @@ void	render_game(t_game *game)
 	get_background(game);
 	key_event(game);
 	draw_all_rays(game);
-	
 	mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_mlx, \
 							game->img.img, 0, 0);
 	mlx_destroy_image(game->mlx.mlx_ptr, game->img.img);

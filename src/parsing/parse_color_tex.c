@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_color_tex.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/24 20:08:14 by ckarl             #+#    #+#             */
+/*   Updated: 2023/10/24 20:08:34 by ckarl            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
 
 void	get_file(char *identifier, char *str, t_sceneData *data)
@@ -23,11 +35,10 @@ void	get_file(char *identifier, char *str, t_sceneData *data)
 	}
 }
 
-void	parse_texture(const char *str, void *data)
+void	parse_texture(const char *str, t_texture *texture)
 {
-	t_texture	*texture;
+	char		*temp;
 
-	texture = (t_texture *)data;
 	if (str == NULL)
 	{
 		printf("Error\n");
@@ -36,10 +47,9 @@ void	parse_texture(const char *str, void *data)
 	}
 	if (!texture->path)
 	{
-		texture->path = ft_strdup_const(str);
-		texture->path = ft_strtrim(texture->path, " ");
-		// texture->tex_height = 64;
-		// texture->tex_width = 64;
+		temp = ft_strdup_const(str);
+		texture->path = ft_strtrim(temp, " ");
+		free(temp);
 		if (!texture->path)
 		{
 			printf("Error\nCould not allocate memory for texture path.\n");
@@ -57,12 +67,9 @@ static void	color_split(char **strs_split, t_color *color)
 		&& ft_isdigit_strict(strs_split[1])
 		&& ft_isdigit_strict(strs_split[2]))
 	{
-
-color->r = ft_atoi(strs_split[0]);
-
-color->g = ft_atoi(strs_split[1]);
-
-color->b = ft_atoi(strs_split[2]);
+	color->r = ft_atoi(strs_split[0]);
+	color->g = ft_atoi(strs_split[1]);
+	color->b = ft_atoi(strs_split[2]);
 	}
 	else
 	{
@@ -71,19 +78,14 @@ color->b = ft_atoi(strs_split[2]);
 	}
 }
 
-void	parse_color(const char *str, void *data)
+void	parse_color(const char *str, t_color *color)
 {
-	t_color	*color;
 	char	**strs_split;
 
-	color = (t_color *)data;
 	empty_color((char *)str);
 	strs_split = ft_split(str, ',');
 	if (strs_split == NULL)
-	{
 		ft_error_msg("Error: could not split color components.");
-		free_strs_array(strs_split);
-	}
 	color_split(strs_split, color);
 	free_strs_array(strs_split);
 }

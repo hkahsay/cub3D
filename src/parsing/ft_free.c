@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/24 20:06:42 by ckarl             #+#    #+#             */
+/*   Updated: 2023/10/24 20:06:49 by ckarl            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
 
 //not needed anymore since the i are not allocated anymore
@@ -10,18 +22,17 @@ void	free_map_data(t_map *map_data)
 	{
 		while (++i < map_data->m_height)
 		{
-			free(map_data->map[i]); // Free each row of the map
+			free(map_data->map[i]);
 		}
-		free(map_data->map); // Free the array of row pointers
+		free(map_data->map);
 	}
-	// reset the height and width
 	map_data->m_height = 0;
 	map_data->m_width = 0;
 }
 
 void	free_strs_array(char **strs)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (strs[i])

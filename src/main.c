@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:02:52 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/24 18:39:49 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/24 19:37:10 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	main(int argc, char **argv)
 	check_scene(game->data);
 	init_mlx_win(game);
 	free_map_data(&(game->data->map_data));
+	destroy_textures(game);
+	free_strs_array(game->data->scene);
 	free(game->data);
 	free(game);
 	return (0);

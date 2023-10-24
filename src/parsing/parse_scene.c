@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:41:32 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/24 16:41:38 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/24 19:54:46 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	process_scene_line(t_scene_params *params, t_sceneData *data)
 	{
 		if (is_map(data->scene[params->i]) == 1)
 		{
-			params->mapStartedIndex = params->i;
+			params->map_started_index = params->i;
 			params->mapstarted = 1;
 		}
 	}
@@ -82,5 +82,5 @@ void	get_scene(t_sceneData *data)
 		process_scene_line(&params, data);
 		params.i++;
 	}
-	get_map(data, params.mapStartedIndex);
+	get_map(data, params.map_started_index);
 }

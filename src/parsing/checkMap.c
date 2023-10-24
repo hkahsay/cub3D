@@ -6,28 +6,31 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:59:47 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/23 19:54:22 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/24 20:05:12 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
+// Initialize valid_char to 0
+// Check if the character is not one of the valid map characters
+// Set valid_char to 1 if '1' is found
+// Return the value of valid_char
 int	is_map(char *line)
 {
 	int	i;
 	int	valid_char;
 
 	i = 0;
-	valid_char = 0; // Initialize valid_char to 0
+	valid_char = 0;
 	if (ft_check_char(line, '1') == 1)
 	{
-		// Check if the character is not one of the valid map characters
 		if (!ft_strchr("01NSEW \n\t\v\f\r", line[i]))
 			return (0);
 		if (line[i] == '1' || line[i] == ' ')
-			valid_char = 1; // Set valid_char to 1 if '1' is found
+			valid_char = 1;
 	}
-	return (valid_char); // Return the value of valid_char
+	return (valid_char);
 }
 
 void	check_map_elm(t_sceneData *data)
@@ -51,7 +54,8 @@ void	check_map_elm(t_sceneData *data)
 	if (!found)
 	{
 		printf("Error\n");
-		printf("%s%s%s\n", RED, "Map should be the last element or no wall", RESET);
+		printf("%s%s%s\n", RED, "Map should be the last element \
+				or no wall", RESET);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -68,20 +72,6 @@ void	check_map_validty(char **map, int m_height, int row, int col)
 	}
 }
 
-void	get_play_pos_coord(t_map *map_data, int row, int col, char dir)
-{
-	map_data->play_pos.row = row;
-	map_data->play_pos.col = col;
-	if (dir == 'N')
-		map_data->play_pos.dir = 90;
-	else if (dir == 'E')
-		map_data->play_pos.dir = 0;
-	else if (dir == 'S')
-		map_data->play_pos.dir = 270;
-	else if (dir == 'W')
-		map_data->play_pos.dir = 180;
-}
-
 void	check_map_valid_characters(t_map *map_data)
 {
 	int	i;
@@ -96,9 +86,9 @@ void	check_map_valid_characters(t_map *map_data)
 		while (map_data->map[i][++j])
 		{
 			if (!ft_strchr("01NSEW ", map_data->map[i][j]))
-				ft_error_msg(RED"Invalid map: Invalid character found in the map."RESET);
-			// printf("start_postionnn: %d\n", start_postion);
-			if(ft_strchr("NSEW", map_data->map[i][j]))
+				ft_error_msg(RED"Invalid map: Invalid character \
+				found in the map."RESET);
+			if (ft_strchr("NSEW", map_data->map[i][j]))
 			{
 				get_play_pos_coord(map_data, i, j, map_data->map[i][j]);
 				map_data->map[i][j] = '0';
@@ -107,11 +97,7 @@ void	check_map_valid_characters(t_map *map_data)
 		}
 	}
 	if (start_postion != 1)
-	{
-		printf("Error\n");
-		// printf("start_postion: %d\n", start_postion);
-		ft_error_msg(RED"Invalid map: There should be exactly one starting point (NSWE)."RESET);
-	}
+		ft_error_msg(RED"Error\nInvalid map: Choose one starting point."RESET);
 }
 
 void	check_map(t_map *map_data)

@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 12:07:41 by hkahsay           #+#    #+#             */
-/*   Updated: 2023/10/24 18:32:15 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/24 19:59:28 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,6 @@ static void	populate_split_array(char **split, const char *s, char c)
 	split[j + 1] = NULL;
 }
 
-
-
 char	**ft_split(const char *s, char c)
 {
 	int		n_words;
@@ -94,10 +92,6 @@ char	**ft_split(const char *s, char c)
 	populate_split_array(split, s, c);
 	return (split);
 }
-
-
-
-
 
 // char	**ft_split(const char *s, char c)
 // {

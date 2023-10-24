@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 13:01:07 by hkahsay           #+#    #+#             */
-/*   Updated: 2023/09/28 11:15:27 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/24 20:07:15 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,6 @@ char	*ft_strchr(const char *str, int c)
 		return ((char *)(str + i));
 	return (0);
 }
-
-
-// size_t	ft_strlen(const char *s)
-// {
-// 	size_t	i;
-
-// 	i = 0;
-// 	printf("s: %s\n", s);
-// 	while (s[i] != '\0')
-// 		i++;
-// 	return (i);
-// }
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {

@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 11:14:21 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/24 17:52:18 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/24 20:31:44 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,8 @@ void	draw_wall_slice(t_game *game, t_ray *ray, int x)
 	while (y_start < y_end)
 	{
 		color = *(int *)(texture->img->addr + (texel.x * \
-			(texture->img->bits_per_pixel / 8)) + ((int)(texel.y * offset) \
-			* texture->img->line_length));
+			(texture->img->bits_per_pixel / 8)) + ((int)(texel.y * offset) * \
+			texture->img->line_length));
 		my_mlx_pixel_put(&game->img, x, y_start, color);
 		y_start++;
 		texel.y++;

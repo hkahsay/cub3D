@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_texture.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/24 20:08:39 by ckarl             #+#    #+#             */
+/*   Updated: 2023/10/24 20:08:45 by ckarl            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
 // #include "../includes/parser.h"
 
@@ -22,7 +34,6 @@ void	check_texture(char *texture, char *tex_name)
 		printf(RED"Error\ncannot open %s: %s\n"RESET, tex_name, texture);
 		exit(EXIT_FAILURE);
 	}
-
 	if (close(fd) == -1)
 	{
 		printf(RED"Error\n%s Could not close texture file\n"RESET, texture);

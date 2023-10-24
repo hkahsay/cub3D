@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_scene2.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/24 20:24:44 by ckarl             #+#    #+#             */
+/*   Updated: 2023/10/24 20:24:44 by ckarl            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
 
 void	init_img(t_img *img)
@@ -13,9 +25,11 @@ void	init_img(t_img *img)
 
 void	init_player(t_player *player)
 {
-	player->moveSpeed = 0;
-	player->rotSpeed = 0;
 	player->dir = 0;
+	player->pos.x = 0;
+	player->pos.y = 0;
+	player->beta = 0;
+	player->dir_field = 0;
 }
 
 void	init_mlx(t_mlx *mlx)

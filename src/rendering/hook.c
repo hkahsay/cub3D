@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 18:47:37 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/24 18:26:05 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/24 19:36:45 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int	key_press(int keycode, t_game *game)
 	else if (keycode == KEY_ESC || keycode == KEY_EXIT)
 	{
 		mlx_destroy_window(game->mlx.mlx_ptr, game->mlx.win_mlx);
-		destroy_textures(game);
 		exit_game(game);
 	}
 	return (0);

@@ -1,17 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/24 20:09:13 by ckarl             #+#    #+#             */
+/*   Updated: 2023/10/24 20:10:01 by ckarl            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
-#include <string.h>
 
-
-void    print_map(t_map *map_data)
+void	print_map(t_map *map_data)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (i < map_data->m_height)
-    {
-        printf("map_data->map[%d]: %s\n", i, map_data->map[i]);
-        i++;
-    }
+	i = 0;
+	while (i < map_data->m_height)
+	{
+		printf("map_data->map[%d]: %s\n", i, map_data->map[i]);
+		i++;
+	}
 }
 
 void	print_scene(t_sceneData *data)
@@ -24,8 +34,7 @@ void	print_scene(t_sceneData *data)
 		return ;
 	while (data->scene[i])
 	{
-		printf( "print_scene: %s", data->scene[i]);
-		printf("\n");
+		printf("print_scene: %s\n", data->scene[i]);
 		i++;
 	}
 	printf("print_scene: %s\n", data->scene[i]);

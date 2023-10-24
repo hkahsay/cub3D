@@ -6,12 +6,11 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:02:52 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/24 18:40:12 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/24 20:25:17 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
 
 int	open_file(char *file)
 {
@@ -33,8 +32,6 @@ int	open_file(char *file)
 // Concatenate the new line to the existing file contents.
 	// char	*combined_map = NULL;
 	// char	*temp_map = NULL;
-
-
 static char	*read_and_combine_lines(int fd)
 {
 	char	*combined_map;
@@ -75,6 +72,11 @@ void	read_scene(char *file, t_sceneData *data)
 	{
 		parse_scene_data(combined_map, data);
 		print_scene(data);
+		free(combined_map);
+	}
+	else
+	{
+		printf("combbined: %p\n", combined_map);
 		free(combined_map);
 	}
 	close_file(fd);

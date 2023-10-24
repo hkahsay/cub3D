@@ -1,4 +1,16 @@
-# ifndef CUB3D_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/24 19:57:48 by ckarl             #+#    #+#             */
+/*   Updated: 2023/10/24 19:58:39 by ckarl            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef CUB3D_H
 # define CUB3D_H
 
 # include "../libs/libft/libft.h"
@@ -11,7 +23,6 @@
 # include "structure.h"
 # include "constant.h"
 # include <math.h>
-
 
 //---------cub3d--------------//
 void	read_scene(char *file, t_sceneData *data);
@@ -38,7 +49,6 @@ void	init_map(t_map *grid);
 void	init_textures(t_texture *texture);
 void	init_color(t_color *color);
 void	initialize_variables(t_scene_params *params);
-
 
 //--------------exit----------------//
 int		ft_esc(t_game *game);
@@ -73,7 +83,7 @@ int		ft_error_msg(char *msg);
 //----------map----------//
 
 int		is_map(char *line);
-void	get_map(t_sceneData *data, int mapStartedIndex);
+void	get_map(t_sceneData *data, int map_started_index);
 size_t	get_width(char **maplines);
 void	free_map_data(t_map *map_data);
 void	check_map(t_map *map_data);
@@ -92,8 +102,8 @@ int		valid_extension(char *tex_path);
 void	check_color(t_color *color, char *color_name);
 int		create_rgb(int r, int g, int b);
 void	check_texture(char *texture, char *tex_name);
-void	parse_texture(const char *str, void *data);
-void	parse_color(const char *str, void *data);
+void	parse_texture(const char *str, t_texture *texture);
+void	parse_color(const char *str, t_color *color);
 
 //----------init_rendering----------//
 void	init_mlx(t_mlx *mlx);

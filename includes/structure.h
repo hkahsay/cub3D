@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/03 11:07:08 by ckarl						       #+#    #+#             */
-/*   Updated: 2023/10/24 17:33:23 by ckarl            ###   ########.fr       */
+/*   Created: 2023/10/03 11:07:08 by ckarl             #+#    #+#             */
+/*   Updated: 2023/10/24 19:58:59 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,25 +58,24 @@ typedef struct s_map_player
 	int	dir;
 }	t_map_player;
 
-
 typedef struct s_map
 {
 	char			**map;
 	int				m_width;
 	int				m_height;
-	char	*pos;
+	char			*pos;
 	t_map_player	play_pos;
 }	t_map;
 
 typedef struct s_scene_params
 {
 	int	i;
-	int	mapStartedIndex;
+	int	map_started_index;
 	int	mapstarted;
-	int	shouldIncrementHeight;
+	int	should_increment_height;
 }t_scene_params;
 
-typedef struct s_ray_coord
+typedef struct s_coord
 {
 	double	x;
 	double	y;
@@ -88,12 +87,6 @@ typedef struct s_hz_vt
 	double	vt;
 }	t_hz_vt;
 
-// typedef struct s_player_coord
-// {
-// 	float	x;
-// 	float	y;
-// }	t_player_coord;
-
 typedef struct s_texel
 {
 	int	x;
@@ -103,9 +96,6 @@ typedef struct s_texel
 typedef struct s_player
 {
 	t_coord	pos;
-	t_coord	plane;
-	double	moveSpeed;
-	double	rotSpeed;
 	double	dir;
 	double	beta;
 	int		dir_field;
@@ -164,30 +154,18 @@ typedef struct s_mlx
 
 typedef struct s_sceneData
 {
-	t_texture				north_texture;
-	t_texture				south_texture;
-	t_texture				west_texture;
-	t_texture				east_texture;
-	t_texture				*texture_field;
-	struct	s_parserState	*state;
-	t_color					floor_color;
-	t_color					ceiling_color;
-	int						elm;
-	t_map					map_data;
-	int						mini_map;
-	char					**scene;
-	t_rect					rect;
-	t_texture				textures[MAX_TEXTURES];
-	int						num_textures;
-
+	t_texture	north_texture;
+	t_texture	south_texture;
+	t_texture	west_texture;
+	t_texture	east_texture;
+	t_color		floor_color;
+	t_color		ceiling_color;
+	int			elm;
+	t_map		map_data;
+	int			mini_map;
+	char		**scene;
+	t_rect		rect;
 }	t_sceneData;
-
-typedef struct s_time
-{
-	double	time;
-	double	oldTime;
-	double	frameTime;
-}	t_time;
 
 typedef struct s_game
 {
@@ -198,7 +176,6 @@ typedef struct s_game
 	t_player	player;
 	t_rect		rect;
 	t_ray_data	ray_data;
-	t_time		time;
 }	t_game;
 
 #endif
