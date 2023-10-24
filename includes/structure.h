@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   structure.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/03 11:07:08 by ckarl						       #+#    #+#             */
+/*   Updated: 2023/10/24 17:33:23 by ckarl            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef STRUCTURE_H
 # define STRUCTURE_H
@@ -141,7 +152,6 @@ typedef struct s_ray
 typedef struct s_ray_data
 {
 	double	view_angle;
-	double	dist_to_plane;
 	double	sub_ray_angle;
 }	t_ray_data;
 

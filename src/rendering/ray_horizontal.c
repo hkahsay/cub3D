@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:50:58 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/23 18:27:01 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/24 17:30:03 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void	set_ray_coef_hz(t_ray *ray)
 		ray->coef.x = 1;
 }
 
+//get x position on texture
 void	get_horizontal_wall_xpos(t_ray *ray)
 {
 	if (check_north(ray->player.dir) == 1)
