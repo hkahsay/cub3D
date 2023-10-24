@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 11:14:21 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/24 20:31:44 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/24 21:25:38 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,28 +80,24 @@ void	draw_single_ray(t_ray *ray, t_game *game)
 void	draw_wall_slice(t_game *game, t_ray *ray, int x)
 {
 	int			y_start;
-	int			y_end;
-	t_texture	*texture;
 	t_texel		texel;
 	int			color;
 	double		offset;
 
-	texture = ray->texture;
-	texel.x = ray->wall_pos_x * texture->img->width;
+	texel.x = ray->wall_pos_x * ray->texture->img->width;
 	texel.y = 0;
-	offset = texture->img->height / ray->wallheight;
-	if (ray->wallheight > MAX_HEIGHT)					//doesn't work correctly when I walk straight right or left in the beginning
+	offset = ray->texture->img->height / ray->wallheight;
+	if (ray->wallheight > MAX_HEIGHT)
 	{
-		texel.y = (int)ray->wallheight / 2 - MAX_HEIGHT / 2;
+		texel.y = (int)(ray->wallheight / 2) - MAX_HEIGHT / 2;
 		ray->wallheight = MAX_HEIGHT;
 	}
 	y_start = MAX_HEIGHT / 2 - (int)ray->wallheight / 2;
-	y_end = MAX_HEIGHT / 2 + (int)ray->wallheight / 2;
-	while (y_start < y_end)
+	while (y_start < (MAX_HEIGHT / 2 + (int)(ray->wallheight / 2)))
 	{
-		color = *(int *)(texture->img->addr + (texel.x * \
-			(texture->img->bits_per_pixel / 8)) + ((int)(texel.y * offset) * \
-			texture->img->line_length));
+		color = *(int *)(ray->texture->img->addr + (texel.x * \
+			(ray->texture->img->bits_per_pixel / 8)) + \
+			((int)(texel.y * offset) * ray->texture->img->line_length));
 		my_mlx_pixel_put(&game->img, x, y_start, color);
 		y_start++;
 		texel.y++;
