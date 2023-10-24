@@ -31,8 +31,8 @@ void	init_img(t_img *img)
 void	init_textures(t_texture *texture)
 {
 	texture->path = NULL;
-	texture->tex_height = 0;
-	texture->tex_width = 0;
+	// texture->tex_height = 0;
+	// texture->tex_width = 0;
 }
 
 void	init_map(t_map *grid)

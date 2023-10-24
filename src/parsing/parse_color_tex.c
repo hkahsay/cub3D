@@ -22,6 +22,7 @@ void	get_identifier_parsers(t_identifier_parser *parsers)
 void	get_file(char *identifier, char *str, t_sceneData *data,
 t_identifier_parser *parsers)
 {
+
 	size_t	i;
 
 	i = -1;
@@ -60,6 +61,28 @@ t_identifier_parser *parsers)
 		// }
 
 	}
+    if (str == NULL)
+    {
+        printf("Error\n");
+        printf(RED"Texture path is NULL.\n"RESET);
+        exit(EXIT_FAILURE);
+    }
+    if(!texture->path)
+    {
+        texture->path = ft_strdup_const(str);
+        texture->path = ft_strtrim(texture->path, " ");
+        // texture->tex_height = 64;
+        // texture->tex_width = 64;
+        if(!texture->path)
+        {
+            printf("Error\nCould not allocate memory for texture path.\n");
+            exit(EXIT_FAILURE);
+        }
+
+    }
+    else
+        texture->path = 0;
+
 }
 
 void	parse_texture(const char *str, void *data)
