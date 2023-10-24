@@ -1,10 +1,10 @@
-NO ./textures/BrickOv.xpm
-SO ./textures/Bricks.xpm
-WE ./textures/coal.xpm
-EA ./textures/Dirt.xpm
+NO ./textures/squared/flower.xpm
+SO ./textures/squared/morrocan.xpm
+WE ./textures/squared/inward-spiral.xpm
+EA ./textures/squared/tile.xpm
 
-F 100,197,170
-C 197,131,100
+F 100,197,130
+C 197,150,180
 
 
 
@@ -19,6 +19,6 @@ C 197,131,100
 11000000110101011100000000001
 10001000000000001100000000001
 10000000000000001101010000001
-11000001110101011100000000W0111
+1100000111010101110000E0000111
 11110111 1110101 100000010001
 11111111 1111111 111111111111

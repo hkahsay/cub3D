@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:50:58 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/20 12:05:56 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/23 18:27:01 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	get_horizontal_ray(t_ray *ray, t_game *game)
 		ray->ray_pos.y += ray->deltadist.y;
 		ray->eucl_dist.hz += hypot(ray->deltadist.x, ray->deltadist.y);
 	}
+	get_horizontal_wall_xpos(ray);
 	ray->ray_pos = position;
 }
 
@@ -89,4 +90,12 @@ void	set_ray_coef_hz(t_ray *ray)
 		ray->coef.x = 0;
 	else if (ray->player.dir_field == E)
 		ray->coef.x = 1;
+}
+
+void	get_horizontal_wall_xpos(t_ray *ray)
+{
+	if (check_north(ray->player.dir) == 1)
+		ray->wall_pos_x = fabs((int)ray->ray_pos.x - ray->ray_pos.x);
+	else
+		ray->wall_pos_x = (int)(ray->ray_pos.x + 1) - ray->ray_pos.x;
 }

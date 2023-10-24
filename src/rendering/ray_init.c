@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 11:14:21 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/20 16:54:13 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/23 19:57:17 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,33 @@ void	get_ray_data(t_game *game)
 
 void	draw_wall_slice(t_game *game, t_ray *ray, int x)
 {
-	int	y_start;
-	int	y_end;
-	t_texture *texture;
+	int			y_start;
+	int			y_end;
+	t_texture	*texture;
+	t_texel		texel;
+	int			color;
+	double		offset;
 
 	texture = ray->texture;
+	texel.x = ray->wall_pos_x * texture->img->width;
+	texel.y = 0;
+	offset = texture->img->height / ray->wallheight;
+	if (ray->wallheight > MAX_HEIGHT)					//doesn't work correctly when I walk straight right or left in the beginning
+		ray->wallheight = MAX_HEIGHT;
 	y_start = MAX_HEIGHT / 2 - (int)ray->wallheight / 2;
+	if (y_start < 0)
+		y_start = 0;
 	y_end = MAX_HEIGHT / 2 + (int)ray->wallheight / 2;
-	// printf("in wall slice after decalaration y_start: %d and y_end: %d\n", y_start, y_end);
+	// if (y_end >= MAX_HEIGHT)
+	// 	y_end = MAX_HEIGHT - 1;
 	while (y_start < y_end)
 	{
-		my_mlx_pixel_put(&game->img, x, y_start, 0x00FF0000);
+		color = *(int *)(texture->img->addr + (texel.x * \
+			(texture->img->bits_per_pixel / 8)) + ((int)(texel.y * offset) \
+			* texture->img->line_length));
+		my_mlx_pixel_put(&game->img, x, y_start, color);
 		y_start++;
+		texel.y++;
 	}
 }
 
@@ -49,7 +64,7 @@ void	draw_all_rays(t_game *game)
 		ray_angle -= 2 * M_PI;
 	rays = malloc(sizeof(t_ray) * MAX_WIDTH);
 	if (!rays)
-		return ;								//add error msg
+		ft_error_msg(RED"Error\nMalloc failed\n"RESET);
 	i = -1;
 	while (++i < MAX_WIDTH)
 	{
@@ -87,8 +102,8 @@ void	get_wall_height(t_ray *ray, t_game *game, double distance)
 	}
 	ray->perpwalldist = fabs(distance * sin(ray->perpwallangle));
 	ray->wallheight = MAX_HEIGHT / ray->perpwalldist;
-	if (ray->wallheight > MAX_HEIGHT)
-		ray->wallheight = MAX_HEIGHT;
+	// if (ray->wallheight > MAX_HEIGHT)
+	// 	ray->wallheight = MAX_HEIGHT;
 }
 
 void	draw_single_ray(t_ray *ray, t_game *game)
@@ -107,6 +122,7 @@ void	draw_single_ray(t_ray *ray, t_game *game)
 	}
 	else
 	{
+		get_vertical_wall_xpos(ray);
 		get_wall_height(ray, game, ray->eucl_dist.vt);
 		if (check_west(ray->player.dir) == 1)
 			ray->texture = &game->data->east_texture;

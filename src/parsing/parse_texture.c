@@ -17,7 +17,7 @@ void	check_texture(char *texture, char *tex_name)
 	}
 	if ((fd = open(texture, O_RDONLY)) == -1)
 	{
-		printf(RED"Error\ncan not open %s: %s\n"RESET, tex_name, texture);
+		printf(RED"Error\ncannot open %s: %s\n"RESET, tex_name, texture);
 		exit(EXIT_FAILURE);
 	}
 

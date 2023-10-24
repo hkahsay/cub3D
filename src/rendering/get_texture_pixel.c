@@ -9,25 +9,28 @@ void	load_texture_img(void *mlx, t_texture *texture)
 	// if (texture->tex_width > 0 && texture->tex_height > 0 && \
 	// 	texture->tex_height == texture->tex_width)
 	// {
-		// printf("game->data->north_texture.path: %s\n", data->north_texture.path);
 		texture->img->img = mlx_xpm_file_to_image(mlx, texture->path, \
 			&texture->img->width, &texture->img->height);
 		if (!texture->img->img)
-			ft_error_msg(RED"Error\nTexture not found\n"RESET);
-		texture->tex_height = texture->img->height;
-		texture->tex_width = texture->img->width;
-		texture->img->addr = mlx_get_data_addr(texture->img->img, \
+		{
+			printf(RED"Error\nTexture not found: %s\n"RESET, texture->path);
+			exit(EXIT_FAILURE);
+		}
+		else
+			texture->img->addr = mlx_get_data_addr(texture->img->img, \
 			&texture->img->bits_per_pixel, \
 			&texture->img->line_length, &texture->img->endian);
-
-
-
+		if (texture->img->height != texture->img->width)
+		{
+			printf(RED"Error\nTexture not square: %s\n"RESET, texture->path);
+			exit(EXIT_FAILURE);
+		}
 	// }
 	// else
 	// 	ft_error_msg(RED"Error\n image is not found\n"RESET);
 }
 
-void    load_textures_img(t_game *game)
+void	load_textures_img(t_game *game)
 {
 	load_texture_img(game->mlx.mlx_ptr, &game->data->north_texture);
 	load_texture_img(game->mlx.mlx_ptr, &game->data->south_texture);
