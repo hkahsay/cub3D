@@ -57,9 +57,12 @@ static void	color_split(char **strs_split, t_color *color)
 		&& ft_isdigit_strict(strs_split[1])
 		&& ft_isdigit_strict(strs_split[2]))
 	{
-		color->R = ft_atoi(strs_split[0]);
-		color->G = ft_atoi(strs_split[1]);
-		color->B = ft_atoi(strs_split[2]);
+
+color->r = ft_atoi(strs_split[0]);
+
+color->g = ft_atoi(strs_split[1]);
+
+color->b = ft_atoi(strs_split[2]);
 	}
 	else
 	{

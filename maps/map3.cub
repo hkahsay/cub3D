@@ -1,6 +1,7 @@
 NO ./textures/squared/flower.xpm
 SO ./textures/squared/morrocan.xpm
 WE ./textures/squared/inward-spiral.xpm
+
 EA ./textures/squared/tile.xpm
 
 F 200,197,200

@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   structure.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/03 11:07:08 by ckarl						       #+#    #+#             */
-/*   Updated: 2023/10/23 18:33:23 by ckarl            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #ifndef STRUCTURE_H
 # define STRUCTURE_H
@@ -40,18 +29,15 @@ typedef struct s_texture
 {
 	char	*path;
 	t_img	*img;
-	int		*color;
-	// int		tex_width;
-	// int		tex_height;
 }	t_texture;
 
 typedef struct s_color
 {
-	int	R;
-	int	G;
-	int	B;
+	int		r;
+	int		g;
+	int		b;
 	char	**colors;
-	int	rgb;
+	int		rgb;
 }	t_color;
 
 typedef struct s_map_player

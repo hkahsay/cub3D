@@ -6,7 +6,7 @@
 #    By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/15 20:19:13 by hkahsay           #+#    #+#              #
-#    Updated: 2023/10/18 11:54:09 by ckarl            ###   ########.fr        #
+#    Updated: 2023/10/24 18:32:54 by ckarl            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,10 +49,12 @@ PARSE_FILES	:=	get_next_line.c			\
 				util3.c					\
 				util2.c					\
 				checkMap.c				\
-				init_scene.c			\
+				init_scene1.c			\
+				init_scene2.c			\
 				parse_scene.c			\
 				print.c					\
 				ft_free.c				\
+				read_scene.c			\
 				getMap.c				\
 				parse_texture.c			\
 				parse_color.c			\
