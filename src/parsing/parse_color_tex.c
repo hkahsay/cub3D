@@ -1,65 +1,25 @@
 #include "../../includes/cub3d.h"
-#include "../../includes/parser.h"
 
-void	get_identifier_parsers(t_identifier_parser *parsers)
+void	get_file(char *identifier, char *str, t_sceneData *data)
 {
-	parsers[0] = (t_identifier_parser){"NO", parse_texture};
-	parsers[1] = (t_identifier_parser){"SO", parse_texture};
-	parsers[2] = (t_identifier_parser){"WE", parse_texture};
-	parsers[3] = (t_identifier_parser){"EA", parse_texture};
-	parsers[4] = (t_identifier_parser){"F", parse_color};
-	parsers[5] = (t_identifier_parser){"C", parse_color};
-
-}
-
-// static int	error_identifier(char *message)
-// {
-// 	printf("Error\n");
-// 	printf("Unknown identifier: %s\n", message);
-// 	exit(EXIT_FAILURE);
-// }
-
-void	get_file(char *identifier, char *str, t_sceneData *data,
-t_identifier_parser *parsers)
-{
-
-	size_t	i;
-
-	i = -1;
-	printf("before loop identifier from getfile (%s)\n", identifier);
-	while (++i < 6)
+	if (!ft_strcmp(identifier, "NO"))
+		parse_texture(str, &data->north_texture);
+	else if (!ft_strcmp(identifier, "SO"))
+		parse_texture(str, &data->south_texture);
+	else if (!ft_strcmp(identifier, "WE"))
+		parse_texture(str, &data->west_texture);
+	else if (!ft_strcmp(identifier, "EA"))
+		parse_texture(str, &data->east_texture);
+	else if (!ft_strcmp(identifier, "F"))
+		parse_color(str, &data->floor_color);
+	else if (!ft_strcmp(identifier, "C"))
+		parse_color(str, &data->ceiling_color);
+	else if (!ft_strcmp(identifier, "\n"))
+		return ;
+	else
 	{
-		if (!ft_strcmp(identifier, parsers[i].identifier))
-		{
-			printf("identifier from getfile (%s)\n", identifier);
-			if (!ft_strcmp(parsers[i].identifier, "NO"))
-				parse_texture(str, &data->north_texture);
-			else if (!ft_strcmp(parsers[i].identifier, "SO"))
-				parse_texture(str, &data->south_texture);
-			else if (!ft_strcmp(parsers[i].identifier, "WE"))
-				parse_texture(str, &data->west_texture);
-			else if (!ft_strcmp(parsers[i].identifier, "EA"))
-				parse_texture(str, &data->east_texture);
-			else if (!ft_strcmp(parsers[i].identifier, "F"))
-				parse_color(str, &data->floor_color);
-			else if (!ft_strcmp(parsers[i].identifier, "C"))
-				parse_color(str, &data->ceiling_color);
-			else
-			{
-				printf("enter when the identifiers not matchs\n");
-				printf("Error\n");
-				printf("Unknown identifier: %s\n", identifier);
-				exit(EXIT_FAILURE);
-			}
-				// error_identifier(identifier);
-		}
-		// else
-		// {
-		// 	printf("Error\n");
-		// 	printf("Unknown identifier: %s\n", identifier);
-		// 	exit(EXIT_FAILURE);
-		// }
-
+		printf(RED"Error\nUnknown identifier: %s\n"RESET, identifier);
+		exit(EXIT_FAILURE);
 	}
 }
 
