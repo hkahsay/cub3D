@@ -16,8 +16,8 @@
 //---------cub3d--------------//
 void	read_scene(char *file, t_sceneData *data);
 int		ft_check_char(char *str, char c);
-int 	open_file(char *file);
-void 	check_arg(int ac, char **av);
+int		open_file(char *file);
+void	check_arg(int ac, char **av);
 
 //-------------get_next_line_functions--------------------//
 char	*get_next_line(int fd);
@@ -33,9 +33,9 @@ void	*ft_calloc(size_t elementCount, size_t elementSize);
 
 //-----------init-------------//
 
-void	init_sceneData(t_sceneData *data);
-void    init_map(t_map *grid);
-void    init_textures(t_texture *texture);
+void	init_scenedata(t_sceneData *data);
+void	init_map(t_map *grid);
+void	init_textures(t_texture *texture);
 void	init_color(t_color *color);
 void	initialize_variables(t_scene_params *params);
 
@@ -48,21 +48,21 @@ void	destroy_textures(t_game *game);
 //------------------free------------------//
 void	free_map_data(t_map *map_data);
 
-void    free_strs_array(char **strs);
+void	free_strs_array(char **strs);
 //----------utils2------------//
 
-void    empty_color(char *str);
-int 	ft_isdigit_strict(const char *str);
+void	empty_color(char *str);
+int		ft_isdigit_strict(const char *str);
 
 //----------util--------------//
 int		ft_error_msg2(char *msg, char *msg2);
 int		close_file(int fd);
-void    skip_spaces(char *str);
+void	skip_spaces(char *str);
 char	*ft_strncpy(char *dest, char *src, size_t n);
 void	*ft_realloc(void *ptr, size_t orig_size, size_t new_size);
 char	**ft_split2(char *str, char *charset);
-int 	is_space(char c);
-int 	ft_strcmp(const char *s1, const char *s2);
+int		is_space(char c);
+int		ft_strcmp(const char *s1, const char *s2);
 char	*my_strtok(char *srcString, char *delim);
 
 //----------ray utils----------//
@@ -71,7 +71,7 @@ double	angle_to_rad(double rad);
 int		pixel_to_coord(float n);
 int		check_south(double angle);
 int		check_west(double angle);
-void    normalize_angle_rad(double *angle);
+void	normalize_angle_rad(double *angle);
 //----------print----------//
 void	print_scene(t_sceneData *data);
 void	print_map(t_map *map_data);
@@ -82,10 +82,10 @@ int		ft_error_msg(char *msg);
 //----------map----------//
 
 int		is_map(char *line);
-void    get_map(t_sceneData *data,int mapStartedIndex);
-size_t  get_width(char **maplines);
-void 	free_map_data(t_map *map_data);
-void    check_map(t_map *map_data);
+void	get_map(t_sceneData *data, int mapStartedIndex);
+size_t	get_width(char **maplines);
+void	free_map_data(t_map *map_data);
+void	check_map(t_map *map_data);
 void	check_map_valid_characters(t_map *map_data);
 int		check_wall(char *line);
 void	get_play_pos_coord(t_map *map_data, int row, int col, char dir);
@@ -105,9 +105,9 @@ void	parse_texture(const char *str, void *data);
 void	parse_color(const char *str, void *data);
 
 //----------init_rendering----------//
-void 	init_mlx(t_mlx *mlx);
-void 	init_mlx_win(t_game *game);
-int    	init_graphics(t_game *game);
+void	init_mlx(t_mlx *mlx);
+void	init_mlx_win(t_game *game);
+int		init_graphics(t_game *game);
 
 //----------draw----------//
 void	draw_player_minimap(t_game *game);
