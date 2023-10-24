@@ -9,19 +9,19 @@ int	color_ranges_valid(int *r, int *g, int *b)
 
 void	check_color(t_color *color, char *color_name)
 {
-	if (color->R == -1)
+	if (color->r == -1)
 	{
 		printf("Error\nThe %s is not set or poorly \
 			formatted.\n", color_name);
 		exit(EXIT_SUCCESS);
 	}
-	else if (!color_ranges_valid(&color->R, &color->G, &color->B))
+	else if (!color_ranges_valid(&color->r, &color->g, &color->b))
 	{
 		printf(RED"Error\nThe RGB code for the " YELLOW"%s"RED" is \
 			out of range.\n"RESET, color_name);
 		exit(EXIT_SUCCESS);
 	}
-	color->rgb = create_rgb(color->R, color->G, color->B);
+	color->rgb = create_rgb(color->r, color->g, color->b);
 }
 
 int	create_rgb(int r, int g, int b)

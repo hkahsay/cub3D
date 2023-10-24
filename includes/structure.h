@@ -40,18 +40,15 @@ typedef struct s_texture
 {
 	char	*path;
 	t_img	*img;
-	int		*color;
-	// int		tex_width;
-	// int		tex_height;
 }	t_texture;
 
 typedef struct s_color
 {
-	int	R;
-	int	G;
-	int	B;
+	int		r;
+	int		g;
+	int		b;
 	char	**colors;
-	int	rgb;
+	int		rgb;
 }	t_color;
 
 typedef struct s_map_player

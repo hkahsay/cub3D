@@ -49,10 +49,12 @@ PARSE_FILES	:=	get_next_line.c			\
 				util3.c					\
 				util2.c					\
 				checkMap.c				\
-				init_scene.c			\
+				init_scene1.c			\
+				init_scene2.c			\
 				parse_scene.c			\
 				print.c					\
 				ft_free.c				\
+				read_scene.c			\
 				getMap.c				\
 				parse_texture.c			\
 				parse_color.c			\

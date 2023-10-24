@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkahsay <hkahsay@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 16:39:43 by hkahsay           #+#    #+#             */
-/*   Updated: 2023/08/25 14:42:59 by hkahsay          ###   ########.fr       */
+/*   Updated: 2023/10/24 16:43:46 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,16 @@ int	ft_isdigit(int x)
 
 int	ft_isdijit_char(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
 	{
-		if(!ft_isdigit(str[i]))
-			return 0;
+		if (!ft_isdigit(str[i]))
+			return (0);
 		i++;
 	}
-	return(1);
+	return (1);
 }
 
 /*int	main()
