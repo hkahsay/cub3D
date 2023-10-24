@@ -3,8 +3,8 @@ SO ./textures/squared/morrocan.xpm
 WE ./textures/squared/inward-spiral.xpm
 EA ./textures/squared/tile.xpm
 
-F 100,197,130
-C 197,150,180
+F 200,197,200
+C 130,150,100
 
 
 

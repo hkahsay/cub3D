@@ -38,7 +38,6 @@ void	load_textures_img(t_game *game)
 	load_texture_img(game->mlx.mlx_ptr, &game->data->east_texture);
 }
 
-
 // static int	*ft_get_color(t_img *img)
 // {
 // 	int		*color;

@@ -1,37 +1,42 @@
 #include "../../includes/cub3d.h"
 #include "../../includes/parser.h"
 
-int	lineContainsNonWhitespace(const char *line)
+static int	line_contains_non_whitespace(const char *line)
 {
 	int	k;
 
-    k = 0;
-    while(line[k] != '\0')
-    {
-        if (!is_space((unsigned char)line[k]))
-            return (1); // Found a non-whitespace character
-        k++;
-    }
-    return (0); // whitespace characters found
+	k = 0;
+	while (line[k] != '\0')
+	{
+		if (!is_space((unsigned char)line[k]))
+			return (1);
+		k++;
+	}
+	return (0);
 }
-
 
 static void	process_non_map_line(t_sceneData *data, int i)
 {
-	char	*identifier;
-	char	*dataLine;
+	char				*identifier;
+	char				*dataline;
+	t_identifier_parser	parsers[6];
 
-	identifier = my_strtok(data->scene[i], " "); // Use delimiters " \t\v\f\rNO,SO,WE,EA,F,C"
-	dataLine = my_strtok(NULL, ""); // Remaining part of the line
-	get_file(identifier, dataLine, data);
-data->elm++;
+	get_identifier_parsers(parsers);
+	identifier = my_strtok(data->scene[i], " ");
+	dataline = my_strtok(NULL, "");
+	printf("identifier_strtok %s, dataline %s\n", identifier, dataline);
+	if (identifier || !dataline)
+		return ;
+	get_file(identifier, dataline, data, parsers);
+	data->elm++;
 }
 
+	//&& params->shouldIncrementHeight == 1
 static void	process_map_line(t_sceneData *data, t_scene_params *params)
 {
-	if (params->mapstarted == 1)//&& params->shouldIncrementHeight == 1
+	if (params->mapstarted == 1)
 	{
-		if (lineContainsNonWhitespace(data->scene[params->i]) == 1)
+		if (line_contains_non_whitespace(data->scene[params->i]) == 1)
 			data->map_data.m_height++;
 		else
 		{
