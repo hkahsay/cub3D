@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 19:57:48 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/24 19:58:39 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/25 10:52:08 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,6 +181,7 @@ void	normalize_angle_rad(double *angle);
 
 //--------ray_utils2.c------//
 int		check_map_error(double x, double y, t_game *game);
+int		check_map_error_movement(double x, double y, t_game *game);
 
 //--------ray_vertical.c------//
 void	get_vertical_ray(t_ray *ray, t_game *game);

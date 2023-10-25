@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 18:47:37 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/24 19:36:45 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/25 10:13:07 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	key_event(t_game *game)
 //turn viewer angle to the right
 void	turn_right(t_game *game)
 {
-	game->player.dir -= 0.01;
+	game->player.dir -= 0.03;
 	if (game->player.dir < 0)
 		game->player.dir += 2 * M_PI;
 	check_direction(&(game->player));
@@ -85,7 +85,7 @@ void	turn_right(t_game *game)
 //turn viewer angle to the left
 void	turn_left(t_game *game)
 {
-	game->player.dir += 0.01;
+	game->player.dir += 0.03;
 	if (game->player.dir > 2 * M_PI)
 		game->player.dir -= 2 * M_PI;
 	check_direction(&(game->player));

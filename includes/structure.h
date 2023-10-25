@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:07:08 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/24 19:58:59 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/25 10:36:33 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,8 +132,8 @@ typedef struct s_ray
 	t_coord		coef;
 	t_player	player;
 	t_hz_vt		eucl_dist;
-	double		perpwallangle;
-	double		perpwalldist;
+	double		wallangle;
+	double		walldist;
 	double		wallheight;
 	float		wall_pos_x;
 	t_texture	*texture;

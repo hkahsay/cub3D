@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:02:52 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/24 19:37:10 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/25 10:31:16 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,38 +29,18 @@ int	main(int argc, char **argv)
 	get_scene(game->data);
 	check_scene(game->data);
 	init_mlx_win(game);
-	free_map_data(&(game->data->map_data));
-	destroy_textures(game);
-	free_strs_array(game->data->scene);
-	free(game->data);
-	free(game);
+	exit_game(game);
 	return (0);
 }
 
 void	check_arg(int ac, char **av)
 {
 	if (ac < 2)
-	{
-		printf("Error\n");
-		printf("%s\n", VIOLET"Too few arguments\n");
-		exit(1);
-	}
+		ft_error_msg2(VIOLET"Error\n"RESET, VIOLET"Too few arguments"RESET);
 	if (ac > 2)
-	{
-		printf("Error\n");
-		printf("%s\n", VIOLET"Too many arguments\n");
-		exit(1);
-	}
+		ft_error_msg2(VIOLET"Error\n"RESET, VIOLET"Too many arguments"RESET);
 	if (!ft_strchr(av[1], '.'))
-	{
-		printf("Error\n");
-		printf("%s\n", RED"Invalid File");
-		exit(1);
-	}
+		ft_error_msg2(RED"Error\n"RESET, RED"Invalid File"RESET);
 	if (ft_strncmp((ft_strrchr(av[1], '.')), ".cub", 5))
-	{
-		printf("Error\n");
-		printf("%s\n", RED"invalid extension");
-		exit(1);
-	}
+		ft_error_msg2(RED"Error\n"RESET, RED"invalid extension"RESET);
 }
