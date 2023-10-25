@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:02:52 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/24 20:25:17 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/25 10:44:20 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,7 @@ int	open_file(char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-	{
-		printf("Error\n");
-		printf("%s\n", RED"No file to read"RESET);
-		exit(0);
-	}
+		ft_error_msg2(RED"Error\n"RESET, RED"No file to read"RESET);
 	return (fd);
 }
 
@@ -69,25 +65,14 @@ void	read_scene(char *file, t_sceneData *data)
 	fd = open_file(file);
 	combined_map = read_and_combine_lines(fd);
 	if (combined_map)
-	{
 		parse_scene_data(combined_map, data);
-		print_scene(data);
-		free(combined_map);
-	}
-	else
-	{
-		printf("combbined: %p\n", combined_map);
-		free(combined_map);
-	}
+	free(combined_map);
 	close_file(fd);
 }
 
 int	close_file(int fd)
 {
 	if (close(fd) == -1)
-	{
-		printf("Error\nCould not close file.\n");
-		exit(1);
-	}
+		ft_error_msg(RED"Error\nCould not close file.\n"RESET);
 	return (0);
 }

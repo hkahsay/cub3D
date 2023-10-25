@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 11:14:21 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/24 21:25:38 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/25 10:36:56 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	draw_wall_slice(t_game *game, t_ray *ray, int x)
 	{
 		color = *(int *)(ray->texture->img->addr + (texel.x * \
 			(ray->texture->img->bits_per_pixel / 8)) + \
-			((int)(texel.y * offset) * ray->texture->img->line_length));
+			((int)(texel.y * offset) *ray->texture->img->line_length));
 		my_mlx_pixel_put(&game->img, x, y_start, color);
 		y_start++;
 		texel.y++;
@@ -105,28 +105,28 @@ void	draw_wall_slice(t_game *game, t_ray *ray, int x)
 }
 
 /*get wall height on screen depending on distance between player and wall
-get real distance (perpwalldist) from angle ray-camera plane (perwallangle)
-wallheight = screen height * perpwalldist*/
+get real distance (walldist) from angle ray-camera plane (wallangle)
+wallheight = screen height * walldist*/
 void	get_wall_height(t_ray *ray, t_game *game, double distance)
 {
 	if (game->player.dir < ray->player.dir)
 	{
 		if ((ray->player.dir_field == S_E || ray->player.dir_field == E) \
 		&& game->player.dir_field == N_E)
-			ray->perpwallangle = M_PI / 2 - (game->player.dir + 2 * M_PI - \
+			ray->wallangle = M_PI / 2 - (game->player.dir + 2 * M_PI - \
 			ray->player.dir);
 		else
-			ray->perpwallangle = M_PI / 2 - (ray->player.dir - game->player.dir);
+			ray->wallangle = M_PI / 2 - (ray->player.dir - game->player.dir);
 	}
 	else
 	{
 		if ((game->player.dir_field == S_E || game->player.dir_field == E) \
 		&& ray->player.dir_field == N_E)
-			ray->perpwallangle = M_PI / 2 - (ray->player.dir + 2 * M_PI - \
+			ray->wallangle = M_PI / 2 - (ray->player.dir + 2 * M_PI - \
 			game->player.dir);
 		else
-			ray->perpwallangle = M_PI / 2 - (game->player.dir - ray->player.dir);
+			ray->wallangle = M_PI / 2 - (game->player.dir - ray->player.dir);
 	}
-	ray->perpwalldist = fabs(distance * sin(ray->perpwallangle));
-	ray->wallheight = MAX_HEIGHT / ray->perpwalldist;
+	ray->walldist = fabs(distance * sin(ray->wallangle));
+	ray->wallheight = MAX_HEIGHT / ray->walldist;
 }
