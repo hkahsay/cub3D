@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:07:08 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/25 10:36:33 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/27 14:32:28 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,13 @@ typedef struct s_wall_coordinate
 	int	z;
 }	t_wall_coordinate;
 
+typedef struct s_tab_trim
+{
+	int	i;
+	int	j;
+	int	k;
+}	t_tab_trim;
+
 //		Color	Name
 
 typedef struct s_texture
@@ -47,7 +54,7 @@ typedef struct s_color
 	int		r;
 	int		g;
 	int		b;
-	char	**colors;
+	int		flag;
 	int		rgb;
 }	t_color;
 

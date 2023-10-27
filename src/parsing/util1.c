@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 20:10:08 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/24 20:16:35 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/27 13:48:49 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	ft_check_char(char *str, char c)
 	int	i;
 
 	i = 0;
+	if (!c)
+		return (0);
 	if (!str)
 		return (0);
 	while (str[i])

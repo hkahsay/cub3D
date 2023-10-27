@@ -6,13 +6,13 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 20:24:03 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/24 20:24:16 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/27 14:27:48 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-static unsigned int	is_delim(char c, char *delim)
+unsigned int	is_delim(char c, char *delim)
 {
 	while (*delim != '\0')
 	{
@@ -50,7 +50,7 @@ char	*my_strtok(char *srcString, char *delim)
 	char		*ret;
 
 	if (!srcString)
-	srcString = backup_string;
+		srcString = backup_string;
 	check_string(srcString);
 	find_next_token(srcString, delim);
 	ret = srcString;

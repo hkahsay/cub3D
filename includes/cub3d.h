@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 19:57:48 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/25 10:52:08 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/27 17:40:24 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,10 @@ void	init_textures(t_texture *texture);
 void	init_color(t_color *color);
 void	initialize_variables(t_scene_params *params);
 
-//--------------exit----------------//
-int		ft_esc(t_game *game);
-
 //------------------free------------------//
 void	free_map_data(t_map *map_data);
-
 void	free_strs_array(char **strs);
+
 //----------utils2------------//
 
 void	empty_color(char *str);
@@ -66,12 +63,17 @@ int		ft_isdigit_strict(const char *str);
 int		ft_error_msg2(char *msg, char *msg2);
 int		close_file(int fd);
 void	skip_spaces(char *str);
-char	*ft_strncpy(char *dest, char *src, size_t n);
-void	*ft_realloc(void *ptr, size_t orig_size, size_t new_size);
-char	**ft_split2(char *str, char *charset);
 int		is_space(char c);
 int		ft_strcmp(const char *s1, const char *s2);
 char	*my_strtok(char *srcString, char *delim);
+unsigned int	is_delim(char c, char *delim);
+
+//----------util4.c--------------//
+int		ft_strlen_trim(char *str, char c);
+int		tab_size(char **tab);
+char	**trimmed_colors(char **tab, char c);
+char	**ft_split_ck(char const *s, char c);
+int		ft_char_in_set(char c, char const *set);
 
 //----------print----------//
 void	print_scene(t_sceneData *data);
@@ -102,8 +104,8 @@ int		valid_extension(char *tex_path);
 void	check_color(t_color *color, char *color_name);
 int		create_rgb(int r, int g, int b);
 void	check_texture(char *texture, char *tex_name);
-void	parse_texture(const char *str, t_texture *texture);
-void	parse_color(const char *str, t_color *color);
+void	parse_texture(const char *str, t_texture *texture, char *identifier);
+void	parse_color(const char *str, t_color *color, char *identifier);
 
 //----------init_rendering----------//
 void	init_mlx(t_mlx *mlx);

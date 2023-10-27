@@ -6,11 +6,25 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:59:47 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/24 20:05:12 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/27 18:13:21 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+int	ft_char_in_set(char c, char const *set)
+{
+	size_t	i;
+
+	i = 0;
+	while (set[i])
+	{
+		if (set[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 // Initialize valid_char to 0
 // Check if the character is not one of the valid map characters
@@ -23,39 +37,52 @@ int	is_map(char *line)
 
 	i = 0;
 	valid_char = 0;
-	if (ft_check_char(line, '1') == 1)
-	{
-		if (!ft_strchr("01NSEW \n\t\v\f\r", line[i]))
-			return (0);
-		if (line[i] == '1' || line[i] == ' ')
-			valid_char = 1;
-	}
-	return (valid_char);
+	// if (ft_check_char(line, '1') == 1)
+	// {
+		while(line[i])
+		{
+			if (!ft_char_in_set(line[i], "01NSEW \n\t\v\f\r"))
+				return (0);
+			// else
+			// 	return (0);
+			i++;
+			// if (line[i] == '1' || line[i] == ' ')
+			// 	valid_char = 1;
+			// i++;
+		}
+		return (1);
+	// }
+	// return (0);
 }
 
 void	check_map_elm(t_sceneData *data)
 {
 	int	i;
-	int	found;
+	// int	found;
 
 	i = 0;
-	found = 0;
+	// found = 0;
 	while (data->scene[i] != NULL)
 	{
 		if (is_map(data->scene[i]) == 0)
-			data->elm++;
-		else if (is_map(data->scene[i]) == 1)
 		{
-			found = 1;
+			data->elm++;
+			printf("data->elem: %d\n", data->elm);
+		}
+		if (is_map(data->scene[i]) == 1)
+		{
+			printf("in found\n");
+			// found = 1;
 			break ;
 		}
 		i++;
 	}
-	if (!found)
+	// printf("found: %d\n", found);
+	if (data->elm != 6)
 	{
 		printf("Error\n");
-		printf("%s%s%s\n", RED, "Map should be the last element \
-				or no wall", RESET);
+		printf(RED"Map should be the last element \
+				or no wall"RESET);
 		exit(EXIT_FAILURE);
 	}
 }

@@ -1,5 +1,5 @@
 #  -*- Makefile -*-
-  
+
 #*****program*******
 
 NAME = 			libft.a
@@ -20,12 +20,12 @@ SRCS = 				ft_isalpha.c	ft_isdigit.c	ft_isalnum.c		 \
 								ft_substr.c		ft_strjoin.c	ft_strtrim.c	   	 \
 								ft_itoa.c		ft_strmapi.c	ft_striteri.c	     \
 								ft_putchar_fd.c	ft_putstr_fd.c	ft_putendl_fd.c		 \
-								ft_putnbr_fd.c
+								ft_putnbr_fd.c 
 SRCS_BONUS = 																					\
 						ft_lstnew.c		ft_lstadd_front.c	ft_lstsize.c	\
 				ft_lstlast.c	ft_lstadd_back.c	ft_lstdelone.c		\
 				ft_lstclear.c	ft_lstiter.c
-		
+
 
 OBJS = 	${SRCS:.c=.o}
 #********bonus paths******
@@ -36,9 +36,9 @@ OBJS_BONUS = ${SRCS_BONUS:.c=.o}
 
 #*******RULES***********
 
-.c.o:		
+.c.o:
 			${CC} -o ${CFLAG} -c $< -o ${<:.c=.o}
-all:		${NAME} 			
+all:		${NAME}
 $(NAME):	${OBJS}
 			ar rc ${NAME} ${OBJS}
 
@@ -52,7 +52,7 @@ clean_bouns:
 			rm -f ${OBJS_BONUS}
 clean:
 			rm -f ${OBJS} ${OBJS_BONUS}
-fclean:		clean	
+fclean:		clean
 			rm -f ${NAME}
 re:			fclean all
 .PHONY:		all clean fclean re

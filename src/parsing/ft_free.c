@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 20:06:42 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/24 20:06:49 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/27 17:07:04 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@ void	free_strs_array(char **strs)
 	i = 0;
 	while (strs[i])
 	{
-		free(strs[i]);
+		if (strs[i])
+			free(strs[i]);
 		i++;
 	}
-	free(strs);
+	if (strs)
+		free(strs);
 }

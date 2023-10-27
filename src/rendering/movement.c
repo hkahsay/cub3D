@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:56:58 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/25 10:52:44 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/25 17:29:45 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	move_backward(t_game *game)
 	}
 }
 
-//player moves lef when A key is pressed
+//player moves left when A key is pressed
 void	move_left(t_game *game)
 {
 	t_coord	update;

@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:41:32 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/24 19:54:46 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/27 17:40:55 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,15 @@ static int	line_contains_non_whitespace(const char *line)
 
 static void	process_non_map_line(t_sceneData *data, int i)
 {
-	char				*identifier;
-	char				*dataline;
+	char	*identifier;
+	char	*dataline;
 
 	if (line_contains_non_whitespace(data->scene[i]) == 0)
 		return ;
 	identifier = my_strtok(data->scene[i], " ");
 	dataline = my_strtok(NULL, "");
-	if (!identifier)
-		return ;
+	if (!ft_strcmp(dataline, "") || !dataline)
+		dataline = NULL;
 	get_file(identifier, dataline, data);
 	data->elm++;
 }
@@ -46,7 +46,10 @@ static void	process_map_line(t_sceneData *data, t_scene_params *params)
 	if (params->mapstarted == 1)
 	{
 		if (line_contains_non_whitespace(data->scene[params->i]) == 1)
+		{
 			data->map_data.m_height++;
+			printf("data->map_data.m_height %d\n", data->map_data.m_height);
+		}
 		else
 		{
 			ft_error_msg(RED"Error: The map contains an empty line."RESET);

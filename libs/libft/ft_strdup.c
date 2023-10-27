@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 14:55:01 by hkahsay           #+#    #+#             */
-/*   Updated: 2023/10/24 17:20:42 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/27 13:21:31 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*ft_strdup_const(const char *s1)
 
 	str = (char *)malloc(sizeof(*s1) * (ft_strlen(s1) + 1));
 	if (!str)
-		return (0);
+		return (str);
 	i = 0;
 	while (s1[i])
 	{

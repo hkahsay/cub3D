@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 20:08:39 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/24 20:08:45 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/27 13:22:41 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	check_texture(char *texture, char *tex_name)
 	int	fd;
 
 	fd = open(texture, O_RDONLY);
+	printf("texture path: '%s'\n", texture);
 	if (texture == NULL)
 	{
 		printf (RED"Error\n%s texture path is empty\n"RESET, tex_name);
