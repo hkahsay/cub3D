@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 20:08:14 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/27 17:40:12 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/29 14:35:46 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	parse_texture(const char *str, t_texture *texture, char *identifier)
 {
 	char	*temp;
 
-	printf("printf str in parse texturee '%s'\n", str);
 	if (!str)
 	{
 		printf("Error\n");
