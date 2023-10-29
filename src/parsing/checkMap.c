@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:59:47 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/27 18:13:21 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/29 14:47:50 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,54 +37,45 @@ int	is_map(char *line)
 
 	i = 0;
 	valid_char = 0;
-	// if (ft_check_char(line, '1') == 1)
-	// {
-		while(line[i])
+
+	while (line[i])
+	{
+		if (ft_char_in_set(line[i], "01NSEW \n\t\v\f\r"))
+			valid_char = 1;
+		else
 		{
-			if (!ft_char_in_set(line[i], "01NSEW \n\t\v\f\r"))
-				return (0);
-			// else
-			// 	return (0);
-			i++;
-			// if (line[i] == '1' || line[i] == ' ')
-			// 	valid_char = 1;
-			// i++;
+			valid_char = 0;
+			break ;
 		}
-		return (1);
-	// }
-	// return (0);
+		i++;
+	}
+	return (valid_char);
 }
 
 void	check_map_elm(t_sceneData *data)
 {
 	int	i;
-	// int	found;
+	int	found;
 
 	i = 0;
-	// found = 0;
 	while (data->scene[i] != NULL)
 	{
+		// printf("line:'%s'\n", data->scene[i]);
 		if (is_map(data->scene[i]) == 0)
 		{
 			data->elm++;
-			printf("data->elem: %d\n", data->elm);
+			// printf("data elm: %d\n", data->elm);
+			found = 0;
 		}
 		if (is_map(data->scene[i]) == 1)
-		{
-			printf("in found\n");
-			// found = 1;
-			break ;
-		}
+			found = 1;
 		i++;
 	}
-	// printf("found: %d\n", found);
-	if (data->elm != 6)
-	{
-		printf("Error\n");
-		printf(RED"Map should be the last element \
-				or no wall"RESET);
-		exit(EXIT_FAILURE);
-	}
+	if (found == 0)
+		ft_error_msg(RED"Error\nInexistent map or map not at \
+the end of file"RESET);
+	else if (data->elm == 0)
+		ft_error_msg(RED"Error\nFile contains insufficient information"RESET);
 }
 
 void	check_map_validty(char **map, int m_height, int row, int col)
@@ -94,7 +85,7 @@ void	check_map_validty(char **map, int m_height, int row, int col)
 	{
 		printf("Error\n");
 		printf(RED"Invalid map: (%d, %d) is outside of \
-				the map or map is not surrounded by 1.\n"RESET, row, col);
+the map or map is not surrounded by 1.\n"RESET, row, col);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -113,8 +104,10 @@ void	check_map_valid_characters(t_map *map_data)
 		while (map_data->map[i][++j])
 		{
 			if (!ft_strchr("01NSEW ", map_data->map[i][j]))
+			{
 				ft_error_msg(RED"Invalid map: Invalid character \
-				found in the map."RESET);
+found in the map."RESET);
+			}
 			if (ft_strchr("NSEW", map_data->map[i][j]))
 			{
 				get_play_pos_coord(map_data, i, j, map_data->map[i][j]);
@@ -151,3 +144,33 @@ void	check_map(t_map *map_data)
 		i++;
 	}
 }
+
+//old is_map function
+// int	is_map(char *line)
+// {
+// 	int	i;
+// 	int	valid_char;
+
+// 	i = 0;
+// 	valid_char = 0;
+// 	// if (ft_check_char(line, '1') == 1)
+// 	// {
+// 		while(line[i])
+// 		{
+// 			//\n\t\v\f\r
+// 			if (ft_char_in_set(line[i], "01NSEW "))
+// 				valid_char = 1;
+// 			else
+// 			{
+// 				valid_char = 0;
+// 				break ;
+// 			}
+// 			i++;
+// 			// if (line[i] == '1' || line[i] == ' ')
+// 			// 	valid_char = 1;
+// 			// i++;
+// 		}
+// 		return (valid_char);
+// 	// }
+// 	// return (0);
+// }

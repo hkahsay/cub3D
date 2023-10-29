@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 20:07:57 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/24 20:08:04 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/29 14:48:38 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	check_color(t_color *color, char *color_name)
 	else if (!color_ranges_valid(&color->r, &color->g, &color->b))
 	{
 		printf(RED"Error\nThe RGB code for the " YELLOW"%s"RED" is \
-			out of range.\n"RESET, color_name);
+out of range.\n"RESET, color_name);
 		exit(EXIT_SUCCESS);
 	}
 	color->rgb = create_rgb(color->r, color->g, color->b);

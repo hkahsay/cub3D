@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:41:32 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/27 17:40:55 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/10/29 14:45:37 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void	process_non_map_line(t_sceneData *data, int i)
 	char	*identifier;
 	char	*dataline;
 
+	printf("process non map line\n");
 	if (line_contains_non_whitespace(data->scene[i]) == 0)
 		return ;
 	identifier = my_strtok(data->scene[i], " ");
@@ -48,7 +49,7 @@ static void	process_map_line(t_sceneData *data, t_scene_params *params)
 		if (line_contains_non_whitespace(data->scene[params->i]) == 1)
 		{
 			data->map_data.m_height++;
-			printf("data->map_data.m_height %d\n", data->map_data.m_height);
+			// printf("data->map_data.m_height %d\n", data->map_data.m_height);
 		}
 		else
 		{
@@ -68,6 +69,8 @@ static void	process_scene_line(t_scene_params *params, t_sceneData *data)
 		if (is_map(data->scene[params->i]) == 1)
 		{
 			params->map_started_index = params->i;
+			// printf("map start line: %d\n", params->map_started_index);
+			// printf("map line: %s\n", data->scene[params->i]);
 			params->mapstarted = 1;
 		}
 	}
