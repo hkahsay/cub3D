@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:02:52 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/25 10:31:16 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/11/01 13:10:20 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,5 @@ void	check_arg(int ac, char **av)
 	if (!ft_strchr(av[1], '.'))
 		ft_error_msg2(RED"Error\n"RESET, RED"Invalid File"RESET);
 	if (ft_strncmp((ft_strrchr(av[1], '.')), ".cub", 5))
-		ft_error_msg2(RED"Error\n"RESET, RED"invalid extension"RESET);
+		ft_error_msg2(RED"Error\n"RESET, RED"Invalid extension"RESET);
 }

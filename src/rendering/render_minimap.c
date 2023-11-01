@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:50:22 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/24 20:32:53 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/11/01 15:34:44 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,23 @@
 
 int	render_mini_map(t_game *game)
 {
-	generate_img(&game->img, &game->mlx, MAX_WIDTH, MAX_HEIGHT);
-	render_2dmap_wall(game);
-	draw_2dgrid(game);
-	draw_player_minimap(game);
-	key_event(game);
-	draw_all_rays(game);
-	mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_mlx, \
-							game->img.img, 0, 0);
-	mlx_destroy_image(game->mlx.mlx_ptr, game->img.img);
+	if (game->data->map_data.m_height * 15 < MAX_HEIGHT && \
+	game->data->map_data.m_width * 15 < MAX_WIDTH)
+	{
+		generate_img(&game->img, &game->mlx, MAX_WIDTH, MAX_HEIGHT);
+		render_2dmap_wall(game);
+		draw_2dgrid(game);
+		draw_player_minimap(game);
+		key_event(game);
+		draw_all_rays(game);
+		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_mlx, \
+								game->img.img, 0, 0);
+		mlx_destroy_image(game->mlx.mlx_ptr, game->img.img);
+	}
+	// else
+	// {
+	// 	printf(VIOLET"Map is too big for the minimap function\n"RESET);
+	// }
 	return (0);
 }
 

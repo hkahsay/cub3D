@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 20:08:14 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/29 14:35:46 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/11/01 15:22:35 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	get_file(char *identifier, char *str, t_sceneData *data)
 		return ;
 	else
 	{
-		printf(RED"Error\nUnknown identifier: %s\n"RESET, identifier);
+		printf(RED"Error\nUnknown identifier: '%s'\n"RESET, identifier);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -65,6 +65,8 @@ void	parse_texture(const char *str, t_texture *texture, char *identifier)
 
 static void	color_split(char **strs_split, t_color *color)
 {
+	// printf("colors split %s\n", strs_split[0]);
+	// printf("tab size colors %d\n", tab_size(strs_split));
 	if (tab_size(strs_split) == 3 && \
 		strs_split[0] && strs_split[1] && strs_split[2] \
 		&& ft_isdigit_strict(strs_split[0]) \
@@ -91,7 +93,10 @@ void	parse_color(const char *str, t_color *color, char *identifier)
 	empty_color((char *)str);
 	if (!color->flag)
 	{
+		// printf("str colors: %s\n", str);
 		temp = ft_split_ck(str, ',');
+		// printf("temp size %d\n", tab_size(temp));
+		// printf("temp: '%s'\n", temp[0]);
 		strs_split = trimmed_colors(temp, ' ');
 		free_strs_array(temp);
 		if (strs_split == NULL)

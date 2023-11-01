@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 20:07:57 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/29 14:48:38 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/11/01 13:25:29 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ void	check_color(t_color *color, char *color_name)
 {
 	if (color->r == -1)
 	{
-		printf("Error\nThe %s is not set or poorly \
-			formatted.\n", color_name);
+		printf(RED"Error\nThe %s is not set or poorly \
+formatted\n"RESET, color_name);
 		exit(EXIT_SUCCESS);
 	}
 	else if (!color_ranges_valid(&color->r, &color->g, &color->b))
 	{
-		printf(RED"Error\nThe RGB code for the " YELLOW"%s"RED" is \
+		printf(RED"Error\nThe RGB code for the "YELLOW"%s"RED" is \
 out of range.\n"RESET, color_name);
 		exit(EXIT_SUCCESS);
 	}

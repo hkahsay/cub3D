@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 20:24:03 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/27 14:27:48 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/11/01 15:18:05 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ char	*my_strtok(char *srcString, char *delim)
 
 	if (!srcString)
 		srcString = backup_string;
+	while(*srcString == ' ')
+		srcString++;
 	check_string(srcString);
 	find_next_token(srcString, delim);
 	ret = srcString;

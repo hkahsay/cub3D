@@ -1,3 +1,14 @@
+NO ./textures/squared/flower.xpm
+SO ./textures/squared/morrocan.xpm
+WE ./textures/squared/inward-spiral.xpm
+EA      ./textures/squared/tile.xpm
+
+
+     F 150,150    ,200
+   C 225,130, 200
+
+
+
 
         1111111111111111111111111
         1000000000110000000000001

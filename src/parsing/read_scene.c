@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:02:52 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/27 15:13:45 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/11/01 13:11:02 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	open_file(char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		ft_error_msg2(RED"Error\n"RESET, RED"No file to read"RESET);
+		ft_error_msg2(RED"Error\n"RESET, RED"Cannot read file"RESET);
 	return (fd);
 }
 

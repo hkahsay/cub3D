@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:59:47 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/29 14:47:50 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/11/01 15:47:49 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,7 @@ void	check_map_validty(char **map, int m_height, int row, int col)
 	if (row < 0 || row >= m_height || col < 0 || \
 		col >= (int)ft_strlen(map[row]))
 	{
-		printf("Error\n");
-		printf(RED"Invalid map: (%d, %d) is outside of \
+		printf(RED"Error\nInvalid map: (%d, %d) is outside of \
 the map or map is not surrounded by 1.\n"RESET, row, col);
 		exit(EXIT_FAILURE);
 	}
