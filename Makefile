@@ -6,7 +6,7 @@
 #    By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/15 20:19:13 by hkahsay           #+#    #+#              #
-#    Updated: 2023/10/27 15:11:00 by ckarl            ###   ########.fr        #
+#    Updated: 2023/11/03 16:58:59 by ckarl            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -126,11 +126,14 @@ clean:
 
 			@echo "$(RED) Cleaning Directory /objs$(RESET)"
 			@rm -rf $(OBJS_PATH)
+			@echo "$(RED) Cleaning Directory /includes/mlx$(RESET)"
+			@$(MAKE) -sC $(MLXPATH) clean
 
 fclean:		clean
 			@$(MAKE) -sC $(LIBFT_PATH) fclean
 			@echo "$(RED) rm libft.a libmlx.a cub3D$(RESET)"
 			@rm -f libft.a
+			@rm -f libmlx.a
 			@rm -rf $(NAME)
 
 re:			fclean all

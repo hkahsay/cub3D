@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 11:14:21 by ckarl             #+#    #+#             */
-/*   Updated: 2023/10/25 10:36:56 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/11/03 16:40:09 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,18 +61,18 @@ void	draw_single_ray(t_ray *ray, t_game *game)
 	{
 		get_wall_height(ray, game, ray->eucl_dist.hz);
 		if (check_north(ray->player.dir) == 1)
-			ray->texture = &game->data->south_texture;
-		else
 			ray->texture = &game->data->north_texture;
+		else
+			ray->texture = &game->data->south_texture;
 	}
 	else
 	{
 		get_vertical_wall_xpos(ray);
 		get_wall_height(ray, game, ray->eucl_dist.vt);
 		if (check_west(ray->player.dir) == 1)
-			ray->texture = &game->data->east_texture;
-		else
 			ray->texture = &game->data->west_texture;
+		else
+			ray->texture = &game->data->east_texture;
 	}
 }
 

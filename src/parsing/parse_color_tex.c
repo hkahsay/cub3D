@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 20:08:14 by ckarl             #+#    #+#             */
-/*   Updated: 2023/11/01 15:22:35 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/11/03 16:41:35 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	parse_texture(const char *str, t_texture *texture, char *identifier)
 	if (!str)
 	{
 		printf("Error\n");
-		printf(RED"Texture is NULL.\n"RESET);
+		printf(RED"Texture path is missing.\n"RESET);
 		exit(EXIT_FAILURE);
 	}
 	if (!texture->path)
