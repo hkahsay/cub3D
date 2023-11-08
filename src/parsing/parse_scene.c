@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_scene.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkahsay <hkahsay@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:41:32 by ckarl             #+#    #+#             */
-/*   Updated: 2023/11/08 09:56:32 by hkahsay          ###   ########.fr       */
+/*   Updated: 2023/11/08 15:36:41 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	process_map_line(t_sceneData *data, t_scene_params *params)
 		}
 		else
 		{
-			ft_error_msg(RED"Error: The map contains an empty line."RESET);
+			ft_error_msg(RED"Error\nThe map contains an empty line."RESET);
 			free_map_data(&data->map_data);
 		}
 	}

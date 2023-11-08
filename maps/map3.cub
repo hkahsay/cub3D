@@ -1,14 +1,18 @@
+
+
+
 NO ./textures/squared/north_texture.xpm
 SO ./textures/squared/south_texture.xpm
     WE ./textures/squared/west_texture.xpm
 EA      ./textures/squared/east_texture.xpm
 
-F 252, 186, 3
-C 3, 132, 252
+
+F 252, 186, 134
+C 3, 132, 152
 
 
      111111
-    100S00111
+    100W00111
      100000001
       1011111
        1
