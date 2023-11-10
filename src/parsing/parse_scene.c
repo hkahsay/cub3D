@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:41:32 by ckarl             #+#    #+#             */
-/*   Updated: 2023/11/08 15:36:41 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/11/10 11:47:35 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,13 @@ static void	process_non_map_line(t_sceneData *data, int i)
 {
 	char	*identifier;
 	char	*dataline;
-	// char	*copy;
 
 	if (line_contains_non_whitespace(data->scene[i]) == 0)
 		return ;
-	// copy = ft_strtrim(data->scene[i], " ");
-	// printf("data scene: '%s'\n", data->scene[i]);
 	identifier = my_strtok(data->scene[i], " ");
 	dataline = my_strtok(NULL, "");
 	if (!ft_strcmp(dataline, "") || !dataline)
 		dataline = NULL;
-	// free(copy);
-	// printf("identifier %s\n", identifier);
 	get_file(identifier, dataline, data);
 	data->elm++;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util3.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkahsay <hkahsay@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 20:24:03 by ckarl             #+#    #+#             */
-/*   Updated: 2023/11/08 09:57:11 by hkahsay          ###   ########.fr       */
+/*   Updated: 2023/11/10 11:47:49 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*my_strtok(char *srcString, char *delim)
 
 	if (!srcString)
 		srcString = backup_string;
-	while(*srcString == ' ')
+	while (*srcString == ' ')
 		srcString++;
 	check_string(srcString);
 	find_next_token(srcString, delim);

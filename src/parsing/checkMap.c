@@ -3,28 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   checkMap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkahsay <hkahsay@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:59:47 by ckarl             #+#    #+#             */
-/*   Updated: 2023/11/08 09:55:15 by hkahsay          ###   ########.fr       */
+/*   Updated: 2023/11/10 12:19:58 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-int	ft_char_in_set(char c, char const *set)
-{
-	size_t	i;
-
-	i = 0;
-	while (set[i])
-	{
-		if (set[i] == c)
-			return (1);
-		i++;
-	}
-	return (0);
-}
 
 // Initialize valid_char to 0
 // Check if the character is not one of the valid map characters
@@ -37,7 +23,6 @@ int	is_map(char *line)
 
 	i = 0;
 	valid_char = 0;
-
 	while (line[i])
 	{
 		if (ft_char_in_set(line[i], "01NSEW \n\t\v\f\r"))
@@ -60,11 +45,9 @@ void	check_map_elm(t_sceneData *data)
 	i = 0;
 	while (data->scene[i] != NULL)
 	{
-		// printf("line:'%s'\n", data->scene[i]);
 		if (is_map(data->scene[i]) == 0)
 		{
 			data->elm++;
-			// printf("data elm: %d\n", data->elm);
 			found = 0;
 		}
 		if (is_map(data->scene[i]) == 1)
@@ -81,7 +64,7 @@ the end of file"RESET);
 void	check_map_validty(char **map, int m_height, int row, int col)
 {
 	if (row < 0 || row >= m_height || col < 0 || \
-		col >= (int)ft_strlen(map[row]))
+		col >= (int)ft_strlen(map[row]) || map[row][col] == ' ')
 	{
 		printf(RED"Error\nInvalid map: (%d, %d) is outside of \
 the map or map is not surrounded by 1.\n"RESET, row, col);
@@ -125,6 +108,7 @@ void	check_map(t_map *map_data)
 	int	j;
 
 	i = 0;
+	convert_spaces(map_data);
 	while (i < map_data->m_height)
 	{
 		j = 0;
@@ -143,33 +127,3 @@ void	check_map(t_map *map_data)
 		i++;
 	}
 }
-
-//old is_map function
-// int	is_map(char *line)
-// {
-// 	int	i;
-// 	int	valid_char;
-
-// 	i = 0;
-// 	valid_char = 0;
-// 	// if (ft_check_char(line, '1') == 1)
-// 	// {
-// 		while(line[i])
-// 		{
-// 			//\n\t\v\f\r
-// 			if (ft_char_in_set(line[i], "01NSEW "))
-// 				valid_char = 1;
-// 			else
-// 			{
-// 				valid_char = 0;
-// 				break ;
-// 			}
-// 			i++;
-// 			// if (line[i] == '1' || line[i] == ' ')
-// 			// 	valid_char = 1;
-// 			// i++;
-// 		}
-// 		return (valid_char);
-// 	// }
-// 	// return (0);
-// }

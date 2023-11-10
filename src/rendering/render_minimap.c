@@ -6,7 +6,7 @@
 /*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:50:22 by ckarl             #+#    #+#             */
-/*   Updated: 2023/11/01 15:34:44 by ckarl            ###   ########.fr       */
+/*   Updated: 2023/11/10 11:26:35 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,13 @@ int	render_mini_map(t_game *game)
 								game->img.img, 0, 0);
 		mlx_destroy_image(game->mlx.mlx_ptr, game->img.img);
 	}
-	// else
-	// {
-	// 	printf(VIOLET"Map is too big for the minimap function\n"RESET);
-	// }
 	return (0);
 }
 
 void	draw_wall(t_game *game, t_wall_coordinate wall_coord)
 {
-	int		x;
-	int		y;
+	int	x;
+	int	y;
 
 	y = 0;
 	while (y < SCALE_MINI_MAP)

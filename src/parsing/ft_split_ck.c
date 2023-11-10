@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_ck.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkahsay <hkahsay@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 13:19:20 by ckarl             #+#    #+#             */
-/*   Updated: 2023/11/08 09:58:45 by hkahsay          ###   ########.fr       */
+/*   Updated: 2023/11/10 11:47:17 by ckarl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,37 +70,24 @@ char	**ft_split_ck(char const *s, char c)
 	int		a;
 	int		start;
 
-	i = 0;
+	i = -1;
 	a = 0;
 	start = -1;
-	// printf("ft_words: %d\n", ft_words(s, c));
 	tab = (char **)malloc(sizeof(char *) * (ft_words(s, c) + 1));
 	if (!tab || !s)
 		return (NULL);
-	// printf("ft len: %d and split char '%c'\n", ft_len(s), c);
-	while (i <= ft_len(s))
+	while (++i <= ft_len(s))
 	{
 		if (s[i] != c && start < 0)
 		{
-			// printf("printf start '%c'\n", s[i]);
 			start = i;
 		}
 		else if ((s[i] == c || i == ft_len(s)) && start >= 0)
 		{
-			// if (s[i] == '\0')
-			// 	printf("it's 0\n");
-			// printf("in tab[a++]and char i -%c- hello\n", i);
 			tab[a++] = ft_dup(s, start, i);
 			start = -1;
 		}
-		i++;
 	}
-	// if (start >= 0)
-	// {
-	// 	printf("in if outside of while start %d and i %d\n", start, i);
-	// 	tab[a++] = ft_dup(s, start, i);
-	// }
-	// printf("value of i %d\n", i);
 	tab[a] = 0;
 	return (tab);
 }
