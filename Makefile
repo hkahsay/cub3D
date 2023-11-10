@@ -6,7 +6,7 @@
 #    By: ckarl <ckarl@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/15 20:19:13 by hkahsay           #+#    #+#              #
-#    Updated: 2023/11/03 16:58:59 by ckarl            ###   ########.fr        #
+#    Updated: 2023/11/10 11:37:55 by ckarl            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -142,10 +142,3 @@ leaks:		all
 	leaks --atExit -- ./cub3d
 
 .PHONY:		all clean fclean re leaks
-
-###need to add this to clean in the end###
-#@echo "$(RED) Cleaning Directory /includes/mlx$(RESET)"
-#@$(MAKE) -sC $(MLXPATH) clean
-
-###need to add this to fclean in the end###
-#@rm -f libmlx.a
